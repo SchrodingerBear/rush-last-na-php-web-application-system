@@ -1,0 +1,204 @@
+/* AcademAI-Essay-Rubric */
+.essay-criteria-setting-container {
+    display: grid;
+    justify-content: center; /* Center the table horizontally */
+    align-items: center;
+    height:auto;
+    
+   
+}
+
+.criteria-table-container {
+   margin-top:5%;
+   overflow-x: auto; /* Allow horizontal scrolling */
+   overflow-y: auto;
+   margin-left:2%;
+   margin-right:2%;
+
+}
+
+
+.criteria-table-container table {
+    width: auto; /* Allow table to adjust its width based on content */
+}
+
+.criteria-table-container th,
+.criteria-table-container td {
+    padding: 10px; /* Add padding to cells */
+    text-align: center; /* Center align content */
+    min-width: 130px; /* Minimum width for existing columns */
+}
+
+
+
+.rubric-criterion {
+    font-size:0.8750em;
+    color:#fff;
+    font-family:'Times New Roman', Times, serif;
+    text-align: justify;
+
+}
+
+/* apply style to odd rows */
+.table tbody tr:nth-child(odd) {
+    background-color: #5c8374;
+}
+/* apply style to odd rows */
+.table tbody tr:nth-child(even) {
+    background-color:#9EC8B9;
+}
+/* apply style in the thead */
+.table th {
+    text-align: center;
+}
+
+.criteria-heading {
+    background-color: #092635;
+    font-size: 1.125em;
+    color: #ffffff;
+    font-family:'Times New Roman', Times, serif;
+    font-weight:800;
+}
+
+.levels {
+    color:#ffffff;
+}
+/* apply style in the tbody */
+.predefined-criteria td {
+    color:#fff;
+    font-size:1em;
+    font-family:'Times New Roman', Times, serif;
+}
+
+/* apply style to the button */
+
+.essay-criteria-setting-btn-add, .essay-criteria-setting-btn-save {
+    background-color: #092635;
+    color: #ffffff;
+    width: 150px;
+    height:30px;
+    border-radius:5px;
+    font-size:1em;
+    font-family:'Times New Roman', Times, serif;
+}
+
+   
+
+.essay-criteria-setting-btn-add:hover,
+.essay-criteria-setting-btn-save:hover {
+    background-color: #5c8374;
+    color: #ffffff;
+}
+
+.level-add-icon {
+    cursor: pointer;
+    font-size: 1.8rem;
+
+}
+
+.level-add-icon:hover {
+    cursor: pointer;
+    color: #1b4242;
+}
+
+.fa-trash {
+    font-size:0.8rem;
+}
+
+.predefined-criteria {
+    color:white;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #b5b5b5; /* Change the background color on hover */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.table-hover tbody tr:hover td {
+    color: #fff; /* Change text color of all td elements within the hovered row */
+}
+
+
+.edit-criteria-btn {
+    width:80px;
+    height:30px;
+    color:#fff;
+    background-color:blue;
+    border:none;
+    border-radius:5px;
+    font-size: 1em;
+    
+    
+}
+
+
+.delete-criteria-btn {
+    width:80px;
+    height:30px;
+    color:#fff;
+    background-color:red;
+    border:none;
+    border-radius:5px;
+    font-size: 1em;
+    
+}
+
+.edit-criteria-btn {
+    width:80px;
+    height:30px;
+    color:#fff;
+    background-color:blue;
+    border:none;
+    border-radius:5px;
+    font-size: 1em; 
+}
+
+
+.delete-criteria-btn:hover {
+    background-color:rgb(194, 30, 30);
+}
+.edit-criteria-btn:hover{
+    background-color:rgb(47, 47, 200);
+}
+
+.essay-criteria-heading {
+    text-align: center;
+    margin-bottom: 10px; /* Adjust margin as needed */
+    background-color:#092635;
+    width:80%;
+    margin-top:30px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.essay-criteria-heading h2 {
+    font-size: 24px;
+    color: #092635; /* Adjust color as needed */
+}
+.rubric-textarea-container {
+    overflow: auto;
+}
+
+.rubric-textarea {
+    font-size: 1em;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: justify;
+    padding: 10px; /* Adjust padding as needed */
+    color:#092635;
+   
+}
+
+.back-arrow-container {
+  margin-top: 3%;
+  margin-left: 2%;
+}
+.fa-arrow-left  {
+    font-size:2.25em;
+    color:#092635;
+}
+.rubric-criterion-weight{
+    width:120px;
+    height:90px;
+    text-align:center;
+}

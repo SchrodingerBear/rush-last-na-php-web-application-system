@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en" x-data="{ profileOpen: false, searchOpen: false, filterOpen: false }">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Car Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/alpinejs" defer></script>
+</head>
+<body class="bg-gray-100 h-screen flex">
+
+  <!-- Sidebar -->
+  <aside class="w-64 bg-white shadow-md p-4 space-y-4">
+    <!-- Logo -->
+    <div class="flex items-center space-x-2">
+      <img src="https://img.icons8.com/fluency/48/quiz.png" alt="Logo" class="w-10 h-10" />
+      <span class="text-xl font-bold text-teal-600">Quiz Car</span>
+    </div>
+
+    <nav class="mt-6">
+      <ul class="space-y-2">
+        <li class="text-gray-700 font-medium hover:text-teal-600 cursor-pointer">Quiz Card</li>
+
+        <li>
+          <details class="group">
+            <summary class="cursor-pointer text-gray-700 font-medium hover:text-teal-600">Activity</summary>
+            <ul class="ml-4 mt-2 space-y-1 text-sm text-gray-600">
+              <li>Upcoming</li>
+              <li>Missed</li>
+              <li>Completed</li>
+              <li>Running</li>
+            </ul>
+          </details>
+        </li>
+
+        <li>
+          <details class="group">
+            <summary class="cursor-pointer text-gray-700 font-medium hover:text-teal-600">Quiz Archives</summary>
+            <ul class="ml-4 mt-2 space-y-1 text-sm text-gray-600">
+              <li>Upcoming</li>
+              <li>Activity</li>
+              <li>Completed</li>
+              <li>Essay Rubric</li>
+            </ul>
+          </details>
+        </li>
+
+        <li class="text-gray-700 font-medium hover:text-teal-600 cursor-pointer">Settings</li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col">
+
+    <!-- Top Navbar -->
+    <header class="bg-white shadow-md p-4 flex justify-between items-center relative">
+      <!-- Left Buttons: Search + Filter Toggle -->
+      <div class="flex gap-3">
+        <!-- Search Toggle -->
+        <button @click="searchOpen = !searchOpen" class="text-gray-600 hover:text-teal-600 flex items-center gap-1">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 21l-4.35-4.35M10 18a8 8 0 100-16 8 8 0 000 16z" />
+          </svg>
+          <span class="text-sm">Search</span>
+        </button>
+
+        <!-- Filter Toggle -->
+        <button @click="filterOpen = !filterOpen" class="text-gray-600 hover:text-teal-600 flex items-center gap-1">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707l-6.414 6.414A1 1 0 0014 13v6a1 1 0 01-1.447.894l-4-2A1 1 0 018 17V13a1 1 0 00-.293-.707L1.293 6.707A1 1 0 011 6V4z" />
+          </svg>
+          <span class="text-sm">Filter</span>
+        </button>
+      </div>
+
+      <!-- Right: Profile -->
+      <div class="relative" x-data="{ open: false }">
+        <button @click="open = !open" class="flex items-center space-x-2 focus:outline-none">
+          <img src="https://ui-avatars.com/api/?name=User" alt="Profile" class="w-8 h-8 rounded-full" />
+          <span class="text-sm font-medium text-gray-700">John Doe</span>
+          <svg class="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <!-- Profile Dropdown -->
+        <div
+          x-show="open"
+          @click.away="open = false"
+          x-transition
+          class="absolute right-0 mt-2 w-40 bg-white border rounded-md shadow-lg z-20"
+        >
+          <ul class="py-1 text-sm text-gray-700">
+            <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Profile</a></li>
+            <li><a href="#" class="block px-4 py-2 hover:bg-gray-100">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Search Input -->
+      <div
+        x-show="searchOpen"
+        x-transition
+        class="absolute top-full mt-2 left-0 w-full px-4 z-10"
+      >
+        <input
+          type="text"
+          placeholder="Search..."
+          class="w-full p-2 border rounded-md shadow-sm focus:ring-teal-500 focus:outline-none"
+        />
+      </div>
+
+      <!-- Filter Inputs -->
+      <div
+        x-show="filterOpen"
+        x-transition
+        class="absolute top-full mt-2 left-0 w-full px-4 z-10"
+      >
+        <div class="flex gap-4">
+          <div>
+            <label for="year" class="block text-sm font-medium text-gray-700">Year</label>
+            <select id="year" class="mt-1 block w-32 p-2 border rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500">
+              <option>2025</option>
+              <option>2024</option>
+              <option>2023</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="month" class="block text-sm font-medium text-gray-700">Month</label>
+            <select id="month" class="mt-1 block w-32 p-2 border rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500">
+              <option>January</option>
+              <option>February</option>
+              <option>March</option>
+              <option>April</option>
+              <option>May</option>
+              <option>June</option>
+              <option>July</option>
+              <option>August</option>
+              <option>September</option>
+              <option>October</option>
+              <option>November</option>
+              <option>December</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="p-6">
+      <h1 class="text-xl font-bold text-gray-700">Welcome to Quiz Car</h1>
+      <p class="mt-2 text-gray-600">Use the sidebar to navigate. Use the search or filter to refine results.</p>
+    </main>
+
+   
+         
+       
+     
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-8 bg-gray-100 min-h-screen">
+
+        <!-- Card -->
+        <div class="relative bg-white rounded-3xl shadow-md overflow-hidden w-full max-w-sm mx-auto">
+          <!-- Decorative Wavy Background -->
+          <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-b-[40%] z-0"></div>
+      
+          <!-- Three Dots Button -->
+          <div class="absolute top-4 right-4 z-20">
+            <div class="relative">
+              <button onclick="toggleDropdown(this)" class="text-white hover:text-gray-200 focus:outline-none text-xl">
+                ⋮
+              </button>
+              <div class="dropdown-menu hidden absolute right-0 mt-2 w-36 bg-white rounded-lg shadow-lg py-2 z-50">
+                <button class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">📄 Copy Quiz</button>
+                <button class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50">🗑️ Delete Quiz</button>
+              </div>
+            </div>
+          </div>
+      
+          <!-- Content -->
+          <div class="p-5 pt-32 relative z-10">
+            <h3 class="text-lg font-bold text-gray-800 mb-1">Quiz Title</h3>
+            <p class="text-sm text-gray-500 mb-2">Subject: <span class="text-gray-700 font-medium">English</span></p>
+            <p class="text-sm text-gray-600 mb-3">This quiz covers chapters 1–3, including grammar and vocabulary.</p>
+      
+            <div class="text-xs text-gray-600 space-y-1 mb-4">
+              <p><span class="font-medium">Start:</span> Jan 1, 2024 | 09:00 AM</p>
+              <p><span class="font-medium">End:</span> Jan 7, 2024 | 05:00 PM</p>
+            </div>
+      
+            <a href="#" class="block text-center text-sm font-medium text-indigo-600 hover:underline">View Participants</a>
+          </div>
+        </div>
+      </div>
+      
+      <script>
+        // Simple toggle logic to show/hide dropdown on dot click
+        function toggleDropdown(button) {
+          const dropdown = button.nextElementSibling;
+          const allDropdowns = document.querySelectorAll('.dropdown-menu');
+      
+          allDropdowns.forEach(menu => {
+            if (menu !== dropdown) menu.classList.add('hidden');
+          });
+      
+          dropdown.classList.toggle('hidden');
+        }
+      
+        // Hide dropdown when clicking outside
+        document.addEventListener('click', function (e) {
+          const isDropdown = e.target.closest('.dropdown-menu');
+          const isButton = e.target.closest('button[onclick="toggleDropdown(this)"]');
+          if (!isDropdown && !isButton) {
+            document.querySelectorAll('.dropdown-menu').forEach(menu => menu.classList.add('hidden'));
+          }
+        });
+      </script>
+      
+      
+    
+      <div class="quiz-card">
+          <!-- Card Header with Actions -->
+          <div class="card-header">
+              <div class="card-actions">
+                  <button class="icon-btn" id="close-icon-card" data-quiz-id="${quiz.quiz_id}" data-bs-toggle="modal" data-bs-target="#leave--modal" aria-label="Close card">
+                      <i class="fas fa-times"></i>
+                  </button>
+                  <button class="icon-btn copy-btn" data-quiz-id="${quiz.quiz_id}" aria-label="Copy quiz code">
+                      <i class="fas fa-clone"></i>
+                      <span class="tooltip">Copy to clipboard</span>
+                  </button>
+              </div>
+          </div>
+          
+          <!-- Card Body -->
+          <a href="AcademAI-Library-Upcoming-View-Card.php?quiz_id=${quiz.quiz_id}" class="card-body">
+              <!-- Card Image with Overlay -->
+              <div class="card-image-container">
+                  <img src="../img/cards/1.jpg" alt="${quiz.title}" class="card-image">
+                  <div class="image-overlay"></div>
+              </div>
+              
+              <!-- Card Content -->
+              <div class="card-content">
+                  <!-- Title Section -->
+                  <div class="title-section">
+                      <h3 class="quiz-title">${quiz.title}</h3>
+                      <p class="quiz-subject">${quiz.subject}</p>
+                  </div>
+                  
+                  <!-- Metadata Section -->
+                  <div class="metadata-section">
+                      <!-- Participants -->
+                      <div class="metadata-item">
+                          <a href="AcademAI-Library-Upcoming-People-Join.php?quiz_id=${quiz.quiz_id}" class="participants-link">
+                              <i class="fas fa-users"></i>
+                              <span>View participants</span>
+                          </a>
+                      </div>
+                      
+                      <!-- Date/Time Section -->
+                      <div class="date-time-section">
+                          <div class="time-block">
+                              <div class="time-icon">
+                                  <i class="far fa-clock"></i>
+                              </div>
+                              <div class="time-details">
+                                  <p class="time-label">Starts</p>
+                                  <p class="time-value">${formatDate(quiz.start_date)} at ${formatTime(quiz.start_time)}</p>
+                              </div>
+                          </div>
+                          
+                          <div class="time-block">
+                              <div class="time-icon">
+                                  <i class="far fa-clock"></i>
+                              </div>
+                              <div class="time-details">
+                                  <p class="time-label">Ends</p>
+                                  <p class="time-value">${formatDate(quiz.end_date)} at ${formatTime(quiz.end_time)}</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </a>
+      </div>
+      
+      <style>
+/* Quiz Card Container */
+.quiz-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.quiz-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Card Header */
+.card-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    padding: 12px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.icon-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.icon-btn:hover {
+    background: #f5f5f5;
+    color: #333;
+}
+
+.icon-btn i {
+    font-size: 14px;
+}
+
+.copy-btn .tooltip {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #333;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+
+.copy-btn:hover .tooltip {
+    opacity: 1;
+}
+
+/* Card Body */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Card Image */
+.card-image-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 aspect ratio */
+    overflow: hidden;
+}
+
+.card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
+}
+
+/* Card Content */
+.card-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Title Section */
+.title-section {
+    margin-bottom: 16px;
+}
+
+.quiz-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #222;
+    margin: 0 0 4px 0;
+    line-height: 1.3;
+}
+
+.quiz-subject {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Metadata Section */
+.metadata-section {
+    margin-top: auto;
+}
+
+.metadata-item {
+    margin-bottom: 16px;
+}
+
+.participants-link {
+    display: inline-flex;
+    align-items: center;
+    color: #4a6bdf;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.participants-link:hover {
+    color: #3a56c0;
+}
+
+.participants-link i {
+    margin-right: 8px;
+    font-size: 0.9rem;
+}
+
+/* Date/Time Section */
+.date-time-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.time-block {
+    display: flex;
+    gap: 10px;
+}
+
+.time-icon {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 2px;
+}
+
+.time-details {
+    flex-grow: 1;
+}
+
+.time-label {
+    font-size: 0.75rem;
+    color: #888;
+    margin: 0 0 2px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.time-value {
+    font-size: 0.875rem;
+    color: #444;
+    margin: 0;
+    font-weight: 500;
+}
+
+
+      </style>
+
+<div class="w-full max-w-4xl mx-auto p-6 space-y-4">
+  <h2 class="text-3xl font-bold text-center mb-6">🏆 Top Performers</h2>
+
+  <div class="space-y-4">
+    <!-- Card 1 -->
+    <div class="bg-gradient-to-r from-yellow-200 to-yellow-100 p-4 rounded-2xl shadow-md flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="text-2xl font-bold text-yellow-600">#1</div>
+        <img src="https://via.placeholder.com/50" alt="Avatar" class="w-12 h-12 rounded-full border-2 border-yellow-500">
+        <div>
+          <h3 class="text-lg font-semibold">Alex Johnson</h3>
+          <p class="text-sm text-gray-600">1500 points</p>
+        </div>
+      </div>
+      <span class="text-xl font-bold text-yellow-700">🥇</span>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="bg-gradient-to-r from-gray-200 to-gray-100 p-4 rounded-2xl shadow-md flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="text-2xl font-bold text-gray-700">#2</div>
+        <img src="https://via.placeholder.com/50" alt="Avatar" class="w-12 h-12 rounded-full border-2 border-gray-500">
+        <div>
+          <h3 class="text-lg font-semibold">Maria Lopez</h3>
+          <p class="text-sm text-gray-600">1320 points</p>
+        </div>
+      </div>
+      <span class="text-xl font-bold text-gray-700">🥈</span>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="bg-gradient-to-r from-amber-100 to-orange-50 p-4 rounded-2xl shadow-md flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="text-2xl font-bold text-orange-600">#3</div>
+        <img src="https://via.placeholder.com/50" alt="Avatar" class="w-12 h-12 rounded-full border-2 border-orange-400">
+        <div>
+          <h3 class="text-lg font-semibold">Chris Evans</h3>
+          <p class="text-sm text-gray-600">1200 points</p>
+        </div>
+      </div>
+      <span class="text-xl font-bold text-orange-600">🥉</span>
+    </div>
+  </div>
+</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Modal</title>
+    <style>
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal {
+            background: white;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal-header {
+            padding: 16px 24px;
+            border-bottom: 1px solid #e5e5e5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-body {
+            padding: 24px;
+            line-height: 1.5;
+        }
+
+        .modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid #e5e5e5;
+            text-align: right;
+        }
+
+        /* Button Styles */
+        .open-modal-btn {
+            padding: 12px 24px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 20px;
+        }
+
+        .close-modal-btn {
+            cursor: pointer;
+            font-size: 24px;
+            color: #666;
+        }
+
+        .cancel-btn, .confirm-btn {
+            padding: 8px 16px;
+            margin-left: 8px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .confirm-btn {
+            background: #007bff;
+            color: white;
+        }
+
+        .cancel-btn {
+            background: #f0f0f0;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <!-- Trigger Button -->
+    <button class="open-modal-btn">Open Modal</button>
+
+    <!-- Modal Structure -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Modal Title</h3>
+                <span class="close-modal-btn">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>This is a professional modal dialog. It provides contextually relevant information or prompts the user for input.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="cancel-btn">Cancel</button>
+                <button class="confirm-btn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal Logic
+        const modalOverlay = document.getElementById('modalOverlay');
+        const openModalBtn = document.querySelector('.open-modal-btn');
+        const closeModalBtn = document.querySelector('.close-modal-btn');
+        const cancelBtn = document.querySelector('.cancel-btn');
+
+        // Open Modal
+        openModalBtn.addEventListener('click', () => {
+            modalOverlay.style.display = 'flex';
+        });
+
+        // Close Modal
+        const closeModal = () => modalOverlay.style.display = 'none';
+
+        closeModalBtn.addEventListener('click', closeModal);
+        cancelBtn.addEventListener('click', closeModal);
+
+        // Close when clicking outside modal
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) closeModal();
+        });
+    </script>
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,663 @@
+/* Your existing styles */
+
+.create-quiz-room {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.slide1 .bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+#bg-user {
+    width:100%;
+    height:100%;
+}
+.create-quiz-room-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1); 
+}
+
+.quiz-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2; /* Ensure it's above the overlay */
+}
+
+.quiz-description {
+    position:absolute;/* Ensure proper positioning */
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    height: 600px;
+    width: 600px;
+    box-shadow: 0 40px 45px rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.5);
+
+    z-index: 5; /* Ensure it's above other content */
+}
+
+/* Other styles for .quiz-description and its children */
+
+/* Your other CSS styles */
+
+
+
+/* Your other CSS styles */
+
+
+.quiz-description-form-group{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    z-index:7;
+}
+
+
+.quiz-subject{
+    margin-right: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 800;
+    font-size: 1.125em;
+    color:#ffff;
+}
+
+.quiz-description-text{
+    margin-right: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 800;
+    font-size: 1.125em;
+    color:#ffff;
+  
+}
+
+.quiz-title{
+    margin-right: 18px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 800;
+    font-size: 1.125em;
+    color:#ffff;
+}
+#quizSubject{
+height: 70px;
+width:320px ;
+margin-right: 22px;
+border: none;
+border-radius: 10px;
+border-right: solid 1px black;
+border-bottom: solid 1px black;
+font-family: 'Times New Roman', Times, serif;
+font-size: 0.8750em;
+background-color: rgba(18, 17, 17, 0.5);
+filter: brightness(1.0) saturate(100%);
+}
+
+#quizSubject:focus{
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 2px 1px 2px #092635;
+}
+
+#quizTitle{
+height: 70px;
+width:320px ;
+box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+border: none;
+border-radius: 10px;
+border-right: solid 1px black;
+border-bottom: solid 1px black;
+font-family: 'Times New Roman', Times, serif;
+font-size: 0.8750em;
+background-color: rgba(18, 17, 17, 0.5);
+filter: brightness(1.0) saturate(100%);
+
+
+}
+
+#quizTitle::placeholder {
+    color: #9EC8B9 !important;
+}
+
+
+#quizSubject::placeholder {
+    color: #9EC8B9 !important;
+}
+
+#quizTitle:focus{
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 2px 1px 2px #092635;
+}
+#quizDescription{
+justify-content: center;
+align-items: center;
+display: flex;
+height: 70px;
+width:320px ;
+margin-right: 48px;
+border: none;
+border-radius: 10px;
+border-right: solid 1px black;
+border-bottom: solid 1px black;
+font-family: 'Times New Roman', Times, serif;
+font-size: 0.8750em;
+background-color: rgba(18, 17, 17, 0.5);
+filter: brightness(1.0) saturate(100%);
+color:#ffff;
+
+}
+
+#quizDescription::placeholder {
+    color: #9EC8B9 !important;
+}
+
+#quizDescription:focus{
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 2px 1px 2px #092635;
+}
+
+@keyframes typing {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 44%;
+    }
+}
+
+.quiz-now {
+    display: inline-block;
+    width: 300px; /* Adjust the width as needed */
+    text-align: left; /* Center the text */
+    overflow: hidden;
+    font-size: 2.25em;
+    white-space: nowrap;
+    border-right: .12em solid #ffff;
+    color: #ffff;
+    margin-top: 110px;
+    margin-left: 180px; /* Adjust the margin as needed */
+    animation: typing 2s steps(20) infinite; /* Adjust the animation duration as needed */
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.quiz-icon {
+    position: absolute;
+    top: 30x;
+    left:270px;
+}
+
+.iconcreatequiz {
+    position: absolute;
+   height: 90px;
+   width: 90px;
+   border-radius: 100px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.back-button, .create-button {
+    height: 40px;
+    width: 120px;
+    border: none;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 10px;
+    margin:30px 35px 10px 80px;
+    background-color: rgba(0, 0, 0, 0.5); /* Green color with transparency */
+    filter: brightness(2.0) saturate(100%); /* Adjust filters and blur value as needed */
+}
+
+.back-button:hover{
+    background-color:rgba(10, 10, 10, 0.5); /* Original color with transparency */
+    opacity: 0.5; /* Adjust opacity as needed */
+    filter: brightness(2.0) saturate(100%); /* Adjust filters as needed */
+     color:#9EC8B9;
+}
+
+.create-button:hover{
+    background-color:rgba(10, 10, 10, 0.5); /* Original color with transparency */
+    opacity: 0.5; /* Adjust opacity as needed */
+    filter: brightness(2.0) saturate(2000%); /* Adjust filters as needed */
+    color:#9EC8B9;
+
+}
+
+/* Remove autofill background color completely */
+input:-internal-autofill-selected {
+    appearance: none !important;
+    background-image: none !important;
+    background-color: transparent !important;
+    color: inherit !important;
+}
+
+
+/* End of Quiz Room CSS*/
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  
+  
+  /*AcademAI-Quiz-Room*/
+  /* Define the animation for each slide */
+  @keyframes slideAnimation {
+  0% {
+    opacity: 0;
+  }
+  33.33% {
+    opacity: 1;
+  }
+  66.66% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+  }
+  
+  /* Apply the animation to each slide */
+  .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  
+  }
+  
+  /* Define background images for each slide */
+  .slide1 .bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  
+  
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(1, 13, 12, 0.5); /* Adjust the alpha value for the desired darkness */
+    z-index: 0;
+  }
+  
+  
+  .creation-of-quizzes {
+    height:100%;
+  }
+  .create-join-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  
+  }
+  .green-section {
+    background: #1B4242;
+  }
+  .create-join-quiz-btn {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+    padding: 80px; 
+  
+  }
+  
+  
+  
+  .code {
+    box-shadow: 0px 10px 6px rgba(0, 0, 0, 0.1);
+    width: 500px;
+    backdrop-filter: blur(14px);
+    color:#fff;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.125em;
+  
+  }
+  
+  .code::placeholder {
+    color:#1B4242;
+  }   
+   
+  
+  .join {
+    background-color: #092635;
+    width: 500px;
+    color:#fff;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.125em;
+    border: none;
+    border-radius: 10px;
+    height:50px;
+    margin-top:5%;
+  }
+  
+  .create{
+    background-color: #5C8374;
+    width: 500px;
+    color:#fff;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.125em;
+    border: none;
+    border-radius: 10px;
+    height:50px;
+    margin-top:5%;
+  }
+  
+  
+  .join:hover {
+    background-color: #1B4242;
+    height: 45px;
+  }
+  
+  
+  .create:hover,
+  .create:active {
+    background-color: #1B4242;
+  
+  }
+  .or-section{
+    display:flex;
+    justify-content: space-around;
+    align-items: baseline;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+  .or-txt {
+    color:#092635;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.125em;
+    font-style: italic;
+    justify-content: center;
+    display: flex;
+    margin-top:5%;
+    font-weight: bolder;
+    
+  }
+  .or-txt-left {
+    border-bottom:2px solid #1B4242;
+    width:200px;
+  
+  }
+  .or-txt-right {
+    border-bottom:2px solid #1B4242;
+    width:200px;
+  
+  }
+  
+  
+  .section-green {
+    background-color: #092635;
+  }
+  /* Modal Styles */
+  .modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+  }
+  
+  .modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 0px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 400px;
+  height: 400px; /* Set the height of the form */
+  position: relative;
+  text-align: center;
+  overflow: hidden; /* Hide overflow to prevent background from leaking */
+  }
+  
+  .btn-close {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  color: #092635;
+  font-weight: bold;
+  cursor: pointer;
+  font-weight: bolder;
+  z-index:5;
+  }
+  
+  .half-image {
+  width: 100%;
+  height: 50%; /* Set the height to cover the top half of the form */
+  float: left;
+  }
+  
+  .center-image {
+  width: 100px; /* Set the width of the circle image */
+  height: 100px; /* Set the height of the circle image */
+  border-radius: 50%; /* Make it a circle */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.0); /* Initial scale for the animation */
+  animation: pulse 2s infinite alternate, sparkling 2s infinite alternate; /* Animation effect */
+  background-color: #9EC8B9;
+  }
+  
+  @keyframes pulse {
+  0% {
+      transform: translate(-50%, -50%) scale(1.0);
+  }
+  100% {
+      transform: translate(-50%, -50%) scale(1.1);
+  }
+  }
+  
+  @keyframes sparkling {
+  0% {
+      background-color: #092635;
+      box-shadow: 0 0 10px rgba(9, 38, 53, 0.8);
+  }
+  50% {
+      background-color: #1B4242;
+      box-shadow: 0 0 20px rgb(27, 66, 66, 0.8);
+  }
+  100% {
+      background-color: #5C8374;
+      box-shadow: 0 0 10px rgba(92, 131, 116, 0.8);
+  }
+  }
+  
+  .submit-content {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
+  
+  }
+  
+  .submit-text {
+  margin-bottom: 30px;
+  color: #092635;
+  font-weight: bold;
+  font-size: 1.125em;
+  font-family: 'Times New Roman', Times, serif;
+  
+  
+  }
+  
+  .yes-btn-section{
+    display:flex;
+    justify-content: center;
+  }
+  
+  .cancel-btn{
+  padding: 10px 40px;
+  color: #fff;
+  font-size: 1em;
+  background-color:#1B4242;
+  font-family:'Times New Roman', Times, serif;
+  }
+  
+  
+  .yes-btn{
+  padding: 10px 40px;
+  color: #fff;
+  font-size: 1em;
+  background-color:#092635;
+  font-family: 'Times New Roman', Times, serif;
+  
+  }
+  
+  .yes-btn:hover
+  {
+  color: #1B4242;
+  text-decoration:none;
+  }
+  
+  .cancel-btn:hover {
+    color: #092635;
+  text-decoration:none;
+  }
+  .modal-backdrop.show {
+    opacity: .5;
+    z-index: 0;
+  }
+  
+  /* Add this CSS to your academAI-quiz-room.css file */
+  .custom-alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #28a745; /* Green background color */
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+  }
+  
+  .custom-alert.hidden {
+    display: none;
+  }
+  
+  .custom-alert-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 300px; /* Adjust width as needed */
+  }
+  
+  .custom-alert-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 15px;
+  }
+  
+  .custom-alert-close:hover {
+    color: #d4d4d4; /* Lighten color on hover */
+  }
+  
+  
+  /* Modal */
+  .modal-content-login-success-modal{
+    background:url('/img/blue-2.png');
+    width:500px;
+    height:180px;
+    color:#fff;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+  }
+  
+  .modal-footer-success-login {
+    display:flex;
+    justify-content: center;
+  }
+  
+  .modal-header-login-success {
+    display:flex;
+    justify-content: center;
+  }
+  
+  .btn-close-success-login{
+    background-color: rgb(92, 131, 116, 0.5) !important;
+    filter: brightness(1.0) saturate(100%) !important;
+    color:#fff;
+    width:250px;
+    padding:5px;
+    border-radius:5px;
+    border:none;
+  }
+  
+  .btn-close-success-login:hover {
+    background-color: rgb(158, 200, 185,0.5) !important;
+      filter: brightness(1.0) saturate(100%) !important;
+      color:#fff;
+      text-decoration:none;
+  }
+
+  
+
+
+
+
+
+
+
+

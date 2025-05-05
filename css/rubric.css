@@ -1,0 +1,608 @@
+/* AcademAI-Essay-Rubric */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+
+
+.essay-criteria-setting-container {
+    display: grid;
+    justify-content: center;
+    height:auto;
+    
+  
+   
+}
+
+.essay-criteria-setting-container-2{
+    display: grid;
+    justify-content: center;
+    height:auto;
+}
+
+.criteria-table-container {
+   overflow-x: auto; /* Allow horizontal scrolling */
+   overflow-y: auto;
+   margin-right:2%;
+   height:500px;
+  
+
+}
+
+.subject-container {
+    margin-left:2%;
+    white-space: normal; /* Allows text to wrap */
+    word-wrap: break-word; /* Ensures long words break */
+    overflow-wrap: break-word; /* Alternative for modern browsers */
+    max-width:1000px;
+    width:100%;
+}
+.subject-title {
+    margin-bottom:2%;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #1b4242;
+}
+.subject-title-1 {
+    margin-bottom:2%;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #1b4242;
+}
+
+.add-new-subject-criteria {
+    display: flex;
+    justify-content: flex-end;
+    margin-top:3%;
+    margin-right:5%;
+}
+
+.add-new-subject-criteria button i {
+    background-color: #880e0e;    /* White background for the icon */
+    color: #092635;               /* Icon color */
+    padding: 5px;                 /* Padding inside the icon background */
+    border-radius: 50%;           /* Make the icon background circular */
+    display: flex;                /* Make icon a flexbox */
+    justify-content: center;      /* Center the icon horizontally */
+    align-items: center;          /* Center the icon vertically */
+    font-size: 18px;              /* Adjust the icon size */
+    width: 30px;                  /* Set a fixed width for the icon area */
+    height: 30px;                 /* Set a fixed height for the icon area */
+    flex-shrink: 0;               /* Prevent the icon from shrinking */
+}
+/* Import Font Awesome */
+@import url("https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+a:link{text-decoration:none}
+.add-new-subject-criteria-btn a{
+  background-color:#092635;
+  display:inline-block;
+  position:relative;
+  margin-top:5%;
+  padding:15px 15px 15px 60px;
+  color:#ffffff;
+  transition:all 0.4s ease;
+
+  font-size:1em;
+}
+
+.add-new-subject-criteria-btn a:before{
+    content: "\f067"; /* Unicode for the plus sign */
+    font-family: 'Font Awesome 6 Free'; /* Font Awesome 6 font family */
+  position:absolute;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  font-size:18px;
+  border-radius:0 20px 0 0;
+  color:#1b4242;
+  background-color:#fff;
+  opacity:0.3;
+  padding:15px;
+  top:0;
+  left:0;
+  font-weight: bold;       /* Make the icon appear bold */
+  
+}
+
+.add-new-subject-criteria-btn a:hover{
+  background:#2c3e50
+}
+
+
+
+.criteria-table-container th,
+.criteria-table-container td {
+    padding: 25px 25px;
+    text-align: center; /* Center align content */
+    min-width: 130px; /* Minimum width for existing columns */
+    
+}
+
+
+.rubric-criterion {
+    font-size:1.0875em;
+    color:#1b4242;
+    font-family:'Times New Roman', Times, serif;
+    text-align: justify;
+
+}
+
+tr:nth-child(even) {
+    background-color: #e7e7e7;
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color:#fff;
+}
+/* apply style in the thead */
+.table th {
+    text-align: center;
+}
+
+.criteria-heading {
+    background-color: #092635;
+    font-size: 1.125em;
+    color: #ffffff;
+
+    font-weight:800;
+}
+
+.levels {
+    color:#ffffff;
+}
+
+.table {
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2)
+}
+   
+
+/* apply style in the tbody */
+.predefined-criteria td {
+    color: #1b4242;
+    font-size: 1.1em;
+  
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 250px;
+    border-left: 1px solid #cfcfcf;
+    text-align: justify;
+    border-bottom: none;
+}
+
+/* apply style to the button */
+
+.essay-criteria-setting-btn-add {
+    background-color: #092635;
+    color: #ffffff;
+    width: 150px;
+    height:30px;
+    border-radius:5px;
+    font-size:1em;
+  
+}
+
+   
+
+.essay-criteria-setting-btn-add:hover,
+.essay-criteria-setting-btn-save:hover {
+    background-color: #5c8374;
+    color: #ffffff;
+}
+
+.level-add-icon {
+    cursor: pointer;
+    font-size: 1.8rem;
+
+}
+
+.level-add-icon:hover {
+    cursor: pointer;
+    color: #1b4242;
+}
+
+.fa-trash {
+    font-size:0.8rem;
+}
+
+.predefined-criteria {
+    color:white;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #5c8374; /* Change the background color on hover */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.table-hover tbody tr:hover td {
+    color: #fff; /* Change text color of all td elements within the hovered row */
+}
+
+
+
+.add-btn-criteria {
+    width:120px;
+    height:40px;
+    color:#fff;
+    background-color:#092635;
+    border:none;
+    border-radius:5px;
+    font-size: 14px; 
+    margin-left:2%;
+   
+}
+
+.add-btn-criteria:hover {
+    background-color:#1b4242;
+    color: #fff;
+ 
+  
+}
+.delete-criteria-btn {
+    width:120px;
+    height:40px;
+    color:#fff;
+    background-color:red;
+    border:none;
+    border-radius:5px;
+    font-size: 14px; 
+
+    
+}
+
+.delete-criteria-btn-2 {
+    width:120px;
+    height:40px;
+    color:#fff;
+    background-color:red;
+    border:none;
+    border-radius:5px;
+    font-size: 14px; 
+    margin-left:3%;
+    margin-right:1%;
+
+    
+}
+
+.edit-criteria-btn {
+    width:120px;
+    height:40px;
+    color:#fff;
+    background-color:blue;
+    border:none;
+    border-radius:5px;
+    font-size: 14px; 
+ 
+}
+
+.delete-criteria-btn:hover {
+    background-color:rgb(194, 30, 30);
+}
+
+.delete-criteria-btn-2:hover {
+    background-color:rgb(194, 30, 30);
+}
+.edit-criteria-btn:hover{
+    background-color:rgb(17, 17, 108);
+}
+
+.essay-criteria-heading {
+    text-align: center;
+    margin-bottom: 10px; /* Adjust margin as needed */
+    background-color:#092635;
+    width:80%;
+    margin-top:30px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.essay-criteria-heading h2 {
+    font-size: 24px;
+    color: #092635; /* Adjust color as needed */
+}
+.rubric-criterion-weight{
+    font-size:1.125em;
+    display:flex;
+    justify-content: center !important;
+    align-items: center !important;
+    color:#fff;
+}
+#subject-title {
+    border-color:#092635;
+    border-radius: 3.33%;
+    width:300px;
+
+}
+#num-criteria {
+    border-color:#092635;
+    border-radius: 3.33%;
+    width:300px;
+}
+
+
+
+/* Back Arrow */
+.fa-arrow-left {
+    font-size:2em;
+    color:#9EC8B9;
+    font-weight: 700;
+    margin-bottom:3%;
+    
+
+}
+
+/* Hover effect */
+.fa-arrow-left:hover {
+    animation: moveRight 0.6s ease forwards; /* Apply the movement animation */
+    cursor: pointer;
+}
+
+/* Keyframes for moving animation */
+@keyframes moveRight {
+    0% {
+        transform: translateX(0); /* Start at original position */
+    }
+    50% {
+        transform: translateX(15px); /* Move 15px to the right */
+    }
+    100% {
+        transform: translateX(0); /* Return to original position */
+    }
+}
+
+
+  
+/* DROPDOWN BTN */
+
+
+.btn-choose-rubric {
+    background-color:#1b4242;
+    border:none;
+    color:#fff;
+
+    font-size:1.2em;
+    padding:10px 30px;
+   
+}
+.btn-choose-rubric:hover {
+    background-color:#1b4242;
+    color:#fff;
+}
+.btn-choose-rubric:active {
+    background-color:#1b4242;
+    color:#fff;
+}
+
+.btn-choose-rubric:focus {
+    background-color:#1b4242;
+    color:#fff;
+}
+.dropdown-choose-rubric-btn {
+    background-color: #5c8374 !important; /* Ensures it always applies */
+    color: #fff !important;
+    height: 60px;
+    width: 80px;
+    border: none; /* Optional: Removes any border that might change */
+}
+
+/* Prevents color change when clicked (active state) */
+.dropdown-choose-rubric-btn:active,
+.dropdown-choose-rubric-btn:focus,
+.dropdown-choose-rubric-btn:visited {
+    background-color: #092635 !important;
+    color: #fff !important;
+    outline: none; /* Removes focus outline */
+    box-shadow: none; /* Prevents Bootstrap outline */
+   
+}
+
+
+
+
+.dropdown-choose-rubric {
+    max-height: 150px; /* Set the fixed height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    border: none;
+    width: 100% !important; /* Match the width of the button */
+    position: absolute;
+    transform: none !important; 
+    margin: 0;
+    margin-top: 22% !important; /* Force override */
+    inset: unset !important;  /* Reset all positioning */
+    inset: 0px auto auto 0px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    background-color: #f8f8f8;
+}
+#rubric-dropdown .dropdown-item {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 250px; /* Adjust width */
+    display: block;
+    display: inline-block; /* Required for transform to work */
+    text-decoration: none !important;
+    transform-style: preserve-3d; /* Enable 3D transformations */
+    perspective: 1000px; /* Add perspective for 3D effect */
+}
+
+#rubric-dropdown .dropdown-item:hover {
+    transform: translateZ(20px); /* Move the text forward in 3D space */
+  
+    background: transparent; /* Ensure background remains transparent */
+}
+
+
+
+
+
+#dropdown-rubric-items 
+{
+    color:#1b4242;
+}
+.dropdown-choose-rubric li {
+
+    color:#1b4242;
+    font-size:14px;
+
+}
+
+/* More specific CSS selector to target the li elements inside the dropdown */
+.btn-group-choose-rubric .dropdown-menu.dropdown-choose-rubric li:hover {
+   color: #092635; /* Light gray background on hover */
+    cursor: pointer;           /* Change cursor to pointer */
+  }
+  
+  .criteria-title {
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color:#1b4242;
+  }
+
+  #okButton{
+    width:200px;
+    height:50px;
+    color:#fff;
+    background-color:#5c8374;
+    font-size: 18px;
+  
+   
+    border-radius: 5px;
+    border:none;
+}
+
+#okButton:active {
+  
+    background-color:#1b4242;
+   
+}
+
+
+.no-subject-selected {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top:90px;
+}
+
+.book-gif {
+    width:180px;
+    height:120px;
+}
+.ok-button-container {
+    display:flex;
+    justify-content:center;
+   
+}
+
+
+.essay-criteria-setting {
+    margin:3%;
+
+}
+
+
+
+.ok-button-container {
+    margin-top:3%;
+    display: flex;
+    justify-content: flex-end;
+    width:98%;
+    position:sticky;
+
+}
+
+
+.subject-container-1 {
+    
+
+white-space: normal;
+word-wrap: break-word;
+overflow-wrap: break-word;
+width: 1350px;
+box-shadow: 0px -4px 6px -2px rgba(0, 0, 0, 0.3); /* Top shadow only */
+border:none;
+padding-top:20px;
+padding-left:25px;
+padding-right:15px;
+}
+
+
+.rubric {
+
+    display: flex;
+    
+    flex-direction: column;
+    
+    /* justify-content: center; */
+    
+    align-items: center;
+    }
+    
+
+.rubric-table {
+    max-width: 1300px;
+    width: 100%;
+    overflow-x: auto; /* Enables horizontal scrolling on small screens */
+    margin: 0 auto; /* Centers the table */
+   
+}
+
+.rubric-table table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px; /* Minimum width before scrolling kicks in */
+}
+
+.back-arrow-container {
+
+    margin-top:20px;
+  
+}
+
+.essay-container {
+    width:1400px;
+    height:50px;
+   
+    
+    
+}   
+.essay-shadow {
+    box-shadow: 0px -4px 6px -2px rgba(0, 0, 0, 0.3);
+    padding:30px;
+    overflow:scroll;
+    height:500px;
+}
+
+.criteria-heading th{
+    padding: 25px 25px;
+}
+
+.subject-container-2 {
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-width: 1500px;
+        width:100%;
+}
+
+#rubricseeessay {
+    box-shadow: 0px -4px 6px -2px rgba(0, 0, 0, 0.3);
+    margin: 30px;
+    padding:30px;
+    overflow-y: scroll;
+    height:500px;
+}
+
+.back-arrow-containerseeessay {
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+.essay-criteria-setting-container-for-join-quiz {
+    padding:20px;
+}
+
+li .create-new {
+    color:#5c8374;
+    font-size: 1.2em;
+}

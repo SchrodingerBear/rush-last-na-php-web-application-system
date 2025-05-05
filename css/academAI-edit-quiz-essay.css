@@ -1,0 +1,1091 @@
+
+body {
+    margin: 0;
+    padding: 0;
+}
+.content {
+    width: 80%;
+    max-width: 800px;
+    margin: 50px auto;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white for better readability */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.set-container {
+   justify-content: center;
+   align-items: center;
+   display: flex;
+   margin-bottom: 20px;
+}
+
+.submitform {
+    width: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 30px;
+    z-index:1;
+}
+
+.submitform h1{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    color:#092635;
+    font-size:3em;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+.separateform {
+   
+    border-radius: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    flex-direction: row;
+    display: flex;
+}
+
+.separate {
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    margin-left: 105px;
+    margin-bottom: 30px;
+    border-radius: 20px;
+    color:#fff;
+    font-size: 1em;
+    font-family: 'Times New Roman', Times, serif;
+    background:url(/img/one.jpg);
+    width:80%;
+  
+}
+
+
+
+
+.containerdate,
+.containerendate {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+
+.date,
+.dateend {
+    display: flex;
+    flex-direction: column;
+    margin-left:15%;
+
+
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    margin-right: 10px;
+}
+
+#start-time,
+#end-time,
+#start-date,
+#end-date {
+    height: 50px;
+    width: 280px;
+    border-top: none;
+    border-left: none;
+    border-bottom: 1px solid #092635;
+    border-right: 1px solid #092635;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin-right: 50px;
+}
+
+#start-time:focus,
+#time-limit-seconds:focus,
+#time-limit-minutes:focus,
+#end-time:focus,
+#start-date:focus,
+#end-date:focus {
+    outline: none;
+    /* Remove default focus outline */
+    box-shadow: 0 2px 1px 2px #092635;
+    /* Apply custom box shadow */
+}
+
+
+
+.limit-con{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row; /* Added to align items in a column */
+    width: 100%;
+    margin-left:2%;
+}
+
+.limitconpar{
+    color:#fff;
+    margin-left: 120px;
+    font-style: italic;
+    margin-bottom: 4px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 0.8750em;
+    margin-top:5%;
+    margin-left:8%;
+  
+}
+
+label[for="time-limit"]{
+    margin-top: 10px;
+    margin-right:15px;
+  
+}
+
+
+
+
+.col {
+    margin-bottom: 0; /* Override default margin */
+    height:47px;
+    margin-left:2%;
+}
+
+
+
+.minutes-choice{
+    flex-direction: row;
+    display: flex;
+    width: 600px;
+}
+
+
+
+
+
+/* Style the options */
+.dropdownminute option {
+    font-size: 0.875em; /* Adjust font size */
+    font-weight: bold; /* Adjust font weight */
+    color: black; /* Adjust text color */
+    background-color: #9EC8B9; /* Adjust background color */
+    font-family:'Times New Roman', Times, serif;
+}
+
+
+
+#time-limit-minutes{
+    height: 45px;
+    box-shadow: 20px 0px 16px 1px rgba(0, 0, 0, 0.1);
+   border-top: none;
+   border-left:none;
+   border-bottom: 1px solid #092635;
+    border-radius: 10px;  
+      
+}
+
+#time-limit-seconds{
+    border-right: none;
+    border-top: none;
+    border-left:none;
+    border-radius: 10px;
+    color:#fff;
+    height:45px;
+    width:180px;
+    background-color: rgba(0, 0, 0, 0.5);
+     
+}
+
+.numberitem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+.number-of-quiz {
+    display: grid;
+    align-items: center;
+    margin-bottom: 35px;
+    margin-left: 12%;
+}
+.num-per-point {
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+    margin-left:20%;
+    
+
+}
+
+#num-quiz{
+    height:50px;
+    width: 600px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+    border-top: none;
+    border-left:none;
+    border-bottom: 1px solid #092635;
+    border-right: 1px solid #092635;
+
+    
+}
+.numpoints p{
+color:#fff;
+font-style: italic;
+margin-right: 380px;
+margin-bottom: 4px;
+font-family: 'Times New Roman', Times, serif;
+font-size: 0.8750em;
+
+
+}
+
+#num-points{
+    height:50px;
+    width: 600px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+    border-top: none;
+    border-left:none;
+    border-bottom: 1px solid #092635;
+    border-right: 1px solid #092635;
+}
+.input-group label {
+    margin-right: 10px;
+}
+.input-group input[type="number"] {
+    width: 50px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.restriction {
+    display: flex;
+    align-items: center;
+     margin-top: 30px;
+     margin-right: 20px;
+     margin-bottom: 20px;
+
+}
+.restriction label {
+    margin-right: 80px;
+    font-size: 1em;
+ 
+
+}
+
+.form-check input[type="checkbox"]:checked  {
+    background-color: #1B4242; /* Change the background color */
+    border-color: #092635; /* Change the border color */
+    border:none;
+}
+
+
+
+.submitas{
+    font-size: 15px; 
+}
+
+
+.icon-for-next{
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  margin-left:  65%;
+}
+
+
+  
+.next-button {
+    padding: 10px 20px; /* Adjust padding as needed */
+    background-color: #1B4242; /* Button background color */
+    color: #fff; /* Button text color */
+        border: none; /* Remove default button border */
+        border-radius: 5px; /* Rounded corners */
+        height: 40px;
+        width:160px;
+        cursor: pointer;
+        border-radius: 10px; /* Show pointer cursor on hover */
+        font-size: 1em;
+        font-family: 'Times New Roman', Times, serif;
+        
+    
+    }
+    
+    .next-button:hover{
+       background-color:#5C8374;
+    }
+    .next-button i {
+        margin-right: 5px;
+        font-size: 20px; /* Adjust spacing between icon and text */
+    }
+    #checkbox:checked {
+        background-color: #1B4242;
+        border-color: #092635;
+        border: none;
+    }
+    
+    .icon-container input[type="checkbox"]:checked {
+        background-color: #1B4242;
+        border-color: #092635;
+        border-width: 2px; /* Adjust border width if needed */
+        border-style: solid; /* Ensure border style is set */
+        /* Additional styling as needed */
+    }
+    
+
+/*Essay*/
+
+
+.typequestionall-essay{
+    justify-content: center;
+    display: "flex";
+    align-items: center;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    margin-left: 98px;
+    margin-top: 20px;
+    border-radius: 20px;
+    width: 80%;
+    background: url(/img/one.jpg);
+
+
+}
+
+.typequestion-essay{
+    display: flex;
+    justify-content: center;
+    display:"flex";
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.typequestionhere-essay{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+    
+
+}
+.dropdownminute-essay {
+    margin-right: none;
+    margin-bottom: none; 
+
+}
+
+/* Styles for the input box */
+.input-box-essay{
+    position: relative;
+    display: inline-block;
+}
+
+/* Styles for the number */
+.number-essay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5px;
+    margin-top: 17px;
+    height: 30px;
+    width: 35px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-left: 5px;
+    margin-top: 25px;
+    background-color: #092635;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+    font-size: 0.8750em;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+/* Styles for the rubric link */
+.rubric-icon {
+    position: absolute;
+    top: 22px;
+    right: 30px; /* Adjust the positioning as needed */
+    cursor: pointer;
+    color: #092635;
+    padding: 5px;
+    font-size: 14px;
+
+}
+
+/* Styles for the rubric link on hover */
+.rubric-icon:hover {
+    color: #0f4c75; /* Change color on hover */
+}
+
+/* Styles for the rubric link */
+.rubric-link {
+    text-decoration: none;
+    color: #092635;
+    font-style: italic;
+    font-size: 1.125em;
+    font-family:'Times New Roman', Times, serif;
+    font-weight: 700;
+
+    
+}
+
+/* Styles for the rubric link on hover */
+.rubric-link:hover {
+   text-decoration: none;
+   color:#092635;
+
+}
+
+/* Additional styling for the input field */
+.input-box-essay input[type="text"] {
+    padding-left: 20px; /* Add padding to accommodate the number */
+    padding-right: 20px; /* Add padding to accommodate the delete icon */
+}
+
+
+.dropdownminute-essay:last-child {
+    margin-right: 0;
+}
+
+.dropdownminute-essay label {
+    margin-bottom: 5px;
+}
+
+.dropdownminute-essay input[type="text"],
+.dropdownminute-essay input[type="number"],
+.dropdownminute-essay select {
+    width: 90px;
+    height: 38px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #092635;
+}
+
+.dropdownminute-essay .dropdown {
+    display: flex;
+    align-items: center;
+    margin-top: none; /* Align items vertically */
+}
+
+.dropdownminute-essay .dropdown select {
+    margin-left: none;
+}
+
+#question-essay{
+    width: 520px;
+    height:130px ;
+    margin-top: 20px;
+}
+ 
+#question-essay::placeholder{
+   font-size:1em;
+   font-family: 'Times New Roman', Times, serif;
+   color:#1B4242;
+}
+#time-limit-essay{
+  height: 40px;
+  width: 208px;
+  border-right: 2px solid #092635;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1em;
+  color: #1B4242;
+}
+#points-essay{
+  height: 40px;
+  width: 208px;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1em;
+  color: #1B4242;
+}
+
+#time-limit-unit-essay{
+    border-right: solid 2px #092635;
+    font-size: 1em;
+    font-family: 'Times New Roman', Times, serif;
+    color: #fff;
+    width: 105px;
+    background-color: #092635;
+}
+
+
+#time-limit-essay:focus,
+#points-essay:focus,
+#question-essay:focus,
+#time-limit-unit-essay:focus,
+#answer:focus
+{
+    outline: none;
+    /* Remove default focus outline */
+    box-shadow: 0 2px 1px 2px #092635;
+    /* Apply custom box shadow */
+}
+
+#answer-essay {
+  height: 215px;
+  width: 520px;
+  background-color:#fff;
+  border-bottom: solid 0.5px #092635;
+  border-right: solid 0.5px #092635;
+  box-shadow: 0 0px 2px 0px #092635;
+  margin-top: 5px;
+  margin-bottom: 15px;
+    display: block; /* Set the input field to display as a block */
+    word-wrap: break-word; /* Allow long words to break and wrap onto the next line */
+    color:#1B4242;
+    font-family:'Times New Roman', Times, serif;
+    text-align: justify;
+
+}
+
+
+#answer-essay2  {
+    height: 130px;
+    width: 520px;
+    background-color:#fff;
+    border-bottom: solid 0.5px #092635;
+    border-right: solid 0.5px #092635;
+    box-shadow: 0 0px 2px 0px #092635;
+    margin-top: 5px;
+    margin-bottom: 15px;
+      display: block; /* Set the input field to display as a block */
+      word-wrap: break-word; /* Allow long words to break and wrap onto the next line */
+      color:#1B4242;
+      font-family:'Times New Roman', Times, serif;
+      text-align: justify;
+  }
+
+  #answer-essay3 {
+    height: 80px;
+    width: 520px;
+    background-color:#fff;
+    border-bottom: solid 0.5px #092635;
+    border-right: solid 0.5px #092635;
+    box-shadow: 0 0px 2px 0px #092635;
+    margin-top: 5px;
+    margin-bottom: 15px;
+      display: block; /* Set the input field to display as a block */
+      word-wrap: break-word; /* Allow long words to break and wrap onto the next line */
+      color:#1B4242;
+      font-family:'Times New Roman', Times, serif;
+      text-align: justify;
+  }
+
+
+
+
+
+
+.orupload{
+    margin-top: 20px;
+   
+    
+}
+
+.orupload h3{
+font-size: 1em;
+color: #fff;
+font-family: 'Times New Roman', Times, serif;
+font-weight: 800;
+
+}
+
+.fileupload{
+    border-right: 0.5px solid #092635;
+    border-bottom: 0.5px solid #092635;
+    border-left: none;
+    border-top: none;
+    height: auto;
+    width: 520px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    background-color:#fff;
+    color:#1B4242;
+    font-size:1em;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.file-input-wrapper {
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Added transition property */
+}
+
+.file-input-wrapper input[type='file'] {
+    opacity: 0;
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+}
+
+.file-input-wrapper button {
+  font-size: 1em;
+  padding: 10px 20px;
+  color: white;
+  background-color: #092635;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 40px;
+  font-family:'Times New Roman', Times, serif;
+}
+
+.file-input-wrapper button:hover {
+    background-color: #0f4c75;
+}
+
+.button-container {
+    display: flex;
+    justify-content:center;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+
+
+.form-check label {
+   font-size: 1em;
+        font-family: 'Times New Roman', Times, serif;
+        
+        color: #fff;
+        margin-bottom:3%;
+    }      
+
+
+
+.essay-file-pdf-wrapper {
+    display:flex;
+    justify-content:flex-start;
+
+}
+
+
+.essay-file-pdf-wrapper img {
+    width:50px;
+    height:50px;
+
+}
+.essay-file-pdf-wrapper p{
+    margin-top:4%;
+    font-style: italic;
+    text-decoration: underline;
+
+}
+
+.fa-user-pen {
+    font-size:3em;
+    color:#9EC8B9;
+    margin-left:3%;
+}
+
+
+
+  /* Modal Styles */
+#submit-edited-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+
+#check-modall {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+
+#check-modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 0px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 350px;
+    height: 350px; /* Set the height of the form */
+    position: relative;
+    text-align: center;
+    overflow: hidden; /* Hide overflow to prevent background from leaking */
+}
+
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 5px;
+    color: #092635;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+
+
+.submit-content-view {
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+ 
+}
+
+.submit-text-view{
+    margin-bottom: 1em;
+    color: #092635;
+    font-weight: bold;
+    font-size: 1.125em;
+    font-family: 'Times New Roman', Times, serif;  
+    margin-top:20%
+}
+
+.submit-text-view .view-btn a:hover{
+    text-decoration:none
+}
+.submit-text {
+    margin-bottom: 50px;
+    color: #092635;
+    font-weight: bold;
+    font-size: 1.125em;
+    font-family: 'Times New Roman', Times, serif;
+    
+   
+}
+
+
+
+.view-btn{
+    padding: 10px 20px;
+    margin: 0 10px;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 0.875em;
+    width:60px;
+    height:40px;
+    background-color:#092635;
+    margin-bottom:5px;
+    font-family: 'Times New Roman', Times, serif;
+  
+}
+.submit-view-content a {
+    text-decoration:none;
+    
+}
+
+.view-btn:hover{
+    color: #5C8374;
+    text-decoration: none;
+}
+.yes-btn{
+    padding: 10px 40px; 
+    color: #fff;
+    font-size: 0.875em;
+    height:40px;
+    background-color:#092635;
+    font-family: 'Times New Roman', Times, serif;
+    margin:0;
+}
+.cancel-btn{
+    padding: 10px 40px;
+    color: #fff;
+    font-size: 0.875em;
+    height:40px;
+    background-color:#1b4242;
+    font-family: 'Times New Roman', Times, serif;
+    margin:0;
+
+}
+
+.yes-btn:hover
+{
+    color: #1b4242;
+}
+.cancel-btn:hover {
+    color: #092635;
+}
+.submit-content a {
+    text-decoration:none;
+    
+}
+
+#submit-edited-modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 0px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 480px;
+    height: 450px; /* Set the height of the form */
+    overflow: hidden; /* Hide overflow to prevent background from leaking */
+}
+
+.submit-content {
+    display: flex;
+    justify-content: center;
+    margin-top:15%;
+    
+}
+
+.people-with-access {
+    margin-top:10%;
+    margin-left:3%;
+    font-size:1.125em;
+    color:#092635;
+    font-family:'Times New Roman', Times, serif;
+}
+
+
+.add-access {
+    margin-top: 3%;
+    text-align: center;
+    font-size: 1em;
+    font-family: 'Times New Roman', Times, serif;
+    color: #092635;
+}
+
+.people-acess {
+    display:grid;
+    justify-content: center;
+}
+
+#email-add-acess {
+    width: 300px;
+    height: 30px;
+    border-top:none;
+    border-bottom:1px solid #092635;
+    border-left:none;
+    border-right:none;
+    box-shadow: 0 4px 5px -2px rgba(0, 0, 0, 0.2); /* Adding a box shadow at the bottom */
+}
+#email-add-acess::placeholder {
+    color: #1B4242;
+}
+
+
+.add-accessbtn {
+    display:flex;
+    justify-content: center;
+}
+#add-access-btn {
+    width: 120px;
+    height: 35px;
+    border-radius: 5px;
+    background-color: #092635;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    border:none;
+    font-size:0.875em;
+    font-family: 'Times New Roman', Times, serif;
+    display:flex;
+    align-items:center
+}
+.general-acess {
+    margin-top:10%;
+}
+
+.access-list {
+    overflow: hidden;
+    overflow-y: scroll;
+    margin-bottom:3%;
+
+}
+
+.general-access .form-check label {
+    font-size: 1em; /* Your new font-size */
+    font-family: 'Times New Roman', Times, serif; /* Your new font-family */
+    color: #092635; /* Your new color */
+    margin-bottom: 3%; /* Your new margin-bottom */
+  }
+  .general-access .form-check {
+    margin-left:5%;
+  }
+  
+  .modal-backdrop.show {
+    opacity: .5;
+    z-index: 0;
+  }
+
+
+label[for="limit-word"] {
+    margin-right:75%;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    margin-top: 4%;
+
+}
+
+label[for="minimum"] {
+    margin-left: 7%;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    margin-top: 1%;
+}
+label[for="maximum"] {
+    margin-left: 5%;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    margin-top: 1%;
+}
+
+#minimum {
+    height: 40px;
+    width: 150px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+    border-top: none;
+    border-left: none;
+    border-bottom: 1px solid #092635;
+    border-right: 1px solid #092635;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+
+
+#maximum {
+    height: 40px;
+    width: 150px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+    border-top: none;
+    border-left: none;
+    border-bottom: 1px solid #092635;
+    border-right: 1px solid #092635;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+
+#minimum-per {
+    height: 40px;
+    width: 260px;
+    border-radius: 5px;
+    border-top: none;
+    border-left: none;
+    border-bottom: 1px solid #092635;
+    border-right: 1px solid #092635;
+}
+
+
+#maximum-per {
+    height: 40px;
+    width: 260px;
+    border-radius: 5px;  
+    border-top: none;
+    border-left: none;
+    border-bottom: 1px solid #092635;
+    border-right: 1px solid #092635;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    color: #092635;
+
+}
+
+#minimum-per::placeholder{ 
+    font-family:'Times New Roman', Times, serif;
+    font-size:16px;
+}
+
+
+#maximum-per::placeholder{ 
+    font-family:'Times New Roman', Times, serif;
+    font-size:16px;
+}
+
+.button-next {
+    display:flex;
+    justify-content: flex-end;
+}
+
+/* Addition section  */
+
+.add-section {
+    display: none;
+    position: fixed; /* Or absolute depending on your layout */
+    bottom:135px;
+    right: 300px; /* Align it to the right */
+    margin: 20px; /* Add some spacing if needed */
+    /* Add any other styling as required */
+}
+
+
+.fa-plus-circle {
+    height: 50px;
+    width: 50px;
+    border-radius: 50px;
+    background-color: #ffff;
+    color: #1B4242;
+    font-size: 50px;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+    margin-right: 10px;
+    position: sticky;
+    top: 20px; /* Set the sticky offset (adjust as needed) */
+    /* Add animation */
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Floating effect on hover */
+.fa-plus-circle:hover {
+    color: #5C8374;
+}
+
+/* Define the keyframes for the floating animation */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0); /* Starting and ending point */
+    }
+    50% {
+        transform: translateY(-10px); /* Float up at the middle of the animation */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

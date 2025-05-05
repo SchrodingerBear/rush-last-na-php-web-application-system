@@ -1,0 +1,1898 @@
+
+.displayanswer {
+    display: flex;
+    flex-direction: column;
+    margin-top:5%;
+    text-align: end;
+    padding:0;
+
+}
+
+.divide-content {
+ display: flex
+;
+    flex-direction: row;
+    justify-content: center;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    color: #1B4242;
+    
+   
+    font-size: 1em;
+  
+    margin-bottom: 50px;
+    overflow-y: scroll;
+    align-items: center;
+    gap: 200px;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.date-info {
+        display: flex
+;
+    flex-direction: row;
+    justify-content: center;
+ 
+    font-family: 'Times New Roman', Times, serif;
+ 
+  
+    margin-bottom: 50px;
+    align-items: center;
+    gap: 200px;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+/* Back Arrow */
+.fa-arrow-left {
+    font-size:2.25em;
+    color:#9EC8B9;
+    font-weight: 700;
+    margin-bottom:3%;
+}
+
+/* Hover effect */
+.fa-arrow-left:hover {
+    animation: moveRight 0.6s ease forwards; /* Apply the movement animation */
+    cursor: pointer;
+}
+
+/* Keyframes for moving animation */
+@keyframes moveRight {
+    0% {
+        transform: translateX(0); /* Start at original position */
+    }
+    50% {
+        transform: translateX(15px); /* Move 15px to the right */
+    }
+    100% {
+        transform: translateX(0); /* Return to original position */
+    }
+}
+
+.the-title-quiz , .the-descrip ,.the-subject ,
+.the-startdate ,.the-starttime ,.the-enddate ,.the-endtime ,.restriction-titles{
+font-size: 20px;
+color: #1B4242;
+font-weight: 800;
+margin-bottom: 0%;
+
+}
+
+
+.date-start-end {
+    margin-top: 50px;
+    display: flex
+;
+     box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6);
+    padding: 30px 150px;
+    border-radius: 5px;
+    align-items: center;
+}
+
+
+.title-quiz{
+    font-size: 1.3em;
+    font-weight: 800;
+    color: #092635;
+}
+
+.descrip {
+    font-size: 1.3em;
+    font-weight: 800;
+    color: #092635;
+}
+
+
+.subject {
+    font-size: 1.3em;
+    font-weight: 800;
+    color: #092635;
+}
+
+.startdate {
+    font-size: 1.3em;
+    font-weight: 800;
+    color: #092635;
+    margin-bottom: 0%;
+}
+
+.enddate{
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    font-weight: 800;
+    color: #092635;
+    margin-bottom: 0%;
+}
+
+.date-info-2{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+.date-info-3{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.starttime {
+    font-size: 1.3em;
+    font-weight: 800;
+    color: #092635;
+    margin-bottom: 0%;
+}
+
+
+.endtime {
+    font-size: 1.3em;
+    font-weight: 800;
+    color: #092635;
+    margin-bottom: 0%;
+}
+
+
+.quiz-info h3{
+    font-size: 35px;
+    color: #092635;
+}
+
+
+
+.quiz-info-2 {
+    text-align: center;
+    margin-left:30%;
+}
+.quiz-info-3 {
+    text-align: center;
+    margin-left:30%;
+}
+.author-descript p {
+    white-space: normal;       /* Allow text to wrap */
+    overflow-wrap: break-word; /* Break long words if needed */
+  }
+  
+
+
+.quizInformation {
+    margin-top:50px;
+    display: flex;
+       box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6);
+    padding:10px;
+    border-radius:5px;
+    flex-direction: column;
+}
+.quiz-info {
+    margin-top: 8%;
+    justify-content: center;
+    box-shadow: 0 -4px 6px -2px rgba(0, 0, 0, 0.2); /* Shadow only at the top */
+}
+
+.quiz-info-multiple {
+    margin-top: 15%;
+    width:70%;
+}
+
+.divide-question {
+    margin-top: 15%;
+}
+
+
+.green-section {
+    background-color: #1B4242;
+}
+
+.quiz-taker-section {
+    padding: 0;
+    height: 72px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    bottom: 0; /* Sticks it at the bottom of the page */
+    width: 100%; /* Ensure it spans the full width */
+ 
+    background-color:#ffff;
+    border-top: 1px solid #ddd8d8;
+     display:flex;
+     justify-content: flex-end;
+}
+
+
+
+
+
+.quiz-points {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+.total-points-section {
+    display:flex;
+    justify-content: flex-end;
+
+}
+.total-points {
+     font-size: 1.3em;
+    font-weight: 800;
+    color: #092635;
+    margin-bottom: 0%;
+       font-family: 'Times New Roman', Times, serif;
+}
+
+span {
+  cursor: pointer;
+}
+
+
+.quiz-total-point {        margin-top: 20px;
+    display: flex
+;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6);
+    padding: 30px 150px;
+    border-radius: 5px;
+    align-items: center;
+}
+}
+
+.divide-question1 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+    margin-left: 50px;
+}
+
+.question1{
+    margin-right: 20px;
+}
+
+
+
+
+
+.essay-container{
+    border:1px solid black;
+    justify-self: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+.question2{
+   display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.question3{
+    display: flex;
+     justify-content: center;
+     flex-direction: row;
+     align-items: center;
+ }
+
+.correctpoints1{
+color: #092635e1;
+font-style: italic;
+font-size: 20px;
+margin-left: 100px;
+}
+
+.points-numbers1{
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.question-number{
+font-size: 20px;
+color: #092635;
+margin-left: 180px;
+}
+
+.question-text{
+width: 500px;
+font-size: 25px;
+display: flex;
+text-align: center;
+
+}
+
+.student-answer2{
+    width: 600px;
+    font-size: 20px;
+ border-bottom: 1px solid #092635;
+ margin-top: 30px;
+   
+}
+
+.rubrics{
+justify-content: center;
+align-items: center;
+display: flex;
+flex-direction: column;
+border-radius: 20px;
+border-right: 1px solid #092635;
+border-left: 1px solid #092635;
+padding-left: 50px;
+padding-right: 50px;
+box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+margin-top: 30px;
+
+}
+
+.rubric-item{
+    flex-direction: row;
+    display: flex;
+align-items: center;
+
+}
+
+.score{
+    margin-left: 20px;
+}
+
+.button{
+    height: 70;
+    width: 220px;
+    margin-top: 20px;
+    background-color: #092635;
+   border-radius: 10px;
+   color: #fff;
+   font-size: 15px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.button:hover {
+    background-color: #1B4242;
+
+}
+
+.icon {
+    margin-right: 10px;
+}
+
+.ripple-effect {
+    position: absolute;
+    background: radial-gradient(circle, transparent 1%, rgba(255, 255, 255, 0.3) 1%) center/15000%;
+    transition: background-size 0.3s;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: scale(0);
+    z-index: 1;
+}
+
+
+/*Multiple Choice*/
+
+
+.typequestionall{
+    justify-content: center;
+    display:"flex";
+    align-items: center;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    border-radius: 20px;
+    width:80%;
+    padding:50px 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    filter: brightness(1.0) saturate(100%);
+
+}
+
+#start-time input {
+    color: #092635;
+}
+
+.typequestion{
+    display: flex;
+    margin-bottom: none;
+    justify-content: center;
+    display:"flex";
+    align-items: center;
+}
+
+.dropdownminute {
+    margin-right: none;
+    margin-bottom: none; 
+
+}
+
+
+
+.typequestionhere{
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping to create new lines */
+    margin-bottom: none;
+    justify-content: center;
+    display:"flex";
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+.letter-inside {
+    position: absolute;
+    top: 1;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    left:2;
+    background-color: #092635;
+    border: 1px solid #000;
+    color: #fff;
+    border-radius: 5px;
+    padding: 2px 5px;
+    margin-top: 16px;
+    height: 35px;
+    margin-left: 2px;
+    width: 40px;
+    border-radius: 10px;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+    font-size: 1em;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bolder;
+}
+
+
+/* Styles for the icon container */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Time Limit, Points Per Item, Number of Quiz*/
+.separate {
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+    margin-left: 95px;
+    margin-bottom: 30px;
+    border-radius: 20px;
+    color:#fff;
+    font-size: 1em;
+    font-family: 'Times New Roman', Times, serif;
+    width:80%;
+    background: url('/img/forms/2.png');
+    padding-bottom: 15px;
+  
+}
+
+
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    margin-right: 10px;
+}
+
+
+
+
+
+.limitconpar{
+    color:#fff;
+    margin-left: 120px;
+    font-style: italic;
+    margin-bottom: 4px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 0.8750em;
+    margin-left:7%;
+  
+}
+
+.limit-con {
+    display: flex
+;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    margin-left: 2%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Style the options */
+.dropdownminute option {
+    font-size: 0.875em; /* Adjust font size */
+    font-weight: bold; /* Adjust font weight */
+    color: black; /* Adjust text color */
+    background-color: #9EC8B9; /* Adjust background color */
+    font-family:'Times New Roman', Times, serif;
+}
+
+
+
+
+
+
+.numberitem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+.number-of-quiz {
+    display: grid;
+    align-items: center; 
+    margin-left: 8%;
+}
+.num-per-point {
+    display: flex;
+    align-items: center;
+    margin-right: 50px;
+    margin-left:17%;
+    margin-top: 3%;
+    
+
+}
+
+#num-quiz{
+    height:50px;
+    width: 500px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+    border-top: none;
+    border-left:none;
+    border-bottom: 1px solid #092635;
+    border-right: 1px solid #092635;
+
+    
+}
+.numpoints p {
+    color: #fff;
+    font-style: italic;
+    margin-right: 380px;
+    margin-bottom: 4px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 0.8750em;
+}
+
+.numpoints-2 p {
+    color: #fff;
+    margin-left: 50px;
+    margin-bottom: 40px;
+    font-style: italic;
+    margin-bottom: 4px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 0.8750em;
+}
+
+#num-points {
+    height: 50px;
+    width: 500px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+    border-top: none;
+    border-left: none;
+    border-bottom: 1px solid #092635;
+    border-right: 1px solid #092635;
+ 
+}
+.input-group label {
+    margin-right: 10px;
+}
+.input-group input[type="number"] {
+    width: 50px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.form-check input[type="checkbox"]:checked {
+    background-color: #1B4242; /* Change the background color */
+    border-color: #092635; /* Change the border color */
+    border: none;
+}
+
+
+
+
+.submitas{
+    font-size: 15px; 
+}
+
+
+.typequestionall{
+    justify-content: center;
+    display:"flex";
+    align-items: center;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    margin-left: 98px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    width:80%;
+    padding:50px 0;
+    background:url(/img/one.jpg);
+    
+
+}
+
+#start-time input {
+    color: #092635;
+}
+
+.typequestion{
+    display: flex;
+    margin-bottom: none;
+    justify-content: center;
+    display:"flex";
+    align-items: center;
+}
+
+.dropdownminute {
+    margin-right: none;
+    margin-bottom: none; 
+
+}
+#time-limit-minutes::placeholder{
+    font-size: 1.125em;
+    font-family:'Times New Roman', Times, serif;
+    font-weight: 500;
+    color:black;
+
+}
+#num-points::placeholder{
+    font-size: 1.125em;
+    font-family:'Times New Roman', Times, serif;
+    font-weight: 500;
+    color:black;
+
+}
+#num-quiz::placeholder{
+    font-size: 1.125em;
+    font-family:'Times New Roman', Times, serif;
+    font-weight: 500;
+    color:black;
+
+}
+
+
+
+
+/*Essay*/
+
+
+.typequestionall-essay{
+    justify-content: center;
+    display: "flex";
+    align-items: center;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+    margin-top: 30px; 
+    border-radius: 5px;
+      background-color: #f2f2f2;
+    width:650px;
+
+
+}
+   
+
+.total-points-section {
+    display:flex;
+    
+
+}
+
+
+
+.typequestion-essay{
+    display: flex;
+    justify-content: center;
+    display:"flex";
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+
+.typequestionhere-essay{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+    
+
+}
+.dropdownminute-essay {
+    margin-right: none;
+    margin-bottom: none; 
+
+}
+
+
+.typequestionhere-essay {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.word-limit-per {
+    display:flex;
+}
+
+#minimum-per {
+    height: 40px;
+    width: 259px;
+    border-radius: 5px;
+    border-top: none;
+    border-left: none;
+    border-bottom: 1px solid #092635;
+    border-right: 1px solid #092635;
+}
+
+#maximum-per {
+    height: 40px;
+    width: 259px;
+    border-radius: 5px;
+    box-shadow: 9px 0px 30px 0px rgba(0, 0, 0, 0.1);
+    border-top: none;
+    border-left: none;
+    border-bottom: 1px solid #092635;
+    border-right: 1px solid #092635;
+}
+
+label[for="limit-word"] {
+    margin-left: 7%;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    margin-top: 2%;
+}
+label[for="minimum"] {
+    margin-left: 7%;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 16px;
+    margin-top: 1%;
+}
+
+label[for="maximum"] {
+    margin-left: 10%;
+    color:white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size:16px;
+    margin-top:1%;
+  }
+  #minimum{
+    height:40px;
+    width: 150px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+    border-top: none;
+    border-left:none;
+    border-bottom: 1px solid #092635;
+    border-right: 1px solid #092635;
+    margin-left:2%;
+    margin-right:2%;
+}
+
+#maximum{
+    height:40px;
+    width: 150px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
+    border-top: none;
+    border-left:none;
+    border-bottom: 1px solid #092635;
+    border-right: 1px solid #092635;
+    margin-left:3%;
+}
+.word-limit-count {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+/* Styles for the input box */
+.input-box-essay{
+    position: relative;
+    display: inline-block;
+}
+
+/* Styles for the number */
+.number-essay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 5px;
+    margin-top: 17px;
+    height: 30px;
+    width: 35px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-left: 5px;
+    margin-top: 25px;
+    background-color: #092635;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+    font-size: 0.8750em;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+/* Styles for the rubric link */
+
+.pointsandrubric {
+    display: flex
+;
+    flex-direction:row;
+    justify-content: center;
+    margin-bottom: 50px;
+    align-items: flex-start;
+    padding-top: 10px;
+    gap:200px;
+    padding-bottom: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.rubric-section {
+        margin-top: 20px;
+    display: flex
+;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6);
+ padding: 25px 150px;
+    border-radius: 5px;
+    align-items: center;
+}
+}
+.span-rubric {
+  
+    padding:12px 80px;
+}
+
+/* Styles for the rubric link */
+.rubric-link {
+    text-decoration: none;
+    font-size: 1.3em;
+    font-weight: 800;
+    color: #092635;
+    margin-bottom: 0%;
+    font-family: 'Times New Roman', Times, serif;
+
+
+    
+}
+
+/* Styles for the rubric link on hover */
+.span-rubric:hover {
+    text-decoration: none;
+    background-color: none;
+  
+
+}
+
+/* Additional styling for the input field */
+.input-box-essay input[type="text"] {
+    padding-left: 20px; /* Add padding to accommodate the number */
+    padding-right: 20px; /* Add padding to accommodate the delete icon */
+}
+
+
+.dropdownminute-essay:last-child {
+    margin-right: 0;
+}
+
+.dropdownminute-essay label {
+    margin-bottom: 5px;
+}
+
+
+.dropdownminute-essay .dropdown {
+    display: flex;
+    align-items: center;
+    margin-top: none; /* Align items vertically */
+}
+
+.dropdownminute-essay .dropdown select {
+    margin-left: none;
+}
+#question-essay {
+    width: 600px;
+    height: 150px;
+    margin-top: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    resize: none;
+    outline: none;
+    font-family: 'Times New Roman', Times, serif;
+    color: #092635;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+    border: none;
+    text-align: justify;
+    padding: 40px 20px;
+}
+
+
+ 
+#question-essay::placeholder{
+   font-size:1em;
+   font-family: 'Times New Roman', Times, serif;
+   color:#1B4242;
+}
+
+#points-essay{
+  height: 40px;
+  width: 208px;
+
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1em;
+  color: #1B4242;
+}
+
+
+
+.restriction-title {
+    font-size: 1.175em;
+    color: rgb(27, 66, 66);
+    font-weight: 800;
+    font-family: "Times New Roman", Times, serif;
+}
+
+#answer-essay {
+  height: 215px;
+  width: 520px;
+  background-color:#fff;
+  border-bottom: solid 0.5px #092635;
+  border-right: solid 0.5px #092635;
+  box-shadow: 0 0px 2px 0px #092635;
+  margin-top: 5px;
+  margin-bottom: 15px;
+    display: block; /* Set the input field to display as a block */
+    word-wrap: break-word; /* Allow long words to break and wrap onto the next line */
+    color:#1B4242;
+    font-family:'Times New Roman', Times, serif;
+    text-align: justify;
+
+}
+
+
+#answer-essay2  {
+    height: 130px;
+    width: 520px;
+    background-color:#fff;
+    border-bottom: solid 0.5px #092635;
+    border-right: solid 0.5px #092635;
+    box-shadow: 0 0px 2px 0px #092635;
+    margin-top: 5px;
+    margin-bottom: 15px;
+      display: block; /* Set the input field to display as a block */
+      word-wrap: break-word; /* Allow long words to break and wrap onto the next line */
+      color:#1B4242;
+      font-family:'Times New Roman', Times, serif;
+      text-align: justify;
+  }
+
+  #answer-essay3 {
+    height: 80px;
+    width: 520px;
+    background-color:#fff;
+    border-bottom: solid 0.5px #092635;
+    border-right: solid 0.5px #092635;
+    box-shadow: 0 0px 2px 0px #092635;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    display: block; /* Set the input field to display as a block */
+    word-wrap: break-word; /* Allow long words to break and wrap onto the next line */
+    color:#1B4242;
+    font-family:'Times New Roman', Times, serif;
+    text-align: justify;
+}
+
+.orupload{
+    margin-top: 20px;   
+}
+
+.orupload h3{
+    font-size: 1em;
+    color: #fff;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 800;
+}
+
+.fileupload{
+    border-right: 0.5px solid #092635;
+    border-bottom: 0.5px solid #092635;
+    border-left: none;
+    border-top: none;
+    height: auto;
+    width: 600px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    background-color:#fff;
+    color:#1B4242;
+    font-size:1em;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius:5px
+}
+
+.file-gif {
+    width:50px;
+    height:50px;
+}
+.uploaded-files {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    
+}
+.file-upload{
+    font-size: 18px;
+    color: #092635;
+
+    margin: 5px 0;
+}
+.file-input-wrapper {
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Added transition property */
+}
+
+.file-input-wrapper input[type='file'] {
+    opacity: 0;
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    color:#1B4242;
+}
+
+.file-input-wrapper button {
+  font-size: 1em;
+  padding: 10px 20px;
+  color: white;
+  background-color: #092635;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 40px;
+  font-family:'Times New Roman', Times, serif;
+}
+
+
+
+.button-container {
+    display: flex;
+    justify-content:center;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+
+.info-icon {
+    cursor: pointer;
+    font-size: 16px;
+  
+    color: #5c8374 !important;
+}
+
+.info-icon:hover {
+    color: #1b4242!important;
+}
+
+
+
+.form-check label {
+    font-size: 1.175em;
+    color: rgb(27, 66, 66)!important;
+    font-weight: 800;
+    font-family: "Times New Roman", Times, serif;
+    opacity: 1!important;
+
+}
+
+
+
+.form-check-2 label{
+    font-size: 1em;
+    font-family: 'Times New Roman', Times, serif;
+    margin-left: 150px;
+    color: #fff;
+    margin-bottom: 3%;
+}
+
+.essay-file-pdf-wrapper {
+    display:flex;
+    justify-content:flex-start;
+
+}
+
+
+.essay-file-pdf-wrapper img {
+    width:50px;
+    height:50px;
+
+}
+.essay-file-pdf-wrapper p{
+    margin-top:4%;
+    font-style: italic;
+    text-decoration: underline;
+
+}
+
+.fa-user-pen {
+    font-size:3em;
+    color:#9EC8B9;
+    margin-left:3%;
+}
+
+
+
+.edit, .delete, .copy-link, .recycle {
+    width: 60px;
+    height: 60px;
+  
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), /* Outer shadow */
+                inset 0 -5px 10px rgba(0, 0, 0, 0.3), /* Inner shadow for depth */
+                inset 0 5px 10px rgba(255, 255, 255, 0.2); /* Inner highlight */
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    transform-style: preserve-3d; /* Enable 3D transformations */
+    margin-top:10px;
+    margin-right:10px;
+    font-size:1.3em;
+    background-color:#1B4242;
+  
+}
+
+/* Add a pseudo-element for the 3D shine effect */
+.edit::before, .delete::before, .copy-link::before, .recycle::before {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 30%;
+    height: 30%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 70%); /* Shine effect */
+    border-radius: 50%;
+    transform: translateZ(10px); /* Bring the shine forward */
+    opacity: 0.8;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover effect to enlarge and enhance the 3D effect */
+.edit:hover, .delete:hover, .copy-link:hover, .recycle:hover {
+    transform: scale(1.2) rotateX(10deg) rotateY(10deg); /* Enlarge and tilt for 3D effect */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), /* Enhanced outer shadow */
+                inset 0 -8px 15px rgba(0, 0, 0, 0.4), /* Deeper inner shadow */
+                inset 0 8px 15px rgba(255, 255, 255, 0.3); /* Brighter inner highlight */
+}
+
+/* Optional: Add a floating animation */
+@keyframes floatAnimation {
+    0%, 100% {
+        transform: translateY(0) rotateX(0) rotateY(0);
+    }
+    50% {
+        transform: translateY(-10px) rotateX(5deg) rotateY(5deg); /* Slight lift and tilt */
+    }
+}
+
+/* Apply the floating animation */
+.edit, .delete, .copy-link, .recycle {
+    animation: floatAnimation 3s infinite ease-in-out;
+}
+
+
+
+
+.edit-delete-sections {
+    display: flex;
+    position: absolute;
+    top: 0;
+
+    justify-content: center;
+    width: 100%;
+   
+    
+}
+
+
+.edit-delete-leaderboard-section {
+    display: grid;
+}
+
+
+/* Ensure the parent container doesn't interfere with sticky positioning */
+.button-section.container {
+    overflow: visible; /* Ensure overflow doesn't cut off the sticky section */
+}
+
+
+a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+
+.button-section {
+    display: flex;
+    justify-content: center;
+}
+
+/* Styles for the edit, delete, copylink icon */
+
+
+.note-setting {
+color:#1B4242;
+font-style: oblique;
+text-align: justify;
+}
+
+.quiz-restriction-setting {
+margin-top:20px
+}
+
+
+.quiz-restriction-setting-1 {
+  
+    font-size: 16px;
+    box-shadow: rgba(0, 0, 0, 0.6) 3px 3px 8px;
+    display: flex
+;
+    flex-direction: column;
+    align-items: flex-start;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    padding: 12px;
+    border-radius: 5px;
+    margin-top: 30px;
+}
+
+  .restriction {
+    display:flex;
+
+  }
+  .restriction-title {
+    font-size: 1.3em;
+    font-weight: 800;
+    color: #092635;
+    margin-left:10px;
+  }
+
+  .fa-trophy  {
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color:#fff;
+    font-size:1.125em;
+ 
+  }
+  .form-check-input:checked,
+  .form-check-input:disabled:checked {
+      background-color: #092635;
+      border-color: #fff;
+  }
+  .form-check-input:disabled {
+    opacity: 1; /* Ensure full opacity for disabled elements */
+}
+
+
+
+
+.choose-edit-quiz .form-check-input {
+    position: static !important; /* Reset position */
+    margin-top: 0 !important; /* Reset margin-top */
+    margin-left: 0 !important; /* Reset margin-left */
+}
+
+.choose-edit {
+    margin-top:3%;
+}
+/* CSS to style the checkbox container */
+.choose-edit-quiz {
+    display: flex; /* Use flexbox layout */
+    align-items: center; /* Align items vertically in the center */
+    margin-left: 3%; /* Add margin to the left */
+}
+
+/* Additional styles for the checkbox input */
+.choose-edit-quiz input[type="checkbox"] {
+    margin-right: 5px; /* Add spacing between the checkbox and its label */
+}
+
+  /* CSS to style the label for the checkbox */
+.choose-edit-quiz label {
+    /* Add your styles here */
+    font-size: 1em; /* Example font size */
+    color: #092635; /* Example text color */
+    margin-left: 10px; /* Example margin */
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* Additional styles for when the checkbox is checked */
+.choose-edit-quiz input[type="checkbox"]:checked + label {
+    font-weight: bold; /* Example style change when checked */
+}
+/* Additional styles for the button icon */
+.choose-edit-quiz .yes-btn i {
+    margin-right: 5px; /* Add spacing between the icon and the button text */
+}
+.modal-backdrop.show {
+    opacity: .5;
+    z-index: 0;
+  }
+
+
+
+
+.profile-student {
+    display:flex;
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.1);
+    justify-content: space-between;
+    font-family: 'Times New Roman', Times, serif;
+}
+.profile-pic {
+    width: 70px;
+    height: 70px;
+    margin-left: 3%;
+    border-radius: 100%;
+
+}
+
+
+.profile-name {
+      color:#092635;
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 2%;
+    margin-bottom: 0;
+    font-family: 'Times New Roman', Times, serif;
+        align-items: flex-end;
+}
+.email {
+    font-style: italic;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    color:#092635;
+}
+.profile-name, .email {
+    white-space: normal; /* Allows text to wrap */
+    word-wrap: break-word; /* Breaks long words if needed */
+    overflow-wrap: break-word; /* Ensures wrapping */
+    max-width: 100%; /* Ensures it stays within container */
+}
+
+.profile-section {
+    display: flex;
+    justify-content: space-between; /* Pushes content to edges */
+    align-items: center;
+    width: 100%;
+   
+}
+
+.profile-identity {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Moves text to the right */
+    text-align: right; /* Ensures text aligns properly */
+    margin-left: auto; /* Pushes it to the end */
+    width:80%;
+    
+}
+.profile-student{
+    display: flex;
+    align-items: center; /* Aligns items vertically */
+    justify-content: space-between; /* Ensures space is used properly */
+    flex-wrap: wrap; /* Prevents overflow issues */
+   
+     
+}
+
+/* Resetting Bootstrap styling for the link */
+.custom-leaderboard-link {
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+    font-weight: normal;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+/* Custom styles for the link */
+.custom-leaderboard-link {
+    font-size: 16px; /* Change font size as needed */
+    display: inline-flex;
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+    margin-right: 2%;
+}
+
+/* Custom styles for the icon */
+.custom-leaderboard-icon {
+    font-size: 24px; 
+    color: #9EC8B9; 
+    animation: none; 
+}
+
+/* Additional styling options */
+.custom-leaderboard-link:hover .custom-leaderboard-icon {
+    color: #5C8374; /* Change color on hover */
+    text-decoration: none;
+}
+
+/* Optionally, you can add your own animation */
+@keyframes custom-bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.custom-leaderboard-icon.animated {
+    animation: custom-bounce 0.5s infinite;
+}
+
+
+.quiz-details-content {
+    display:flex;
+    border-bottom:1px solid #092635;
+    color:#1B4242;
+}
+
+
+
+.title-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 32px;
+    color: #1B4242;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 2%;
+    margin-left: 80px;
+}
+
+.points-multiple {
+    font-size: 32px;
+    color: #5C8374;
+    font-family: 'Times New Roman', Times, serif;
+    margin-top: 2%;
+    margin-right: 80px;
+}
+
+a i {
+    display: inline-block; /* Ensures transform works */
+    transition: transform 0.3s ease-in-out;
+}
+
+
+.arrow-section {
+    display: flex;
+    align-items: center;
+}
+
+.essay-section {
+    width: 700px;
+    display: flex;
+    justify-content: center;
+    height: 650px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+    background: url(/img/forms/2.png);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.answer-of-essay {
+    height: 200px;
+    width: 600px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    display: block;
+    overflow-wrap: break-word;
+    color: rgb(9, 38, 53);
+    font-family: "Times New Roman", Times, serif;
+    text-align: justify;
+    overflow-y: auto;
+    resize: none;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 10px;
+    outline: none;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+}
+.points-essay {
+    height: 40px;
+    width: 199px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1.125em;
+    color: rgb(9, 38, 53);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 10px;
+    outline: none;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    text-align: center;
+}
+
+.minimum-words {
+    height: 40px;
+    width: 199px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1.125em;
+    color: rgb(9, 38, 53);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 10px;
+    outline: none;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    text-align: center;
+}
+
+.maximum-words {
+    height: 40px;
+    width: 199px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 1.125em;
+    color: rgb(9, 38, 53);
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 10px;
+    outline: none;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    text-align: center;
+}
+.dropdownminute {
+    text-align:center;
+}
+
+.word-limit {
+    text-align:center;
+    border-left:2px solid #5C8374;
+}
+.span {
+    background-color: #1B4242;
+    padding:5px;
+}
+.trophy {
+    width:50px;
+    height:40px;
+}
+
+.leaderboard {
+    font-size:1.2em;
+    color:#1B4242;
+    letter-spacing: 10;
+    font-weight:800;
+    margin-bottom:0;
+    cursor:pointer;
+ font-family: 'Times New Roman', Times, serif;
+
+}
+
+
+.useranswer {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    margin-bottom:50px;
+  
+    }
+
+    .leftpanel {
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.5);
+        max-width: 100%; /* Adjust based on your layout */
+        height: 700px;
+        overflow: hidden; /* Prevent scrolling */
+        background-color: #ffffff; /* Optional: for visual distinction */
+        padding:0;
+        display: flex
+        ;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+       
+    }
+  
+    .label-of-inputs {
+        color: #fff;
+        font-size:16px;
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    #randomized-checkbox-restriction {
+        width: 22px;
+        height: 22px;
+        border: 2px solid #1B4242;
+        border-radius: 4px;
+        margin-right: 5px;
+    }
+
+
+    /* X Mark Styling */
+.x-mark {
+    position: absolute !important;
+    font-size: 20px !important;
+    font-weight: bolder !important;
+    color: #1B4242!important;
+    transform: translate(-10%, 2%) !important;
+}
+.edit-delete-recycle-copy {
+    padding:0;
+    margin-top:10%;
+    max-width:6%;
+}
+
+
+.left-panel-img {
+    width:90%;
+    height:600px;
+}
+.left-panel-txt {
+    font-size:22px;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #1B4242;
+    letter-spacing: 3;
+}
+
+.left {
+    display: flex
+    ;
+        padding: 0;
+        flex-direction: column;
+}
+
+
+
+
+
+
+/* Delete Modal */
+#deleteModal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 550px;
+    height:250px;
+    max-width: 700px;
+    border-radius: 5px;
+}
+
+
+
+#confirmDelete {
+    background-color:#092635;
+    color:#fff;
+    padding:10px;
+    border-radius:5px;
+    width:150px;
+    border:none;
+}
+#cancel-btn-delete {
+    background-color:#1b4242;
+    color:#fff;
+    padding:10px;
+    border-radius:5px;
+    width:150px;
+    border:none;
+}
+#confirmDelete:hover,  #cancel-btn-delete:hover
+{
+    background-color:#5C8374;
+}
+#modal-body-delete-rubric p {
+    font-size:1.6em;
+    color:#1b4242;
+    font-weight: 600;
+}
+
+#modal-body-delete-rubric {
+    display: flex;
+    align-items: flex-end;
+    justify-items: center;
+    justify-content: center;
+    padding:0 !important;
+}
+#modal-header-delete-rubric {
+    padding:0 !important;
+}
+
+
+
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+
+.modal-body {
+       display: flex
+;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    padding: 0 !important;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 500px;
+    height: 250px;
+    max-width: 700px;
+    border-radius: 5px;
+
+}
+
+.modal-header {
+   
+}
+
+.modal-footer {
+   
+    padding:0;
+    padding-top:10px;
+  
+}
+
+.modal-body p {
+    font-size: 1.5em;
+    color:#092635;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    margin-bottom:0;
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 5px;
+    color: #092635;
+    font-size: 2.25em;
+    font-weight: bold;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.yesdelete {
+    background-color: #092635;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    width: 130px;
+    border: none;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.nodelete {
+    background-color: #1b4242;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    width: 130px;
+    border: none;
+     font-family: 'Times New Roman', Times, serif;
+    
+}
+
+.yesdelete a , .nodelete  a {
+    color:white;
+}
+
+
+
+
+.nodelete:hover , .yesdelete:hover {
+    background-color: #5c8374;
+    color:#fff;
+}
+
+.modal-footer .btn a {
+  color: white;
+  text-decoration: none; /* Optional: removes the underline */
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.modal-footer .btn a:hover {
+  color: white; /* Ensures it stays white on hover */
+}
+
+
+.btn-close {
+    position: absolute;
+    right: 15px;
+    color: #092635;
+    font-weight: bold;
+    cursor: pointer;
+    font-weight: bolder;
+        top: 20px;
+}
+
+
+.rubric-link:hover {
+    color:#1b4242;
+}

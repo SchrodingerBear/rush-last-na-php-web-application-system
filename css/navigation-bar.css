@@ -1,0 +1,53 @@
+.navigation-bar {
+    background-color: rgb(9, 38, 53, 0.5) !important;
+    filter: brightness(1.0) saturate(100%) !important;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.navigation-bar li {
+    padding: 0 30px;
+}
+
+.navigation-bar li a {
+    position: relative; /* Ensure proper positioning of the ::after pseudo-element */
+    color:#fff;
+}
+/* On hover */
+.navigation-bar li a:hover {
+    color: #fff; /* Text color on hover */
+}
+
+/* On active state (when clicked) */
+.navigation-bar li a:active,
+.navigation-bar li a:focus {
+    color: #fff; /* Text color on active/focus */
+}
+
+
+.navigation-bar li a::after {
+    content: ''; /* Required for pseudo-elements */
+    position: absolute;
+    bottom: 0;
+    left: 0; /* Initially position the line at the left */
+    width: 0; /* Initially set the width to 0 */
+    height: 2px; /* Adjust line thickness as needed */
+    background-color: #1B4242; /* Color of the line */
+    transition: width 0.3s ease; /* Transition effect for width change */
+ 
+  }
+  
+  .navigation-bar li a:hover::after {
+    width: 100%; /* Expand the line to 100% on hover */
+  }
+  
+    
+.navigation-img-section {
+    display:flex;
+    
+    
+}
+.nav-bar-img {
+    width: 80px;
+    height: 80px;
+
+}

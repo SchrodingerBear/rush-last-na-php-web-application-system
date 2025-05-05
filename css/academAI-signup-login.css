@@ -1,0 +1,492 @@
+
+
+
+
+
+
+
+
+
+
+
+
+.signup-section {
+    display:flex;
+    justify-content: center;
+}
+.signup-left {
+    border-radius: 10px;
+
+}
+
+main {
+    font-family: 'Inter', sans-serif;
+}
+.signup-banner {
+    height:700px;
+}
+
+
+.row-signup {
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    margin-top:5%;
+    width:80%;
+  
+    border-radius: 10px;
+}
+
+
+
+
+
+
+.signup-left form input {
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+    height: 70px;
+  
+    
+}
+.signup-left form input::placeholder{
+   color: #1b4242;
+  
+}
+
+
+.btn-create-account{
+    width: 100%;
+    border-radius: 10px;
+    height: 60px;
+    background-color:#092635;
+    color:#fff;
+
+    border:none;
+}
+
+
+.btn-create-account:hover
+ {
+    background-color:#1b4242;
+}
+.btn-create-account:active,
+.btn-create-account:focus {
+    background-color:#5C8374;
+}
+.already-have-account {
+  
+    color:#092635;
+    font-size:18px;
+    font-weight: bold;
+
+}
+.brand-color {
+    color: #092635;
+    text-decoration:none;
+    font-size:2.5em;
+    font-weight:bold;
+   
+  
+
+} 
+
+/*modal*/
+.modal-content-duplicate-email {
+   
+    color:#092635;
+   
+}
+
+
+/* Change the close button color */
+.btn-close-duplicate-email {
+    color:#092635;
+    border: none;
+    width: 1em;
+    height: 1em;
+    opacity: 1;
+}
+.modal-body-sucessful-modal {
+    display: flex;
+    justify-content: center;
+}
+
+.modal-body-duplicate-email {
+ display: flex;
+justify-content: center;
+}
+.modal-content-sucessfully-created {
+  
+    color:#092635;
+  
+}
+.btn-go-to-login{
+    background-color:#092635;
+    width:100%;
+    color:#fff;
+   
+    border:none;
+    border-radius:5px;
+    padding:10px;
+    text-decoration: none;
+    display:flex;
+    justify-content: center;
+}
+.btn-go-to-login:hover{
+    background-color: #1b4242;
+    color:#fff;
+    text-decoration: none;
+}
+.OK-btn-error-email {
+    background-color: #092635;
+
+    width:100%;
+    color:#fff;
+   
+    border:none;
+    border-radius:5px;
+    padding:10px;
+}
+
+.OK-btn-error-email:hover{
+    background-color:#1b4242;
+
+   
+}
+.btn-close::before {
+    color: #fff !important;
+    opacity: 1;
+}
+
+.btn-log-in:active,
+.btn-log-int:focus {
+    background-color: #5C8374; 
+}
+.dont-have-account{
+ 
+    color:#092635;
+    font-size:1em;
+    font-weight: bold;
+}
+
+.brand-color-sign-in-here {
+    text-decoration:none;
+    font-size:1.1em;
+ 
+    color:  #1b4242;
+}
+
+.brand-color-sign-in-here:hover {
+    color:  #5C8374;
+    text-decoration:none;
+} 
+
+.inputfield {
+    margin-top:8%;
+}
+
+
+
+.signupsignup {
+       display:flex;
+       justify-content: space-around;
+
+}
+
+.forgotpass {
+    text-align: right;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.forgotpass a {
+    color: #007BFF; /* or any color that matches your brand */
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgotpass a:hover {
+    text-decoration: none;
+    color: #0056b3; /* optional darker hover color */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Main Layout Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    font-family: 'Inter', sans-serif;
+    padding: 4rem 2rem;
+}
+
+.login-section {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.login {
+    display: flex;
+    background: white;
+    border-radius: 16px;
+    min-height: 600px;
+}
+
+/* Left Side (Form) */
+.login-left {
+    flex: 1;
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #ffffff;
+}
+
+.brand-color {
+    color: #092635;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    letter-spacing: 5px;
+}
+
+/* Form Elements */
+.inputfield {
+    margin-bottom: 2.5rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 18px 20px;
+    font-size: 18px;
+    transition: all 0.3s ease;
+   
+    font-family: 'Inter', sans-serif;
+    height: 60px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.form-control:focus {
+    border-color: #5C8374;
+    box-shadow: 0 0 0 4px rgba(92, 131, 116, 0.15);
+    outline: none;
+    background-color: white;
+}
+
+/* Button Styles */
+.btn-log-in {
+    width: 100%;
+    padding: 18px;
+    background-color: #1B4242;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    letter-spacing: 0.5px;
+}
+
+.btn-log-in:hover {
+    background-color: #092635;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(9, 38, 53, 0.1);
+}
+
+/* Right Side (Image) */
+.pic {
+    flex: 1;
+    background: linear-gradient(rgba(9, 38, 53, 0.85), rgba(27, 66, 66, 0.85)), 
+    url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 5rem;
+    position: relative;
+}
+
+.pic-content {
+    max-width: 500px;
+    z-index: 2;
+}
+
+.pic h2 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    line-height: 1.3;
+}
+
+.pic p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    opacity: 0.9;
+    margin-bottom: 3rem;
+}
+
+/* Text Styles */
+.forgotpass {
+    text-align: right;
+    margin-top: 1rem;
+}
+
+.forgotpass a {
+    color: #7f8c8d;
+    font-size: 16px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+.forgotpass a:hover {
+    color: #5C8374;
+}
+
+.dont-have-account {
+    color: #7f8c8d;
+    font-size: 17px;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.brand-color-sign-in-here {
+    color: #1B4242;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 8px;
+    transition: color 0.3s ease;
+}
+
+.brand-color-sign-in-here:hover {
+    color: #5C8374;
+    text-decoration: underline;
+}
+
+/* Error Message */
+.text-danger {
+    color: #e74c3c;
+    font-size: 16px;
+    margin-top: 1.5rem;
+    font-weight: 500;
+}
+
+/* Additional Spacing Elements */
+.form-header {
+    margin-bottom: 4rem;
+}
+
+.form-footer {
+    margin-top: 4rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .login-left, .pic {
+        padding: 4rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .login-left, .pic {
+        padding: 3rem;
+    }
+    
+    .brand-color {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 2rem 1rem;
+    }
+    
+    .login {
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .login-left, .pic {
+        width: 100%;
+        padding: 3rem 2rem;
+    }
+    
+    .pic {
+        min-height: 400px;
+    }
+    
+    .brand-color {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+}
+
+/* Navigation Bar */
+.login-page .navigation-bar {
+    background-color: #092635 !important;
+    padding: 1.5rem 0;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-left {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Enhanced Input Focus */
+.inputfield:focus-within label {
+    color: #5C8374;
+    transform: translateY(-5px);
+}
+
+/* Custom Checkbox */
+.remember-me {
+    display: flex;
+    align-items: center;
+    margin-top: 1.5rem;
+}
+
+.remember-me input {
+    margin-right: 12px;
+    width: 20px;
+    height: 20px;
+    accent-color: #5C8374;
+}

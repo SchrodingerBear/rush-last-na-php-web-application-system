@@ -1,0 +1,177 @@
+body{
+    margin:0px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.first-con{
+    margin: 0px;
+    align-items: center;
+    display:flex;
+    flex-direction:column;
+    
+
+}
+
+.con-host{
+    margin: none;
+    justify-content: left;
+    align-self: flex-start; /* Align to the left side */
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.name{
+    margin-top: 20px;
+   box-shadow: 0px 2px 0px rgb(9, 38, 53, 0.5);
+   width:1300px;
+   color:#5C8374;
+}
+
+.name h2{
+    color: #092635;
+}
+
+.name p{
+    color: #1B4242;
+    font-size: 20px;
+}
+
+.attendees{
+   box-shadow: 0px 2px 0px rgb(9, 38, 53, 0.5);   width:1300px;
+   padding-bottom:30px;
+  display: flex;
+flex-direction: column;
+  
+}
+
+.number-attendees{
+   display: flex;
+   flex-direction: row;
+align-items: center;
+}
+
+.number-attendees h2{
+   color: #092635;
+ }
+
+.student-name{
+    color: #092635; 
+    margin-bottom: 10px;
+    font-size: 20px;     
+}
+
+.attendees {
+    margin-top: 20px;
+    display: flex;
+    flex-direction:column;
+}
+
+.number-attendees h3{
+margin-left: 10px;
+margin-top: 20px;
+color:#1B4242;
+
+}
+
+.student {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.student-name {
+    flex-grow: 1;
+}
+
+.status-name{
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.fas{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    color:#1B4242;
+}
+
+.animated{
+    cursor: pointer;
+}
+
+.animated:hover{
+    text-decoration: underline #5C8374;
+    color: #5C8374;
+}
+
+.status-besides{
+    justify-content:flex-start;
+    flex-direction: row;
+    display: flex;
+    margin-left: 0px;
+    margin-bottom: 20px;
+    align-items: center;   
+    box-shadow: 0px 1px 0px rgb(92, 131, 116, 0.3);  
+
+}
+
+.status-item{
+margin-right: 600px;
+}
+
+.status-item span{
+    color: green;
+    font-size: 20px;
+}
+
+#done{
+    font-size:20px ;
+    color: green;
+}
+
+.status-item1{
+    margin-right: 550px;
+}
+
+
+#currently{
+    font-size:20px ;
+    color: rgb(238, 238, 58);
+}
+
+
+#taking{
+    color: rgb(238, 238, 58);
+    font-size: 20px;
+}
+
+#missed{
+color:red;
+font-size: 20px;
+
+}
+
+#not-takes{
+    color: red;
+    font-size: 20px;
+}
+
+.status-item2{
+margin-right: 590px;
+}
+
+#still-not{
+color: rgb(9, 38, 53, 0.6);
+font-size: 30px;
+align-self: center;
+display: flex;
+margin-right:20px;
+}
+
+
+

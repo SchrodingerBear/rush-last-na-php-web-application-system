@@ -1,0 +1,388 @@
+
+   /*Login-SignUp*/
+   #myModal-login {
+    position:absolute ;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1500;
+    width: 70vw; /* Adjust as needed */
+    max-width: 1000px; /* Set a maximum width to prevent excessive width */
+    height: 80vh;
+    overflow: auto; /* Enable overflow scrolling if content exceeds height */
+    box-shadow: 0 10px 40px rgba(54, 167, 195, 0.5); /* Adjust shadow properties */
+  }
+  
+  
+.containersignup {
+    position:relative; /* Change to relative to fit within modal */
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    z-index:1400;
+}
+
+
+.containersignup::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, #5C8374, #092635);
+    z-index: 6;
+    transform: translateX(100%);
+    transition: 1s ease-in-out;
+}
+#AcademAiSignUp-logo{
+    height: 220px;
+    width: 220px;
+    margin-bottom: 20px;
+    margin-top:-20%;
+}
+.signin-signup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    z-index:1000;
+}
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 40%;
+    min-width: 238px;
+    padding: 0 10px;
+}
+form.sign-in-form {
+    opacity: 1;
+    transition: 0.5s ease-in-out;
+    transition-delay: 1s;
+}
+form.sign-up-form {
+    opacity: 0;
+    transition: 0.5s ease-in-out;
+    transition-delay: 1s;
+    z-index:1000;
+}
+.title {
+    font-size: 35px;
+    color:#092635;
+    margin-bottom: 10px;
+}
+.input-field {
+    width: 80%;
+    height: 50px;
+    background: #ffffff;
+    margin: 10px 0;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+.input-field i {
+    flex: 1;
+    text-align: center;
+    color: #092635;
+    font-size: 18px;
+}
+.input-field input {
+    flex: 5;
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1B4242;
+}
+.input-field input::placeholder {
+    color: #5C8374;
+    }
+  
+.input-field-login {
+    width: 90%;
+    height: 50px;
+    background: #ffffff;
+    margin: 10px 0;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+ 
+.input-field-login i {
+    flex: 1;
+    text-align: center;
+    color: #092635;
+    font-size: 18px;
+}
+
+.input-field-login input {
+    flex: 5;
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1B4242;
+}
+
+.input-field-login input::placeholder {
+color: #5C8374;
+}
+
+.btn {
+    width: 150px;
+    height: 50px;
+    border: none;
+    border-radius: 50px;
+    background: #5C8374;
+    color: #fff;
+    font-weight: 600;
+    margin: 10px 0;
+    padding-top: 12px; /* Add padding-top to create space */
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.btn:hover {
+    background: #1B4242;
+    color:white;
+}
+
+.btn a {
+  margin-top:5%;
+}
+
+
+
+a {
+    text-decoration: none;
+    
+  
+}
+
+.panels-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 35%;
+    min-width: 238px;
+    padding: 0 10px;
+    text-align: center;
+}
+.left-panel {
+    pointer-events: none;
+
+}
+.content {
+    color: #fff;
+    transition: 1.1s ease-in-out;
+    transition-delay: 0.5s;
+    z-index:1000;
+}
+.panel h3 {
+    font-size: 24px;
+    font-weight: 600;
+}
+.panel p {
+    font-size: 15px;
+    padding: 10px 0;
+}
+.image {
+    width: 100%;
+    transition: 1.1s ease-in-out;
+    transition-delay: 0.4s;
+}
+.left-panel .sigin-image,
+.left-panel .content, .left .left-panel-close {
+    transform: translateX(-200%);
+}
+.right-panel .login-image,
+.right-panel .content, .right {
+    transform: translateX(0);
+}
+.account-text {
+    display: none;
+}
+.right-panel {
+  position: relative;
+  z-index: 1001;
+  background: url('./img/login-img-option-II.gif');
+  background-size: cover;
+  background-position: center;
+  margin-top: -5%;
+  padding-top: 20px; /* Adjust as needed */
+  height:auto;
+}
+
+.fa-x.right-panel-close {
+  position: absolute;
+  top: -5%; /* Adjust as needed */
+  right: -14%; /* Adjust as needed */
+  font-size: 25px; /* Adjust as needed */
+  color: #ffffff;
+  cursor: pointer;
+
+}
+
+.fa-x.left-panel-close {
+  position: absolute;
+  top:3%; /* Adjust as needed */
+  left:2%; /* Adjust as needed */
+  z-index:1005;
+  font-size: 25px; /* Adjust as needed */
+  color: #ffffff;
+  cursor: pointer;
+
+
+}
+
+
+
+.panel.right-panel {
+  pointer-events: all; /* Allow pointer events on the right panel */
+}
+.right-panel .content {
+  opacity: 1; /* Adjust opacity if necessary */
+  visibility: visible; /* Ensure content is visible */
+  display: block; /* Display content as a block element */
+  z-index: 1001; /* Ensure content is above other elements */
+}
+
+.login-image {
+  width:300px;
+  height:200px;
+}
+
+.sigin-image{
+  width:300px;
+  height:250px;
+  
+}
+
+.containersignup .right-panel .content,
+.containersignup .right-panel .loginimage {
+    z-index: 1001; /* Ensure content and images in the right panel appear above other elements */
+}
+/*Animation*/
+.containersignup.sign-up-mode::before {
+  transform: translateX(0);
+}
+.containersignup.sign-up-mode .right-panel .login-image,
+.containersignup.sign-up-mode .right-panel .content,
+.containersignup.sign-up-mode .right-panel .fa-x.right-panel-close  {
+  transform: translateX(380%);
+}
+.containersignup.sign-up-mode .left-panel .sigin-image,
+.containersignup.sign-up-mode .left-panel .content {
+  transform: translateX(0);
+}
+.containersignup.sign-up-mode form.sign-in-form {
+  opacity: 0;
+}
+.containersignup.sign-up-mode form.sign-up-form {
+  opacity: 1;
+}
+.containersignup.sign-up-mode .right-panel {
+  pointer-events: none;
+}
+.containersignup.sign-up-mode .left-panel {
+  pointer-events: all;
+}
+
+/*Responsive*/
+@media (max-width:779px) {
+  .container {
+      width: 100vw;
+      height: 100vh;
+  }
+}
+@media (max-width:635px) {
+  .container::before {
+      display: none;
+  }
+  form {
+      width: 80%;
+  }
+  form.sign-up-form {
+      display: none;
+  }
+  .container.sign-up-mode2 form.sign-up-form {
+      display: flex;
+      opacity: 1;
+  }
+  .container.sign-up-mode2 form.sign-in-form {
+      display: none;
+  }
+  .panels-container {
+      display: none;
+  }
+  .account-text {
+      display: initial;
+      margin-top: 30px;
+  }
+}
+@media (max-width:320px) {
+  form {
+      width: 90%;
+  }
+}
+
+/* Sign Up */ 
+/* Add the sign-up-mode class to show the signup form */
+.sign-up-mode .sign-in-form {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sign-up-mode .sign-up-form {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Add the sign-up-mode2 class to show the login form */
+.sign-up-mode2 .sign-in-form {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.sign-up-mode2 .sign-up-form {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.revealUp {
+  opacity: 0;
+  visibility: hidden;
+}
+.spacer {
+  height: 50vh;
+  background-color: #000;
+}
+
+
+

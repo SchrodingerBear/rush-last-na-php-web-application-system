@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>View Quiz</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="w-full h-screen m-0 p-0">
+
+  <!-- Navigation/User Info -->
+  <div class="w-full p-4 lg:px-12 flex items-center justify-between border-b shadow-md fade-in">
+    <div class="flex items-center gap-4">
+      <img src="https://ui-avatars.com/api/?name=Your+Name" alt="Avatar" class="w-14 h-14 rounded-full border-4" style="border-color: #5C8374;">
+      <div>
+        <p class="text-[#092635] font-semibold text-xl">Your Full Name</p>
+        <p class="text-[#1B4242] text-base">your.email@example.com</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Body -->
+  <div class="flex flex-col lg:flex-row h-full">
+
+    <!-- Left Panel -->
+    <div class="w-full lg:w-1/2 p-6 lg:p-12 space-y-10 fade-in">
+
+      <!-- Greeting -->
+      <div>
+        <h1 class="text-4xl font-bold text-[#092635]">Hello, <span class="text-[#5C8374]">Quiz Taker Name</span> 👋</h1>
+        <p class="text-lg text-[#1B4242] mt-2">Welcome to your quiz portal.</p>
+      </div>
+
+      <!-- Quiz Info -->
+      <div class="p-6 shadow-lg rounded-2xl border border-[#9EC8B9] space-y-5">
+        <h2 class="text-2xl font-semibold text-[#092635]">Quiz Information</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-3 text-[#1B4242] text-lg">
+          <p><strong>Title:</strong> Werta</p>
+          <p><strong>Subject:</strong> Satry</p>
+          <p><strong>Description:</strong> Lububan</p>
+          <p><strong>Start Date:</strong> 2025-03-21</p>
+          <p><strong>End Date:</strong> 2026-03-13</p>
+          <p><strong>End Time:</strong> 01:45:00</p>
+          <p class="col-span-2"><strong>Created by:</strong> Professor Daniel Madali</p>
+        </div>
+        <p class="text-sm text-[#5C8374]">Note: Quiz will auto-close at the due time.</p>
+      </div>
+
+      <!-- Total Points Section -->
+      <div class="p-6 shadow-lg rounded-2xl border border-[#9EC8B9] space-y-5">
+        <h2 class="text-2xl font-semibold text-[#092635]">Total Points</h2>
+        <div class="text-lg text-[#1B4242]">
+          <p>Total Points for this Quiz: <span id="totalPoints">20</span> points</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right Panel -->
+    <div class="w-full lg:w-1/2 p-6 lg:p-12 flex items-center justify-center fade-in">
+      <div class="w-full max-w-2xl space-y-8 p-8 shadow-lg rounded-2xl border border-[#9EC8B9]">
+
+        <div class="flex justify-between items-center">
+          <h2 class="text-2xl font-semibold text-[#092635]">Essay Question</h2>
+          <button class="text-lg text-[#1B4242] hover:underline">See Essay Rubric</button>
+        </div>
+
+        <div class="text-[#1B4242] text-lg">
+          <p class="font-medium mb-2">Question 1:</p>
+          <p class="mb-4">Explain the significance of the Propaganda Movement in Philippine history. Your answer should include names, dates, and contributions of notable figures.</p>
+        </div>
+
+        <!-- Upload or Input Section -->
+        <div class="space-y-4">
+          <div>
+            <label class="text-lg font-medium text-[#1B4242] mb-2">How would you like to submit your answer?</label>
+            <div class="flex items-center gap-6">
+              <label class="flex items-center text-[#1B4242] text-lg">
+                <input type="radio" name="submissionType" class="mr-2" onclick="toggleInputField()" checked> Type in text
+              </label>
+              <label class="flex items-center text-[#1B4242] text-lg">
+                <input type="radio" name="submissionType" class="mr-2" onclick="toggleInputField()"> Upload a file
+              </label>
+            </div>
+          </div>
+
+          <!-- Input Field (only visible if 'Type in text' is selected) -->
+          <div id="textInputField" class="hidden">
+            <label class="block text-lg font-medium text-[#1B4242] mb-2">Your Answer</label>
+            <textarea class="w-full border border-[#9EC8B9] rounded-lg p-4 text-lg focus:outline-none focus:ring-2 focus:ring-[#5C8374]" rows="8" placeholder="Write your essay answer here..."></textarea>
+          </div>
+
+          <!-- File Upload (only visible if 'Upload a file' is selected) -->
+          <div id="fileUploadField" class="hidden">
+            <label class="block text-lg font-medium text-[#1B4242] mb-2">Upload Your Answer</label>
+            <input type="file" class="w-full text-lg text-[#092635] p-4 border border-[#9EC8B9] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#5C8374]"/>
+          </div>
+        </div>
+
+        <div class="flex justify-between text-base pt-6">
+          <button class="text-[#5C8374] hover:underline">&larr; Back</button>
+          <button class="text-[#5C8374] hover:underline">Next &rarr;</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Function to toggle visibility of input fields based on user choice
+    function toggleInputField() {
+      const textInputField = document.getElementById("textInputField");
+      const fileUploadField = document.getElementById("fileUploadField");
+      if (document.querySelector('input[name="submissionType"]:checked').nextSibling.textContent.trim() === "Type in text") {
+        textInputField.classList.remove("hidden");
+        fileUploadField.classList.add("hidden");
+      } else {
+        textInputField.classList.add("hidden");
+        fileUploadField.classList.remove("hidden");
+      }
+    }
+
+    // Trigger the default display on page load
+    toggleInputField();
+
+    // Sample data for quiz points
+    const questions = [
+      { id: 1, points: 10 },
+      { id: 2, points: 10 }
+    ];
+
+    // Calculate total points
+    function calculateTotalPoints() {
+      let total = 0;
+      questions.forEach(question => {
+        total += question.points;
+      });
+      document.getElementById('totalPoints').textContent = total;
+    }
+
+    // Run the total points calculation
+    calculateTotalPoints();
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+// ✅ Ensure session is already started
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// ✅ Check if `creation_id` exists in session
+if (!isset($_SESSION['creation_id'])) {
+    die("Error: creation_id is NOT set in session.");
+}
+
+// ✅ Check if `quiz_id` is provided in the query string
+if (!isset($_GET['quiz_id'])) {
+    die("Error: quiz_id is missing from the request.");
+}
+
+$quiz_id = $_GET['quiz_id']; // Get quiz_id from URL
+
+// ✅ Define a new Database class to avoid conflicts
+class MyDatabase {
+    private $host = 'localhost';
+    private $username = 'root';
+    private $password = '';
+    private $database = 'academaidb';
+    protected $connection;
+
+    public function connect() {
+        try {
+            $this->connection = new PDO(
+                "mysql:host=$this->host;dbname=$this->database", 
+                $this->username, 
+                $this->password
+            );
+            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            error_log("Database connection failed: " . $e->getMessage(), 3, 'errors.log');
+            die("A database connection error occurred. Please try again later.");
+        }
+        return $this->connection;
+    }
+}
+
+// ✅ Initialize the database connection if not already set
+if (!isset($GLOBALS['pdo'])) {
+    $db = new MyDatabase();
+    $pdo = $db->connect();
+    $GLOBALS['pdo'] = $pdo;
+}
+
+// ✅ Ensure `$pdo` is available
+$pdo = $GLOBALS['pdo'] ?? null;
+if (!$pdo) {
+    die("Error: Database connection not initialized.");
+}
+
+// ✅ Fetch the correct `quiz_taker_id` using `quiz_id` and `creation_id`
+$stmt = $pdo->prepare("SELECT quiz_taker_id FROM quiz_participation WHERE quiz_id = ? AND user_id = ?");
+$stmt->execute([$quiz_id, $_SESSION['creation_id']]);
+$quiz_taker = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$quiz_taker) {
+    die("Error: No quiz participation record found for this user in this quiz.");
+}
+
+// ✅ Store `quiz_taker_id` in session
+$_SESSION['quiz_taker_id'] = $quiz_taker['quiz_taker_id'];
+
+//
+// ✅ Store `quiz_taker_id` in session
+$_SESSION['quiz_taker_id'] = $quiz_taker['quiz_taker_id'];
+require_once('../include/extension_links.php');
+require_once('../tools/quiz_ongoing.php');
+
+// Fetch quiz and essay questions based on quiz_id
+$quiz_id = $_GET['quiz_id']; // Assuming quiz_id is passed via query string
+$essayQuestionsQuery = "SELECT * FROM essay_questions WHERE quiz_id = :quiz_id ORDER BY num_quiz ASC";
+$stmt = $conn->prepare($essayQuestionsQuery);
+$stmt->bindParam(':quiz_id', $quiz_id, PDO::PARAM_INT);
+$stmt->execute();
+$essayQuestions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// ✅ Extract `rubric_id` from the first question (assuming all have the same rubric)
+if (!empty($essayQuestions)) {
+    $rubric_id = $essayQuestions[0]['rubric_id']; // Get the rubric_id from the first row
+} else {
+    die("Error: No essay questions found for this quiz.");
+}
+// Fetch end_date and end_time for the quiz
+$endDateTimeQuery = "SELECT end_date, end_time, is_active FROM quizzes WHERE quiz_id = :quiz_id";
+$stmt = $pdo->prepare($endDateTimeQuery);
+$stmt->bindParam(':quiz_id', $quiz_id, PDO::PARAM_INT);
+$stmt->execute();
+$endDateTime = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$endDateTime) {
+    die("Error: End date and time not found for this quiz.");
+}
+
+// Add end_date and end_time to the $quizDetails array
+$quizDetails['end_date'] = $endDateTime['end_date'];
+$quizDetails['end_time'] = $endDateTime['end_time'];
+$quizDetails['is_active'] = $endDateTime['is_active'];
+?>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/academAI-join-quiz-essay.css">
+    <title>Quiz</title>
+    <style>/* Add these styles to your CSS file */
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+    color: #1B4242;
+}</style>
+</head>
+<body>
+
+
+
+<div class="mcq-container">
+<div>
+<div class="header">
+<i class="fas fa-user"></i>
+   <div class="author-info" >
+       Created By: <?php echo htmlspecialchars($quizDetails['first_name']) . ' ' . htmlspecialchars($quizDetails['middle_name']) . ' ' . htmlspecialchars($quizDetails['last_name']); ?>
+   </div>     
+</div>
+
+
+ 
+
+<div class="quiz-details">
+    <div  class = "quiz">
+         <div class = "d-grid">
+            <h5>Title:</h5>
+            <h1><?php echo htmlspecialchars($quizDetails['title']); ?></h1>
+        </div>
+
+
+        <div class = "d-grid">
+        <h5>Subject:</h5>
+            <p class="subject"><?php echo htmlspecialchars($quizDetails['subject']); ?></p>
+        </div>
+
+
+        <div class = "d-grid">
+        <h5>Description:</h5>
+            <p class="descrip"><?php echo htmlspecialchars($quizDetails['description']); ?></p>
+       </div>
+</div>
+
+
+<div class = "start-date-section">
+         <div class="date-time-info">
+         <h5>Start Date:</h5>
+           <p> <?php echo htmlspecialchars($quizDetails['start_date']); ?></P>
+         </div>
+
+
+         <div class="date-time-info">
+         <h5>Start Time:</h5>
+             <p><?php echo htmlspecialchars($quizDetails['start_time']); ?></p>
+         </div>
+
+         <div class="date-time-info" >
+         <h5>End Date:</h5>
+         <p> <?php echo htmlspecialchars($quizDetails['end_date'] ?? 'Not available'); ?>  </p>
+         </div>
+
+ </div>
+
+ <div class = "end-date-section">
+
+       
+         <div class="date-time-info">
+         <h5>End Time:</h5>
+         <p><?php echo htmlspecialchars($quizDetails['end_time'] ?? 'Not available'); ?>  </p>
+         </div>
+
+
+         <div class = "quiz-restriction-setting">
+            <div>
+            <p class="note-setting"><strong>/*Note:</strong> When enabled, this option will automatically close the quiz once the due time is reached.*/
+            </p>
+            </div>
+            <div class="restriction">
+          
+            <input type="checkbox" class="form-check-input" id="randomized-checkbox-restriction" disabled
+                <?php echo $quizDetails['is_active'] == 1 ? 'checked' : ''; ?>>
+            <p class="restriction-title">Restriction:Close quiz after due time</p>
+           
+        </div>
+        </div>
+
+        </div>
+
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+  <div class="container essaysort">
+
+
+    <div class="upper-avatar-sound-section">
+        <div class="avatar">
+            <img src="../img/avatar-4.gif" id="avatar">
+            <p class="jumping-text">
+    <?php
+        // Display user or creator name
+        echo strtoupper(htmlspecialchars($quizDetails['first_name'])) . ' ' . strtoupper(htmlspecialchars($quizDetails['last_name']));
+    ?>
+            </p>
+        </div>
+   
+    </div>
+
+
+
+    <div class = "form-essay">
+    <div class="essaydisplay">
+        <form id="quizForm" action="../tools/quiz_participants_answers.php?quiz_id=<?php echo $quiz_id;?>" method="POST" enctype="multipart/form-data">
+        <div class="containeranswer">
+            <?php if (!empty($essayQuestions)): ?>
+                <?php foreach ($essayQuestions as $index => $question): ?>
+                    <div class="question" id="question-<?php echo $index; ?>" style="display: <?php echo $index == 0 ? 'block' : 'none'; ?>">
+                        <div class="toptimer">
+                        <a href="AcademAI-Join-Quiz-Essay-Rubric.php?rubric_id=<?php echo htmlspecialchars($rubric_id); ?>&quiz_id=<?php echo htmlspecialchars($quiz_id); ?>" class="rubric-link">
+    <i class="fas fa-clipboard-list"></i> See Essay Rubric
+</a>
+                </div>
+                        
+
+                        <div class = "question-question">
+                        <p class="question-number">Essay Question <?= $index + 1 ?></p>
+                        <p class="question-text"><?= htmlspecialchars($question['question']) ?></p>
+                        </div>
+
+                        <div class="answer">
+                            <textarea id="answeressay_<?= $index ?>" name="answer_<?= $index ?>" 
+                                placeholder="Please type your answer here"
+                                oninput="validateWordCount(this, <?= $question['min_words'] ?>, <?= $question['max_words'] ?>, <?= $index ?>)"></textarea>
+                            <p id="wordCount_<?= $index ?>" class="word-count">Words: 0 / <?= $question['max_words'] ?></p>
+                            <p id="wordError_<?= $index ?>" class="word-error" style="color: red; display: none;">Word count must be between <?= $question['min_words'] ?> and <?= $question['max_words'] ?>.</p>
+                        </div>
+
+                        
+                        <div class="half">or</div>
+
+                        <div class="form-group fileupload">
+                            <label class="col control-label">
+                                Attachment(s) You can upload your files here
+                            </label>
+                            <div class="file-input-wrapper">
+                                <button type="button" id="upload-btn_<?= $index ?>">Upload File</button>
+                                <input id="input-2_<?= $index ?>" name="input2[]" type="file" class="file" multiple accept=".doc,.docx,.pdf">
+                            </div>
+                            <!-- Preview area for uploaded files -->
+                            <div id="file-preview_<?= $index ?>" class="file-preview"></div>
+                        </div>
+
+                        <?php if ($index < count($essayQuestions) - 1): ?>
+                            <div class = "d-flex justify-content-end">
+                            <button type="button" class="next-button" onclick="showNextQuestion(<?= $index ?>)">Next <i class="fas fa-chevron-right"></i></button>
+                        </div>
+                        <?php else: ?>
+                            <div class = "submit-section">
+                            <button type="button" id="submit-quiz-modalBtn" class="submit-button" data-bs-toggle="modal" data-bs-target="#submit-quiz-modal">
+                                <i class="fas fa-upload"></i> Submit
+                            </button>
+                     
+                        <?php endif; ?>
+
+                        <?php if ($index > 0): ?>
+                          
+                           <button type="button" class="back-button" onclick="showPreviousQuestion(<?= $index ?>)"> <i class="fas fa-chevron-left"></i> Back</button>
+                           </div>
+                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No essay questions available for this quiz.</p>
+            <?php endif; ?>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".file").forEach(input => {
+        input.addEventListener("change", function () {
+            let previewId = this.id.replace("input-2_", "file-preview_"); // Generate preview div ID
+            let previewDiv = document.getElementById(previewId);
+            previewDiv.innerHTML = ""; // Clear previous file list
+
+            if (this.files.length > 0) {
+                Array.from(this.files).forEach(file => {
+                    let fileItem = document.createElement("p");
+                    fileItem.textContent = `📂 ${file.name}`; // Display file name
+                    previewDiv.appendChild(fileItem);
+                });
+            }
+        });
+    });
+});
+
+
+</script>
+
+
+
+
+<!-- Modal -->
+<!-- Replace your existing modal HTML with this updated version -->
+<div class="modal fade" id="submit-quiz-modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <span class="close" data-bs-dismiss="modal">&times;</span>
+      <div class="half-image">
+        <img src="../img/modal/modal-8.gif" alt="First Image" style="width: 100%; height: 100%;">
+      </div>
+      <img src="../img/modal/modal-3.gif" alt="Circle Image" class="center-image">
+      
+      <!-- Initial confirmation content -->
+      <div class="submit-content" id="confirmation-content">
+        <p class="submit-text">Are you sure you want to submit this quiz now?</p>
+        <div class="yes-btn-section">
+          <button type="button" id="yes-submit-btn" class="yes-btn">Yes</button>
+          <button type="button" id="cancel-btn" class="cancel-btn">No</button>
+        </div>
+      </div>
+      
+      <!-- Processing content (initially hidden) -->
+      <div class="submit-content" id="processing-content" style="display: none;">
+        <br>
+        <p class="submit-text">Your essay is being reviewed and graded.  Please wait, this may take a moment...</p>
+        <div class="loading-spinner">
+          <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</form>
+
+<script>
+    var currentQuestion = 0;
+
+    function showNextQuestion(index) {
+        document.getElementById('question-' + index).style.display = 'none';
+        currentQuestion = index + 1;
+        document.getElementById('question-' + currentQuestion).style.display = 'block';
+    }
+
+    function showPreviousQuestion(index) {
+        document.getElementById('question-' + index).style.display = 'none';
+        currentQuestion = index - 1;
+        document.getElementById('question-' + currentQuestion).style.display = 'block';
+    }
+</script>
+
+
+
+
+<script>
+function validateWordCount(textarea, minWords, maxWords, index) {
+    let words = textarea.value.trim().split(/\s+/).filter(word => word.length > 0);
+    let wordCount = words.length;
+
+    let wordCountElement = document.getElementById(`wordCount_${index}`);
+    let wordErrorElement = document.getElementById(`wordError_${index}`);
+
+    // Update word count display
+    wordCountElement.textContent = `Words: ${wordCount} / ${maxWords}`;
+
+    // Show/hide error message
+    if (wordCount < minWords || wordCount > maxWords) {
+        wordErrorElement.style.display = "block";
+    } else {
+        wordErrorElement.style.display = "none";
+    }
+}
+
+// Update the form validation to consider file uploads as valid responses
+document.getElementById("quizForm").addEventListener("submit", function (event) {
+    let textareas = document.querySelectorAll("textarea[id^='answeressay_']");
+    let isValid = true;
+
+    textareas.forEach((textarea, index) => {
+        // Get the file input corresponding to this textarea
+        let fileInput = document.getElementById(`input-2_${index}`);
+        let hasFiles = fileInput && fileInput.files && fileInput.files.length > 0;
+        
+        // Only validate word count if no files are uploaded
+        if (!hasFiles) {
+            let minWords = parseInt(textarea.getAttribute("oninput").match(/\d+/g)[0]); 
+            let maxWords = parseInt(textarea.getAttribute("oninput").match(/\d+/g)[1]);
+            
+            let words = textarea.value.trim().split(/\s+/).filter(word => word.length > 0);
+            let wordCount = words.length;
+
+            if (wordCount < minWords || wordCount > maxWords) {
+                document.getElementById(`wordError_${index}`).style.display = "block";
+                isValid = false;
+            }
+        }
+    });
+
+    if (!isValid) {
+        event.preventDefault(); // Stop form submission if validation fails
+        alert("Please ensure all answers meet the word count requirements or upload a file before submitting.");
+    }
+});
+// Add this to your existing JavaScript code
+// Add this to your existing JavaScript code
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the modal elements
+    var modal = document.getElementById('submit-quiz-modal');
+    var confirmationContent = document.getElementById('confirmation-content');
+    var processingContent = document.getElementById('processing-content');
+    
+    // Get the form
+    var quizForm = document.getElementById('quizForm');
+    
+    // Get the buttons
+    var yesSubmitBtn = document.getElementById('yes-submit-btn');
+    var cancelBtn = document.getElementById('cancel-btn');
+    var closeBtn = document.querySelector('.close');
+    
+    // When the user clicks "Yes", show processing content and submit the form
+    yesSubmitBtn.addEventListener('click', function() {
+        // Validate the form first (reuse your existing validation logic)
+        let textareas = document.querySelectorAll("textarea[id^='answeressay_']");
+        let isValid = true;
+
+        textareas.forEach((textarea, index) => {
+            // Get the file input corresponding to this textarea
+            let fileInput = document.getElementById(`input-2_${index}`);
+            let hasFiles = fileInput && fileInput.files && fileInput.files.length > 0;
+            
+            // Only validate word count if no files are uploaded
+            if (!hasFiles) {
+                let minWords = parseInt(textarea.getAttribute("oninput").match(/\d+/g)[0]); 
+                let maxWords = parseInt(textarea.getAttribute("oninput").match(/\d+/g)[1]);
+                
+                let words = textarea.value.trim().split(/\s+/).filter(word => word.length > 0);
+                let wordCount = words.length;
+
+                if (wordCount < minWords || wordCount > maxWords) {
+                    document.getElementById(`wordError_${index}`).style.display = "block";
+                    isValid = false;
+                }
+            }
+        });
+
+        if (!isValid) {
+            alert("Please ensure all answers meet the word count requirements or upload a file before submitting.");
+            return;
+        }
+
+        // Switch the content to processing view
+        confirmationContent.style.display = 'none';
+        processingContent.style.display = 'block';
+        
+        // Add a slight delay before submitting the form (so the user can see the processing message)
+        setTimeout(function() {
+            quizForm.submit();
+        }, 1000);
+    });
+    
+    // When the user clicks the cancel button, hide the modal
+    cancelBtn.addEventListener('click', function() {
+        // Hide the modal using Bootstrap's proper method
+        var bsModal = bootstrap.Modal.getInstance(modal);
+        if (bsModal) {
+            bsModal.hide();
+        } else {
+            // Fallback method
+            modal.classList.remove('show');
+            modal.style.display = 'none';
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
+            
+            // Remove the backdrop
+            var backdrop = document.querySelector('.modal-backdrop');
+            if (backdrop) {
+                backdrop.parentNode.removeChild(backdrop);
+            }
+        }
+        
+        // Reset to confirmation view for next time
+        processingContent.style.display = 'none';
+        confirmationContent.style.display = 'block';
+    });
+    
+    // When the user clicks the close button (x), hide the modal
+    closeBtn.addEventListener('click', function() {
+        // Same as cancel button logic
+        var bsModal = bootstrap.Modal.getInstance(modal);
+        if (bsModal) {
+            bsModal.hide();
+        } else {
+            modal.classList.remove('show');
+            modal.style.display = 'none';
+            document.body.classList.remove('modal-open');
+            document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
+            
+            var backdrop = document.querySelector('.modal-backdrop');
+            if (backdrop) {
+                backdrop.parentNode.removeChild(backdrop);
+            }
+        }
+        
+        // Reset to confirmation view
+        processingContent.style.display = 'none';
+        confirmationContent.style.display = 'block';
+    });
+    
+    // Form submission should now be handled by the yes button click event
+    quizForm.addEventListener("submit", function(event) {
+        // If the form is being submitted programmatically from our yes button handler,
+        // let it proceed. Otherwise, prevent default submission.
+        if (!processingContent.style.display || processingContent.style.display === 'none') {
+            event.preventDefault();
+            // Show the modal instead
+            var bsModal = new bootstrap.Modal(modal);
+            bsModal.show();
+        }
+    });
+});
+</script>
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+

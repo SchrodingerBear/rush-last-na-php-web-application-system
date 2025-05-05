@@ -1,0 +1,420 @@
+
+
+
+.body {
+   
+  
+    justify-content: center;
+  align-items: center;
+   flex-direction: column;
+   padding: 30px;
+   font-family: 'Inter', sans-serif;
+}
+
+ /* Profile */
+
+ .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 15px;
+    background-color: #092635;
+    box-shadow: 0 4px 6px -1px rgba(100, 100, 100, 0.3), 0 2px 4px -1px rgba(50, 50, 50, 0.2);
+    color: #ffffff;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 16px;
+}
+.user-info {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px; /* or whatever fits your layout */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.user-name {
+    font-size: 1em;
+    font-weight: 700;
+
+}
+.user-email {
+    font-style: italic;
+    font-size:0.875em;
+}
+
+
+.user-name,
+.user-email {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+
+
+.profile-pic {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #5C8374;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    font-size:2em;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .back-btn:hover {
+    color: #ffffff;
+    transform: translateX(-5px); /* move slightly to the left */
+    text-decoration: none;
+  }
+
+
+/* Profile */   
+
+
+
+.LEADERBOARD {
+    WIDTH:100%;
+    box-shadow: 0px -4px 6px -2px rgba(0, 0, 0, 0.3);
+    padding:30px;
+    margin-top:3%;
+    overflow-y: scroll;
+    height:600px;
+}
+
+.search {
+    display:flex;
+    justify-content: flex-end;
+}
+.search-library {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+
+.search-container {
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    HEIGHT:60PX;
+    PADDING:5PX;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); /* Basic box shadow */
+    
+
+}
+
+/* Hover effect with slight upward movement */
+.search-container:hover {
+  
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+    cursor: text;
+}
+
+/* Focus effect if you want it to stay consistent */
+.search-container:focus {
+  
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+    transform: translateY(-2px);
+}
+.icon-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+#searchInput {
+    flex: 1;
+    padding: 10px;
+    margin-right: 0px;
+    width: 100px;
+    margin:5px;
+    outline: none; /* Prevents the default outline on focus */
+    transition: border 0.3s ease;
+    color:#092635;
+    border:none;
+    background:none;
+    
+    transition: border 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+
+/* Remove border when input is focused */
+#searchInput:focus {
+    border: none; /* Remove border on focus */
+}
+
+#searchButton {
+    padding: 5px 50px;
+    background-color: #1B4242;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 0px;
+    border:none;
+    height:40px;
+    margin-top:5px;
+}
+
+#searchButton:hover {
+    background-color: #5C8374;
+}
+#searchButton:focus {
+    border:none;
+}
+
+
+.search-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.dropdown-rank{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+.dropdown-order{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+.export-buttons {
+    gap:10px;
+}
+#excel,
+button.pdf {
+    border: none;
+    border-radius: 5px;
+    background-color: #1b4242 !important;
+    color: white;
+    padding:12px 15px;
+    
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+/* Hover effect */
+#excel:hover,
+button.pdf:hover {
+    background-color: #4a6d61 !important;
+    transform: scale(1.05); /* Grows slightly */
+}
+
+.filter-button i {
+    font-size:1.125em;
+
+}
+.filter-container {
+    margin-left: 5px;
+    display: flex;
+    flex-direction: row;
+}
+.filter-button {
+    padding: 8px 15px;
+    background:#092635;
+    border: 1px solid #092635;
+    border-radius: 4px;
+    margin-right: 5px;
+    cursor: pointer;
+    color: #fff;
+    margin-top:5px;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+    border-bottom: 1px solid #1B4242;
+    background-color: #fefefe;
+   
+}
+.dropdown-content a {
+    color: #092635;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+   
+}
+.dropdown-content a:hover {
+    color: #5C8374;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.container {
+    margin-top: 50px;
+}
+.table th, .table td {
+    vertical-align: middle;
+}
+.btn i {
+    margin-right: 5px;
+}
+
+
+.leaderboard-title {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2), -5px -5px 10px rgba(255, 255, 255, 0.8);
+    color: #ffffff;
+    padding: 15px;
+    background-color: #092635;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.leaderboard-table {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.leaderboard-table th, .leaderboard-table td {
+    border: none;
+    padding: 15px;
+    text-align: center;
+  
+}
+.leaderboard-table th {
+    background-color: #fdfdfd;
+    color: #092635;
+    font-size: 1.3em;
+}
+.leaderboard-table tbody tr:nth-child(odd) {
+    background-color: #f4f4f4;
+    color: #092635;
+}
+.leaderboard-table tbody tr:nth-child(even) {
+ background-color: #e9e9e9;;
+    color: #092635;
+}
+.leaderboard-table tbody tr:hover {
+    background-color: #9EC8B9;
+    color: #fff;
+}
+.eyebtn{
+    background-color: #1B4242;
+    border:none;
+    font-size: 1em;
+    padding:12px 30px;
+    color: #fff;
+}
+
+.delbtn {
+    background-color: #5C8374;
+    border:none;
+    font-size: 1em;
+    padding:12px 30px;
+    color:#fff;
+    
+}
+
+.eyebtn:hover, .delbtn:hover{
+    background-color: #092635;
+    color:#fff;
+
+}
+
+.eyebtn:focus, 
+.eyebtn:active, 
+.delbtn:focus, 
+.delbtn:active {
+    background-color: #092635 !important;
+    border-color: #092635 !important; /* Ensures border color matches */
+    outline: none; /* Removes focus outline */
+    border: none;
+    color: #fff !important;
+}
+
+
+
+.gap {
+   display:flex;
+   justify-content:space-evenly;
+}
+
+/* Back Arrow */
+.fa-arrow-left {
+    font-size:2.25em;
+    color:#9EC8B9;
+    font-weight: 700;
+    margin-bottom:3%;
+}
+
+/* Hover effect */
+.fa-arrow-left:hover {
+    animation: moveRight 0.6s ease forwards; /* Apply the movement animation */
+    cursor: pointer;
+}
+
+/* Keyframes for moving animation */
+@keyframes moveRight {
+    0% {
+        transform: translateX(0); /* Start at original position */
+    }
+    50% {
+        transform: translateX(15px); /* Move 15px to the right */
+    }
+    100% {
+        transform: translateX(0); /* Return to original position */
+    }
+}
+.back-arrow-section {
+    width:100%;
+    display:flex;
+    align-items: center;
+}
+
+.header-top {
+    display:flex;
+    justify-content: space-between;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    padding: 10px 20px;
+    align-items: center;
+}
+
+
+.total-points-display {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    background-color: white;
+    color: #1B4242;
+    padding: 10px 15px;
+    font-weight: bold;
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    border-top:1px solid #e3e3e3;
+    text-align: center;
+    z-index: 999;
+    font-size: 1.5em;
+}

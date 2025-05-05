@@ -1,0 +1,1137 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.academAI-landing-page {
+  background: #eaeaea;
+  overflow-y: auto; /* Enable vertical scrolling */
+  height: 100%; /* Ensure the body takes up the full height of the viewport */
+  color:#9EC8B9
+}
+
+
+/* academAi Landing Page 1 */
+
+.videosection{
+top:100px;
+}
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(1, 13, 12, 0.5); /* Adjust the alpha value for the desired darkness */
+  z-index: 0;
+}
+
+#video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Ensure the video is behind other content */
+}
+
+.video-content-quotes{
+margin-top:15%;
+z-index:100;
+margin-left:-10%;
+
+}
+.video-content-qoutes-1 {
+color:#ffffff;
+font-family:Helvetica, sans-serif;
+font-size:3em;
+position: relative; /* Ensure the text stays on top of the overlay */
+z-index: 1; /* Ensure the text is above the overlay */
+font-weight:700;
+
+
+}
+.video-content-qoutes-2 {
+color:#ffffff;
+font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+font-weight:600;
+font-size:2.25em;
+position: relative; /* Ensure the text stays on top of the overlay */
+z-index: 1; /* Ensure the text is above the overlay */
+
+}
+
+.video-content-qoutes-3 {
+color:#ffffff;
+font-family:'Times New Roman', Times, serif;
+font-size:1.125em;
+position: relative;
+text-align: justify ; /* Ensure the text stays on top of the overlay */
+z-index: 1; /* Ensure the text is above the overlay */
+font-style:italic;
+
+}
+.left-icon-section {
+  position: absolute; /* Change to fixed position */
+  top: 70%;
+  left:110%;
+  display: grid;
+  z-index: 1000;
+}
+
+.social-icons {
+  position: absolute; /* Change to fixed position */
+  left: 50px; /* Adjust the position from the left as needed */
+  top: 100%; /* Adjust the vertical position */
+  transform: translateY(-40%);
+  display: flex;
+  flex-direction: column;
+}
+
+.social-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;   
+}
+
+.social-icons-line-above {
+border-left:3px solid #9EC8B9;
+height:120px;
+margin-left:50%;
+margin-bottom:40%;
+}
+
+.fa-brands {
+
+  font-size:40px; 
+}
+
+.fa-facebook {
+
+  margin-top:20px; 
+  font-size: 40px;
+  color:rgb(158, 200, 185, 0.5); /* Original color with transparency */
+  filter: brightness(1.0) saturate(100%); /* Adjust filters as needed */
+}
+
+
+.fa-tiktok{
+font-size: 40px;
+color:rgb(158, 200, 185, 0.5); /* Original color with transparency */
+filter: brightness(1.0) saturate(100%); /* Adjust filters as needed */
+margin-top:80px;  
+} 
+
+.fa-instagram {
+  color:rgb(158, 200, 185, 0.5); /* Original color with transparency */
+  font-size: 40px;
+  filter: brightness(1.0) saturate(100%); /* Adjust filters as needed */
+margin-top:120px;
+
+}
+
+.social-icons-line-below {
+  border-left:3px solid #9EC8B9;
+  height:120px;
+  margin-left:50%;
+  margin-top:200%;
+}
+
+
+
+
+/*  academAi Landing Page 2 */
+
+.slidersection {
+  position: absolute;
+  bottom: 0;
+  top:100%;
+  left: 0;
+  width: 100%;
+  height: 50%; 
+  z-index: 0; /* Adjust height as needed */
+  /* Additional styling for slider section */
+}
+
+.slidersection-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1000px;
+  height: 600px;
+  background: #f5f5f5;
+  box-shadow: 0 2px 2px #000000;
+}
+
+.slidersection-container .slide .item {
+  width: 200px;
+  height: 300px;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  border-radius: 20px;
+  background-position: 50% 50%;
+  background-size: cover;
+  display: inline-block;
+  transition: 0.5s;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+
+
+}
+
+.slide .item:nth-child(1),
+.slide .item:nth-child(2) {
+  top: 0;
+  left: 0;
+  transform: translate(0, 0);
+  border-radius: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.slide .item:nth-child(3) {
+  left: 50%;
+}
+
+.slide .item:nth-child(4) {
+  left: calc(50% + 220px);
+}
+
+.slide .item:nth-child(5) {
+  left: calc(50% + 440px);
+}
+
+/* Hide the upcoming item */
+.slide .item:nth-child(n + 6) {
+  display: none; /* Hide the upcoming item */
+}
+
+.slide .item:nth-child(2) .content {
+  display: block;
+}
+
+.slider-content {
+  position: absolute;
+  top: 50%;
+  left: 100px;
+  width: 300px;
+  text-align: left;
+  color: #eee;
+  transform: translate(0, -50%);
+  display: none;  
+}
+
+.slider-content .name{
+  font-size: 40px;
+  text-transform: uppercase;
+  font-weight: bold;
+  opacity: 0;
+  animation: animate 1s ease-in-out 1 forwards;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-size: 2.25em;
+}
+
+.slider-content .des{
+  margin-top: 10px;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: animate 1s ease-in-out 0.3s 1 forwards;
+  font-family:'Times New Roman', Times, serif;
+  font-size:18px;
+}
+
+.slider-content button{
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  animation: animate 1s ease-in-out 0.6s 1 forwards;
+  background-color: #092635;
+  border-radius:3.33%;
+  color:white;
+  font-family:'Times New Roman', Times, serif;
+  font-size:0.875em;
+}
+
+.slider-content button:hover{
+  background-color:#5C8374;
+  color: #092635;
+}
+
+
+/* prev, next button  */
+.button button{
+width: 40px;
+height: 35px;
+border-radius: 8px;
+border: none;
+cursor: pointer;
+margin: 0 5px;
+transition: 0.3s;
+background-color:#092635;
+  color:#fff;
+}
+
+/* prev, next button hover */
+.button button:hover{
+background-color:#5C8374;
+color: #fff;
+}
+
+.button{
+width: 100%;
+text-align: center;
+position: absolute;
+bottom: 20px;
+z-index: 1;
+
+}
+
+
+@keyframes animate {
+  from{
+      opacity: 0;
+      transform: translate(0, 100px);
+      filter: blur(33px);
+  }
+
+  to{
+      opacity: 1;
+      transform: translate(0);
+      filter: blur(0);
+  }
+}
+
+
+
+
+
+ /* academAi Landing Page 3 */
+
+.benefit-container{
+  position: absolute;
+  top: 180%;   
+}
+
+.benefit-line-1 {
+border-bottom: 3px solid #092635;
+width:22%;  
+}
+
+.benefit-title {
+font-size: 3em;
+font-family: 'Helvetica, sans-serif';
+color: transparent;
+background-image: linear-gradient(to right, #9EC8B9, #5C8374, #092635, #5C8374, #9EC8B9);
+background-size: 500%;
+background-clip: text;
+-webkit-background-clip: text; /* For older versions of Safari */
+animation: shimmer 3s infinite linear;
+font-weight: 800;
+}
+
+@keyframes shimmer {
+0% {
+  background-position: 0%;
+}
+100% {
+  background-position: 100%;
+}
+}
+
+
+
+
+
+
+/* Set initial width and position for all images */
+#benefit-img-1,
+#benefit-img-2,
+#benefit-img-3 {
+width: 400px; /* Adjust width as needed */
+height: 300px;
+box-shadow: 50px 50px 10px rgba(0, 5, 0, 0.1); 
+}
+
+.academic-integrity {
+margin-left:20%;
+}
+
+.benefit-name {
+font-family:'Times New Roman', Times, serif;
+font-weight: 800;
+font-size:2.25em;
+color:#1B4242;
+}
+
+.benefit-des {
+font-family:'Times New Roman', Times, serif;
+font-size:1.125em;
+text-align: justify;
+color:#1B4242;
+font-weight: 500;
+}
+.text-animation {
+margin-top: 15%;
+animation: moveUp 1s infinite alternate;
+
+}
+
+@keyframes moveUp {
+from {
+  transform: translateY(0);
+}
+to {
+  transform: translateY(-50px); /* Adjust the distance to move */
+}
+}
+
+
+/* academAi Landing Page 4 */
+
+.how-it-works-container {
+  position: absolute;
+  top: 430%;
+}
+
+.how-it-works-line-1 {
+border-bottom: 3px solid #092635;
+width: 30%;
+}
+
+.how-it-works-title {
+font-size: 3em;
+font-family: 'Helvetica, sans-serif';
+color: transparent;
+background-image: linear-gradient(to right, #9EC8B9, #5C8374, #092635, #5C8374, #9EC8B9);
+background-size: 500%;
+background-clip: text;
+-webkit-background-clip: text; /* For older versions of Safari */
+animation: shimmer 3s infinite linear;
+font-weight: 1000;
+}
+
+@keyframes shimmer {
+0% {
+  background-position: 0%;
+}
+100% {
+  background-position: 100%;
+}
+}
+
+.how-it-works-title p {
+margin-top:5%;
+}
+
+.how-it-works-name {
+ color:#ffffff;
+ font-size:2.25em;
+ font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.how-it-works-des {
+color:#ffffff;
+font-size:1.125em;
+font-family:'Times New Roman', Times, serif;
+}
+.how-it-works-line-2{
+border-bottom: 3px solid #092635;
+width:30%;
+
+}
+
+#how-it-works-img-1, #how-it-works-img-2, #how-it-works-img-3 {
+  height: 800px;
+  width: 350px;
+  margin-left: 16%;
+  margin-top: 15%;
+  box-shadow: 0 50px 50px rgba(76, 98, 94, 0.1);
+
+}
+
+
+/* hides the other how-it-works-img-1 */
+.hidden-img {
+  display: none;
+}
+
+.how-it-works-input {
+  width: 80%; /* Adjust width as needed */
+  margin-top: 25px; /* Adjust margin-top as needed */
+  padding: 10x; /* Add padding for better visibility */
+  background-color:#5C8374; /* Add a background color */
+  border-radius: 10px; /* Add border-radius for rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 300px;
+  text-align: center;
+  align-content: center;
+  display: grid;    
+}/* Apply other styles to the active input */
+/* Define keyframes for gradient animation */
+@keyframes gradient {
+0% {
+  background-position: 0% 50%;
+}
+50% {
+  background-position: 100% 50%;
+}
+100% {
+  background-position: 0% 50%;
+}
+}
+
+/* Apply styles to the active input */
+
+.how-it-works-input.active {
+width: 80%; /* Adjust width as needed */
+margin-top: 25px; /* Adjust margin-top as needed */
+padding: 10px; /* Add padding for better visibility */
+border-radius: 10px; /* Add border-radius for rounded corners */
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+height: 300px;
+text-align: center;
+align-content: center;
+display: grid;
+position: relative; /* Ensure positioning context for pseudo-elements */
+overflow: hidden; /* Hide overflow to prevent gradient animation from overflowing */
+background-image: linear-gradient(to right, #092635, #1B4242, #5C8374, #9EC8B9); /* Initial gradient background */
+background-size: 400% 100%; /* Set initial background size */
+animation: gradient 10s infinite; /* Apply the animation */
+border-bottom: 5px solid #092635; /* Corrected border-bottom property */
+border-right: 5px solid #092635; /* Added border-left property */
+}  
+
+
+.line {
+  border-left: 1px solid black;
+  height: 190px;
+}
+
+.line.above{
+  margin-top:110px;
+}
+
+.line.down{
+  margin-top:none;
+}
+.number {
+font-size: 2.25em;
+cursor: pointer;
+color: #9EC8B9;
+font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.number.active {
+color: #092635;
+font-weight: 800;
+font-size: 2.25em;
+}
+
+
+
+
+
+
+/* academAi Landing Page 5 */
+.accordion-section {
+  position: absolute;
+  top: 610%;
+  width: 100%;
+
+}
+
+.accordion-line-1, .accordion-line-2 {
+  border-left: 2px solid #092635; /* Added 'solid' to specify border style */
+  height:150px;
+  margin-left:35%;
+}
+
+.faq-title {
+  font-size:45px;
+  color:#092635;
+}
+
+.accordion-item {
+  display: flex; /* Ensure accordion items are displayed in a row */
+  align-items: center; /* Align items vertically */
+  justify-content:center; /* Space items evenly */
+  margin-bottom: 0px;
+  width: 1100px;
+  box-shadow: 0 30px 30px rgba(0, 0, 0, 0.1);
+}
+
+.accordion-content {
+flex: 1; /* Allow the content to take up remaining space */
+}
+
+
+.accordion
+.accordion-button{
+  background-color: #092635;
+  color: #ffffff;
+  font-family: 'Times New Roman', Times, serif;
+  font-size:14px;
+
+} 
+
+.accordion-body {
+font-size:14px;
+color:#1B4242;
+font-family: 'Times New Roman', Times, serif;
+font-weight: 800;
+}
+
+.accordion-button:hover{
+  background-color: #1B4242;
+  color: #f5f5f5;
+} 
+
+.accordion-image {
+  width: 80px; /* Adjust width as needed */
+  height: 55px; /* Maintain aspect ratio */
+  margin-left: 20px; /* Adjust margin as needed */
+}
+
+
+/* footer*/
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #092635;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  top:700%;
+  height:80px;
+}
+
+.footers {
+width: 100%;
+}
+
+
+
+
+.container.footers p{
+  color: #fff;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 500;
+  margin-top:2%;
+  font-size: 1em;
+  
+
+
+ }
+ /* footer*/
+
+ /*Login-SignUp*/
+ #myModal-login {
+  position:absolute ;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1500;
+  width: 70vw; /* Adjust as needed */
+  max-width: 1000px; /* Set a maximum width to prevent excessive width */
+  height: 90vh;
+  overflow: auto; /* Enable overflow scrolling if content exceeds height */
+  box-shadow: 0 10px 40px rgba(54, 167, 195, 0.5); /* Adjust shadow properties */
+}
+
+
+.containersignup {
+  position:relative; /* Change to relative to fit within modal */
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  z-index:1400;
+}
+
+
+.containersignup::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-45deg, #5C8374, #092635);
+  z-index: 6;
+  transform: translateX(100%);
+  transition: 1s ease-in-out;
+}
+#AcademAiSignUp-logo{
+  height: 220px;
+  width: 220px;
+  margin-bottom: 20px;
+  margin-top:-20%;
+}
+.signin-signup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  z-index:1000;
+}
+form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 40%;
+  min-width: 238px;
+  padding: 0 10px;
+}
+form.sign-in-form {
+  opacity: 1;
+  transition: 0.5s ease-in-out;
+  transition-delay: 1s;
+}
+form.sign-up-form {
+  opacity: 0;
+  transition: 0.5s ease-in-out;
+  transition-delay: 1s;
+  z-index:1000;
+}
+.title {
+  font-size: 2.25em;
+  color:#092635;
+  margin-bottom: 10px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.input-field-section {
+  width:100%;
+}
+.input-field {
+  width: 100%;
+  height: 50px;
+  background: #ffffff;
+  margin: 10px 0;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+.input-field i {
+  flex: 1;
+  text-align: center;
+  color: #092635;
+  font-size: 1.125em;
+
+}
+.input-field input {
+  flex: 5;
+  background: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 1em;
+  font-weight: 600;
+  color: #1B4242;
+  font-family:'Times New Roman', Times, serif;
+}
+.input-field input::placeholder {
+  color: #5C8374;
+  }
+
+.input-field-login {
+  width: 90%;
+  height: 50px;
+  background: #ffffff;
+  margin: 10px 0;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+
+.input-field-login i {
+  flex: 1;
+  text-align: center;
+  color: #092635;
+  font-size: 1.125em;
+}
+
+.input-field-login input {
+  flex: 5;
+  background: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-size: 1em;
+  font-weight: 600;
+  color: #1B4242;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.input-field-login input::placeholder {
+color: #5C8374;
+}
+
+.btn {
+  width: 150px;
+  height: 50px;
+  border: none;
+  border-radius: 50px;
+  background: #5C8374;
+  color: #fff;
+  margin: 10px 0;
+  padding-top: 12px; /* Add padding-top to create space */
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 1000;
+  font-size:0.8750em;
+}
+.btn:hover {
+  background: #1B4242;
+  color:white;
+}
+
+
+.btn:active {
+  background: #1B4242;
+  color:white;
+}
+
+
+.btn a {
+margin-top:5%;
+
+
+}
+
+
+
+a {
+  text-decoration: none;
+  
+
+}
+
+.panels-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 35%;
+  min-width: 238px;
+  padding: 0 10px;
+  text-align: center;
+}
+.left-panel {
+  pointer-events: none;
+
+}
+.content {
+  color: #fff;
+  transition: 1.1s ease-in-out;
+  transition-delay: 0.5s;
+  z-index:1000;
+}
+.panel h3 {
+  font-size: 1.125em;
+  font-weight: 600;
+  font-family:'Times New Roman', Times, serif;
+}
+.panel p {
+  font-size: 1em;
+  padding: 10px 0;
+  font-family: 'Times New Roman', Times, serif;
+}
+.image {
+  width: 100%;
+  transition: 1.1s ease-in-out;
+  transition-delay: 0.4s;
+}
+.left-panel .sigin-image,
+.left-panel .content, .left .left-panel-close {
+  transform: translateX(-200%);
+}
+.right-panel .login-image,
+.right-panel .content, .right {
+  transform: translateX(0);
+}
+.account-text {
+  display: none;
+}
+.right-panel {
+position: relative;
+z-index: 1001;
+background: url('./img/login-img-option-II.gif');
+background-size: cover;
+background-position: center;
+margin-top: -5%;
+padding-top: 20px; /* Adjust as needed */
+height:auto;
+}
+
+.fa-x.right-panel-close {
+position: absolute;
+top: -5%; /* Adjust as needed */
+right: -14%; /* Adjust as needed */
+font-size: 25px; /* Adjust as needed */
+color: #ffffff;
+cursor: pointer;
+
+}
+
+.fa-x.left-panel-close {
+position: absolute;
+top:3%; /* Adjust as needed */
+left:2%; /* Adjust as needed */
+z-index:1005;
+font-size: 25px; /* Adjust as needed */
+color: #ffffff;
+cursor: pointer;
+
+
+}
+
+
+
+.panel.right-panel {
+pointer-events: all; /* Allow pointer events on the right panel */
+}
+.right-panel .content {
+opacity: 1; /* Adjust opacity if necessary */
+visibility: visible; /* Ensure content is visible */
+display: block; /* Display content as a block element */
+z-index: 1001; /* Ensure content is above other elements */
+}
+
+.login-image {
+width:300px;
+height:200px;
+}
+
+.sigin-image{
+width:300px;
+height:250px;
+
+}
+
+.containersignup .right-panel .content,
+.containersignup .right-panel .loginimage {
+  z-index: 1001; /* Ensure content and images in the right panel appear above other elements */
+}
+/*Animation*/
+.containersignup.sign-up-mode::before {
+transform: translateX(0);
+}
+.containersignup.sign-up-mode .right-panel .login-image,
+.containersignup.sign-up-mode .right-panel .content,
+.containersignup.sign-up-mode .right-panel .fa-x.right-panel-close  {
+transform: translateX(380%);
+}
+.containersignup.sign-up-mode .left-panel .sigin-image,
+.containersignup.sign-up-mode .left-panel .content {
+transform: translateX(0);
+}
+.containersignup.sign-up-mode form.sign-in-form {
+opacity: 0;
+}
+.containersignup.sign-up-mode form.sign-up-form {
+opacity: 1;
+}
+.containersignup.sign-up-mode .right-panel {
+pointer-events: none;
+}
+.containersignup.sign-up-mode .left-panel {
+pointer-events: all;
+}
+
+/*Responsive*/
+@media (max-width:779px) {
+.container {
+    width: 100vw;
+    height: 100vh;
+}
+}
+@media (max-width:635px) {
+.container::before {
+    display: none;
+}
+form {
+    width: 80%;
+}
+form.sign-up-form {
+    display: none;
+}
+.container.sign-up-mode2 form.sign-up-form {
+    display: flex;
+    opacity: 1;
+}
+.container.sign-up-mode2 form.sign-in-form {
+    display: none;
+}
+.panels-container {
+    display: none;
+}
+.account-text {
+    display: initial;
+    margin-top: 30px;
+}
+}
+@media (max-width:320px) {
+form {
+    width: 90%;
+}
+}
+
+/* Sign Up */ 
+/* Add the sign-up-mode class to show the signup form */
+.sign-up-mode .sign-in-form {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sign-up-mode .sign-up-form {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Add the sign-up-mode2 class to show the login form */
+.sign-up-mode2 .sign-in-form {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.sign-up-mode2 .sign-up-form {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.revealUp {
+opacity: 0;
+visibility: hidden;
+}
+.spacer {
+height: 50vh;
+background-color: #000;
+} 
+
+.sign-up-btn {
+  width: 250px;
+  height: 50px;
+  border: none;
+  border-radius: 50px;
+  background: #5C8374;
+  color: #fff;
+  margin: 10px 0;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 1000;
+  font-size:0.8750em;
+}
+.sign-up-btn:hover {
+  background: #1B4242;
+  color:white;
+}
+
+.sign-in-btn {
+  width: 150px;
+  height: 50px;
+  border: none;
+  border-radius: 50px;
+  background: #5C8374;
+  color: #fff;
+  margin: 10px 0;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 1000;
+  font-size:0.8750em;
+}
+
+.sign-in-btn:hover {
+  background: #1B4242;
+  color:white;
+}
+
+#sign-in-btn-2 {
+  width: 250px;
+  height: 50px;
+  border: none;
+  border-radius: 50px;
+  background: #5C8374;
+  color: #fff;
+  margin: 10px 0;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 1000;
+  font-size:0.8750em;
+}
+
+#sign-in-btn-2:hover {
+  background: #1B4242;
+  color:white;
+}
+
+
+#sign-in-btn {
+  width: 250px;
+  height: 50px;
+  border: none;
+  border-radius: 50px;
+  background: #5C8374;
+  color: #fff;
+  margin: 10px 0;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 1000;
+  font-size:0.8750em;
+}
+
+#sign-in-btn:hover {
+  background: #1B4242;
+  color:white;
+}
+
+.log-in-btn {
+  width: 250px;
+  height: 50px;
+  border: none;
+  border-radius: 50px;
+  background: #5C8374;
+  color: #fff;
+  margin: 10px 0;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 1000;
+  font-size:0.8750em;
+}
+.log-in-btn:hover {
+  background: #1B4242;
+  color:white;
+}

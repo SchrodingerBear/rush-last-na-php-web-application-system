@@ -1,0 +1,452 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+ 
+}
+
+.card {
+  box-shadow: 0 12px 50px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 1s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.panel-left {
+  animation: slideLeft 1.2s ease-out forwards;
+  transform: translateX(-30px);
+  opacity: 0;
+}
+
+.panel-right {
+  animation: slideRight 1.2s ease-out forwards;
+  transform: translateX(30px);
+  opacity: 0;
+  transition: all 0.4s ease;
+}
+
+.panel-right:hover {
+  transform: scale(1.02) translateX(0);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes slideLeft {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+    color:#5C8374
+  }
+}
+
+@keyframes slideRight {
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(158, 200, 185, 0.4);
+}
+
+
+.create a {
+  text-decoration: none;
+}
+
+
+
+ /* Alert MOdal */
+ @keyframes loadingBar {
+  0% {
+    width: 100%;
+  }
+  50% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.loading-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: red; /* Red alert color */
+  width: 100%;
+  animation: loadingBar 2s infinite linear;
+}
+
+#alert-modal-invalidquizcode {
+  background-color: #ffffff;
+  margin: 10% auto;
+  padding: 0px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  height: 90px;
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  transition: opacity 0.3s ease-in-out;
+
+
+  /* Outer Box Shadow */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3), 
+              inset 0px 4px 10px rgba(0, 0, 0, 0.2);
+  border:none;
+}
+
+
+
+
+#alert-close {
+  font-size: 1.75em;
+  font-weight: 700;
+  color: #092635; /* Ensure it's visible */
+  opacity: 1; /* Full visibility */
+  cursor: pointer; /* Ensures clickability */
+  position: absolute; /* Positions it inside the modal */
+  top: 5px; /* Adjust as needed */
+  right: 10px; /* Pushes it to the right */
+  z-index:5;
+}
+
+
+
+#alert-message-failed {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+      
+}
+
+.failed-img-container {
+  width: 100px;
+  margin-top:5%;
+  margin-left:3%
+}
+
+.failed-img{
+  width: 36px;
+}
+#alert-message-failed {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; /* Centers content vertically */
+  height: 100%; /* Ensures full height so margins don't push outside */
+}
+
+.text-container { 
+  margin-top: 50px; /* Apply margin here instead of directly on the text */
+}
+
+.alert-failed-TITLE {
+  color: red;
+  font-weight: bold;
+  font-size: 1.5em;
+  letter-spacing: 2px;
+  MARGIN-BOTTOM: 0;
+  TEXT-ALIGN: START;
+  letter-spacing:3;
+
+}
+#submit-text-alert-failed {
+  color: #092635;
+  font-weight: bold;
+  font-size: 1em;
+  letter-spacing: 3px;
+}
+
+.red {
+  width: 5px;
+  height: 130; /* Set an actual height */
+  background-color: red; /* This will apply properly now */
+}
+
+ /* Alert MOdal */
+
+
+
+
+ /* Alert MOdal */
+ @keyframes loadingBar {
+  0% {
+    width: 100%;
+  }
+  50% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.loading-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: red; /* Red alert color */
+  width: 100%;
+  animation: loadingBar 2s infinite linear;
+}
+
+
+
+
+
+#alert-close {
+  font-size: 1.75em;
+  font-weight: 700;
+  color: #092635; /* Ensure it's visible */
+  opacity: 1; /* Full visibility */
+  cursor: pointer; /* Ensures clickability */
+  position: absolute; /* Positions it inside the modal */
+  top: 5px; /* Adjust as needed */
+  right: 10px; /* Pushes it to the right */
+  z-index:5;
+}
+#alert-close-code-same{
+  font-size: 1.75em;
+  font-weight: 700;
+  color: #092635; /* Ensure it's visible */
+  opacity: 1; /* Full visibility */
+  cursor: pointer; /* Ensures clickability */
+  position: absolute; /* Positions it inside the modal */
+  top: 5px; /* Adjust as needed */
+  right: 10px; /* Pushes it to the right */
+  z-index:5;
+}
+
+
+#alert-message-failed {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+      
+}
+
+.failed-img-container {
+  width: 100px;
+  margin-top:5%;
+  margin-left:3%
+}
+
+.failed-img{
+  width: 36px;
+}
+#alert-message-failed {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center; /* Centers content vertically */
+  height: 100%; /* Ensures full height so margins don't push outside */
+}
+
+.text-container { 
+  margin-top: 50px; /* Apply margin here instead of directly on the text */
+}
+
+.alert-failed-TITLE {
+  color: red;
+  font-weight: bold;
+  font-size: 1.5em;
+  letter-spacing: 2px;
+  MARGIN-BOTTOM: 0;
+  TEXT-ALIGN: START;
+  letter-spacing:3;
+
+}
+#submit-text-alert-failed {
+  color: #092635;
+  font-weight: bold;
+  font-size: 1em;
+  letter-spacing: 3px;
+}
+
+.red {
+  width: 5px;
+  height: 130; /* Set an actual height */
+  background-color: red; /* This will apply properly now */
+}
+
+ /* Alert MOdal */
+
+
+
+
+.date-time {
+  color: #092635; /* Change this to your preferred color */
+  font-weight: 1000; /* Makes it stand out */
+  font-style:oblique;
+}
+
+
+.yes-btn-section{
+  display:flex;
+  justify-content: center;
+}
+
+.cancel-btn{
+padding: 10px 40px;
+color: #fff;
+font-size: 1em;
+background-color:#1B4242;
+
+text-decoration:none;
+}
+
+
+.yes-btn{
+padding: 10px 47px;
+color: #fff;
+font-size: 1em;
+background-color:#092635;
+
+text-decoration:none;
+
+}
+
+.yes-btn-running{
+  padding: 10px 47px;
+  color: #fff;
+  font-size: 1em;
+  background-color:#092635;
+ 
+  text-decoration:none;
+}
+
+
+.yes-btn-modal {
+display: flex;
+justify-content: center;
+margin-top: 10%;
+}
+
+.OK-btn-running{
+  padding: 10px 47px;
+  color: #fff;
+  font-size: 1em;
+  background-color:#092635;
+ 
+  text-decoration:none;
+}
+
+.cancel-btn:hover, .yes-btn:hover , .yes-btn-running:hover , .OK-btn-running:hover{
+background-color: #5C8374;
+text-decoration:none;
+color:#fff
+}
+.modal-backdrop.show {
+  opacity: .5;
+  z-index: 0;
+}
+
+/* Add this CSS to your academAI-quiz-room.css file */
+.custom-alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #28a745; /* Green background color */
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+.custom-alert.hidden {
+  display: none;
+}
+
+.custom-alert-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 300px; /* Adjust width as needed */
+}
+
+.custom-alert-close {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.custom-alert-close:hover {
+  color: #d4d4d4; /* Lighten color on hover */
+}
+span.close { 
+  font-size: 3em;
+  font-weight: 700;
+  line-height: 1;
+  color: #1B4242; /* Ensure the color is correctly applied */
+  opacity: 1; /* Change opacity if it's too light */
+  text-align: end;
+  margin-right: 2%;
+  cursor: pointer; /* Adds a pointer cursor for better UX */
+}
+
+
+
+
+/* Modal */
+.modal-content-login-success-modal{
+  background:url('/img/blue-2.png');
+  width:500px;
+  height:180px;
+  color:#fff;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+}
+
+.modal-footer-success-login {
+  display:flex;
+  justify-content: center;
+}
+
+.modal-header-login-success {
+  display:flex;
+  justify-content: center;
+}
+
+.btn-close-success-login{
+  background-color: rgb(92, 131, 116, 0.5) !important;
+  filter: brightness(1.0) saturate(100%) !important;
+  color:#fff;
+  width:250px;
+  padding:5px;
+  border-radius:5px;
+  border:none;
+}
+
+.btn-close-success-login:hover {
+  background-color: rgb(158, 200, 185,0.5) !important;
+    filter: brightness(1.0) saturate(100%) !important;
+    color:#fff;
+    text-decoration:none;
+}
+

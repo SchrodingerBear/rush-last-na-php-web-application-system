@@ -1,0 +1,777 @@
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+.asess{
+justify-content: center;
+
+flex-direction: column;
+align-items: center;
+
+}
+.title-sub-rubric h1 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #1B4242;
+}
+.essay-criteria-setting-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the table horizontally */
+    align-items: center;
+
+    height:auto;
+    margin-top: 5%;
+   
+}
+
+.rubric {
+   
+    width: 1400px;
+   
+}
+
+.rubric-table {
+    height:500px;
+    overflow: scroll;
+    box-shadow: 0px -4px 6px -2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+    overflow: scroll;
+    height: 400px;
+}
+.title-sub-rubric {
+    width: 90%;
+    display: flex
+; 
+    justify-content: flex-start;
+    text-align: justify;
+}
+
+.criteria-table-container {
+   overflow-x: auto; /* Allow horizontal scrolling */
+   overflow-y: auto;
+   max-width: 90%;
+   max-height: 500px;
+}
+
+
+.criteria-table-container table {
+    width: auto; /* Allow table to adjust its width based on content */
+}
+
+.criteria-table-container th,
+.criteria-table-container td {
+    padding: 10px; /* Add padding to cells */
+    text-align: center; /* Center align content */
+    min-width: 130px; /* Minimum width for existing columns */
+    
+}
+
+
+.rubric-criterion {
+    font-size:0.8750em;
+    color:#092635;
+ 
+    text-align: justify;
+
+}
+
+/* apply style to odd rows */
+.table tbody tr:nth-child(odd) {
+    background-color: #fff;
+}
+/* apply style to odd rows */
+.table tbody tr:nth-child(even) {
+    background-color:#e7e7e7;
+}
+/* apply style in the thead */
+.table th {
+    text-align: center;
+    padding:25px 25px;
+}
+
+.criteria-heading {
+    background-color: #092635;
+
+    color: #ffffff;
+
+   
+}
+
+.levels {
+    color:#ffffff;
+}
+/* apply style in the tbody */
+.predefined-criteria td {
+    color: #092635;
+    font-size: 1em;
+ 
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 250px;
+    border-left: 1px solid #cfcfcf;
+    text-align: justify;
+    border-bottom: none;
+}
+
+.predefined-criteria {
+    color:white;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #5c8374; /* Change the background color on hover */
+    cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.table-hover tbody tr:hover td {
+    color: #fff; /* Change text color of all td elements within the hovered row */
+}
+
+.assessment-details {
+   
+    margin-top:5%;
+    background-color: #fdfdfd;
+  
+}
+
+.assessment-details-ai {
+    color: #1B4242;
+    padding: 20px;
+    background-color: #ffffff; /* Light background for better contrast */
+    border-radius: 8px; /* Optional for rounded corners */
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1), /* Light shadow */
+        0 4px 8px rgba(0, 0, 0, 0.2); /* Darker shadow */
+    background-color: #fff;
+    transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease; /* Smooth transition */
+}
+
+/* Apply hover effect using :hover */
+.assessment-details-ai:hover {
+    transform: translateY(-5px); /* Moves the element up by 5px */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); /* Soft shadow that's not too harsh */
+}
+
+
+.assessment-details-plagiarize {
+    color: #092635;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+/* Apply hover effect using :hover */
+.assessment-details-plagiarize:hover {
+    transform: translateY(-5px); /* Moves the element up by 5px */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1); /* Soft shadow for hover effect */
+}
+
+
+.rubrics-plagiariaze {
+    font-size:1.3em;
+    font-weight: 800;
+    border-bottom: 5px solid #1b4242;
+    
+}
+.essay-criteria-heading {
+    text-align: center;
+    margin-bottom: 10px; /* Adjust margin as needed */
+    background-color:#092635;
+    width:50%;
+    margin-top:30px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.essay-criteria-heading h2 {
+    color: #092635; /* Adjust color as needed */
+}
+.rubric-criterion-weight{
+    font-size:1.125em;
+    display:flex;
+    justify-content: center !important;
+    align-items: center !important;
+    color:#1B4242;
+}
+
+.feedback-container {
+    max-width: 1000px;
+    margin: AUTO;
+}
+
+.assessment, .comments {
+    border-radius: 10px;
+ 
+    margin-bottom: 20px;
+    animation: fadein 1s; /* Animation for fade-in effect */
+    margin-top:5%;
+}
+
+.comments {
+    border-radius: 10px;
+ 
+    margin-bottom: 20px;
+    animation: fadein 1s; /* Animation for fade-in effect */
+    margin-top:10%;
+}
+
+.assessment h2, .comments h2 {
+    color: #092635;
+  
+    margin-top:2%;
+    border-bottom:solid 2px #1B4242;
+
+}
+
+
+.asset p {
+    flex: 1;
+}
+.rubrics-ai {
+    font-size:1.2em;
+    font-weight: 600;
+    border-bottom: 5px solid #1b4242;
+}
+.rubrics-ai-explanation {
+    font-size: 1em;
+}
+.comment {
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+    padding-top: 20px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-bottom:10px;
+    animation: slidein 1s; /* Animation for slide-in effect */
+    background-color:#1B4242;
+  
+}
+.educators {
+    border-top:2px solid #5c8374;
+    display:flex;
+    justify-content:flex-end;
+    
+}
+.educators-name{
+    margin-bottom: 10px;
+    font-size:24px;
+ 
+    color:#fff;
+    margin-top:2%;
+}
+.comment-text {
+    font-size:1.125em;
+
+    color:#fff;
+}
+
+.comment p strong {
+    color: #fff;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes slidein {
+    from { transform: translateY(-20px); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+}
+
+.feedback-container, .assessment, .comments {
+    opacity: 0; /* Start with opacity 0 */
+    transform: translateY(-20px); /* Start slightly above its final position */
+    transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth transition */
+}
+
+.feedback-container.show, .assessment.show, .comments.show {
+    opacity: 1; /* Fade in */
+    transform: translateY(0); /* Slide in */
+}
+
+
+.assessment h1{
+    color:#092635;
+
+    margin-top:2%;
+    border-bottom:2px solid #092635;
+    margin:0;
+}
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #092635;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0c3d56; /* Darker shade when hovered */
+}
+.rubrics {
+    font-size: 1em;
+    font-weight:600;
+    color: #1b4242;
+    margin-bottom: 0;
+   
+}
+.assess-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+   
+    
+}
+.rubrics-explanation {
+
+    color:#1B4242;
+   
+    font-size: 1em;
+  
+    text-align: justify;
+  
+}
+.assess-feedback {
+    border-left:5px solid #1b4242;
+}
+
+.feedback-suggestion {
+   
+    padding:20px;
+}
+.asset {
+    margin-top: 2%;
+    display:flex;
+    align-items: center;
+    background-color: #ffffff; /* Light background for better contrast */
+    border-radius: 8px; /* Optional for rounded corners */
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1), /* Light shadow */
+        0 4px 8px rgba(0, 0, 0, 0.2); /* Darker shadow */
+  
+        background-color: #fff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+}
+.asset:hover {
+
+        transform: translateY(-5px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); /* soft shadow that's not too harsh */
+
+}
+.asset p {
+    flex: 1;
+}
+.plagiarized-works-1 {
+    font-size: 0.875em;
+  
+    color:blue;
+    font-style: italic;
+}
+
+.plagiarized-works-database {
+  font-weight:600;
+  margin-top:2%;
+
+}
+
+/*Provide Feedback to Students */
+.professor-comment {
+    margin-top:8%;
+  
+  
+
+}
+#comment {
+    width:100%;
+    border-radius: 5px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3); /* Clear and prominent box shadow on all sides */
+    margin-bottom:3%;
+ 
+    color:#5c8374;
+    border-left:none;
+    border-right:none;
+    border-bottom: none;
+    border-top: none;
+    outline:none;
+    
+}
+label[for='comment'] {
+    font-size: 2em;
+    color: #092635;
+ 
+    border-bottom: 2px solid #092635;
+    width: 100%;
+
+}
+.btn-for-feedback {
+    display:flex;
+    justify-content: flex-end;
+    margin-bottom:5%;
+    gap:10px;
+}
+.submit-btn-comment {
+    background-color: #1B4242;
+    color: #fff;
+   
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 5px;
+    border: none;
+    display: flex
+;
+    font-size: 1em;
+    letter-spacing: 5;
+    width: 260px;
+    justify-content: center;
+}
+.submit-btn-comment:hover {
+    background-color:#5c8374;
+}
+
+.remove-btn-comment {
+    background-color: #5c8374;
+    color: #fff;
+
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    font-size: 1em;
+    letter-spacing: 5;
+    width: 260px;
+    justify-content: center;
+}
+#send {
+    margin-right:10%;
+}
+
+/* Back Arrow */
+.fa-arrow-left {
+    font-size:2.25em;
+    color:#9EC8B9;
+    font-weight: 700;
+    margin-bottom:3%;
+ 
+}
+
+/* Hover effect */
+.fa-arrow-left:hover {
+    animation: moveRight 0.6s ease forwards; /* Apply the movement animation */
+    cursor: pointer;
+}
+
+/* Keyframes for moving animation */
+@keyframes moveRight {
+    0% {
+        transform: translateX(0); /* Start at original position */
+    }
+    50% {
+        transform: translateX(15px); /* Move 15px to the right */
+    }
+    100% {
+        transform: translateX(0); /* Return to original position */
+    }
+}
+
+
+.edit-criteria-btn {
+    background-color: #1B4242;
+    width:260px;
+    height: 50px;
+    color:#fff;
+    border-radius: 5px;
+  
+    border: none;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 3;
+}
+
+
+.edit-criteria-btn:hover {
+    background-color: #5c8374;
+    
+}
+
+.material-icons {
+    margin-right:5%;
+}
+
+.edit-criteria-btn:active {
+    background-color: #1B4242;
+    
+}
+
+
+
+.edibtn-score {
+    display: flex;
+    justify-content: end;
+    margin-right: 5%;
+}
+
+
+  /* Navigation Bar Styling */
+
+.feedback-container{
+    max-width:90%;
+
+}
+
+
+
+
+
+.weighted p, .points p{
+    background-color: #092635;
+    color:#ffff;
+    font-size: 1em;
+    font-weight: 500;
+    margin-bottom:0;
+    padding:10px;
+    border-radius:50px;
+
+}
+
+.weighted {
+    margin-right:50px;
+}
+.points-below {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+
+    padding: 1.5rem; /* Spacing */
+    margin-top: 1.5rem; /* Space from the top */
+    display: flex;
+    justify-content: flex-end;
+    margin-top:100px;
+ 
+   
+}
+
+.points-below:hover {
+    transform: scale(1.05); /* Scale up by 5% on hover */
+  
+}
+
+
+.essay {
+    display: flex
+    ;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        box-shadow: 0px -4px 6px -2px rgba(0, 0, 0, 0.3);
+        width:95%;
+        padding-top:20px;
+}
+
+
+.score-cell {
+    display: flex
+    ;
+        justify-content: center;
+}
+.score-cell input {
+    width: 150px; /* Set a fixed width for the input field */
+    padding: 8px; /* Add padding inside the input for better spacing */
+    border: 1px solid #ccc; /* Light border around the input */
+    border-radius: 4px; /* Rounded corners for the input */
+    text-align: center; /* Center the score text inside the input */
+    font-size: 1.1em; /* Adjust font size */
+    background-color: #f9f9f9; /* Slightly gray background */
+    transition: border-color 0.3s ease; /* Smooth border color transition on focus */
+}
+
+.score-cell input:focus {
+    border-color: #092635; /* Change border color when input is focused */
+    background-color: #fff; /* White background on focus */
+    outline: none;
+}
+
+.score-cell input[type="number"]::-webkit-outer-spin-button,
+.score-cell input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none; /* Remove the spin buttons on the number input */
+    margin: 0; /* Remove margins */
+}
+
+.score-cell input[type="number"] {
+    -moz-appearance: textfield; /* Remove spinner in Firefox */
+}
+
+.feedback-title strong {
+    color:#1b4242;
+}
+
+
+/* Common styles for both success and error messages */
+#comment-status {
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+   
+   
+    display: none; /* Initially hidden */
+    transition: opacity 0.5s ease;
+    
+}
+
+/* Success message styles */
+.success-status {
+    background-color: #1b4332; /* Light green background */
+    color: #ffff; /* Dark green text */
+}
+
+/* Error message styles */
+.error-status {
+    background-color: #f8d7da; /* Light red background */
+    color: #721c24; /* Dark red text */
+    border: 1px solid #f5c6cb; /* Light red border */
+}
+
+
+
+
+
+ /* Profile */
+
+ .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    padding: 15px;
+    background-color: #092635;
+    box-shadow: 0 4px 6px -1px rgba(100, 100, 100, 0.3), 0 2px 4px -1px rgba(50, 50, 50, 0.2);
+    color: #ffffff;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 16px;
+}
+.user-info {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px; /* or whatever fits your layout */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.user-name {
+    font-size: 1em;
+    font-weight: 700;
+
+}
+.user-email {
+    font-style: italic;
+    font-size:0.875em;
+}
+
+
+.user-name,
+.user-email {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+
+
+.profile-pic {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #5C8374;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    font-size:2em;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .back-btn:hover {
+    color: #ffffff;
+    transform: translateX(-5px); /* move slightly to the left */
+    text-decoration: none;
+ 
+  }
+
+
+/* Profile */   
+
+
+
+.header-question {
+    padding:0px 50px;
+}
+.question-info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border-radius:5px;
+   
+}
+
+.question-badge {
+    background-color:#092635;
+    color: #fff;
+    padding: 0.35rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.025em;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.question-info-header h2 {
+    margin: 0;
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #092635;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.05);
+}
+
+
+@media (max-width: 640px) {
+    .question-info-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .question-marker {
+        order: 2; /* Moves badge below heading on mobile */
+        width: 100%;
+        justify-content: flex-end;
+    }
+}

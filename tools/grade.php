@@ -1,6 +1,6 @@
 <?php
 $kiss = "";
-function detectAIContent($essay, $apiUrl = 'asakurakuneko.pythonanywhere.com/') {
+function detectAIContent($essay, $apiUrl = 'http://127.0.0.1:5000/analyze') {
     // Validate input
     if (empty($essay) || strlen($essay) < 50) {
         return ['error' => 'Essay too short for accurate analysis (minimum 50 characters)'];
@@ -12,7 +12,7 @@ function detectAIContent($essay, $apiUrl = 'asakurakuneko.pythonanywhere.com/') 
     ];
     
     // Initialize cURL session
-    $ch = curl_init($apiUrl . '/api/analyze');
+    $ch = curl_init($apiUrl);
     
     // Set cURL options
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -42,10 +42,6 @@ function detectAIContent($essay, $apiUrl = 'asakurakuneko.pythonanywhere.com/') 
     
     $result = json_decode($response, true);
     
-    if (!$result || !isset($result['ai_probability']) || !isset($result['human_probability'])) {
-        return ['error' => 'Invalid response from API'];
-    }
-    
     // Format the percentages with 2 decimal places
     $aiPercentage = number_format($result['ai_probability'], 2);
     $humanPercentage = number_format($result['human_probability'], 2);
@@ -54,7 +50,8 @@ function detectAIContent($essay, $apiUrl = 'asakurakuneko.pythonanywhere.com/') 
     return [
         'formatted' => "AI Generated: {$aiPercentage}% and Human: {$humanPercentage}%",
         'ai_probability' => $result['ai_probability'],
-        'human_probability' => $result['human_probability']
+        'human_probability' => $result['human_probability'],
+        'explanation' => $result['explanation'] ?? 'No explanation provided.'
     ];
 }
 
@@ -128,7 +125,7 @@ function checkPlagiarism($essay, $apiUrl, $googleApiKey = null, $googleCx = null
 }
 
 // Function to save evaluation results to database
-function saveEvaluationToDatabase($conn, $answer, $evaluationResult, $aiResult, $plagiarismResult, $quiz_id) {
+function saveEvaluationToDatabase($conn, $answer, $evaluationResult, $aiResult, $plagiarismResult, $essayText, $quiz_id) {
     try {
         // Check if evaluation already exists
         $checkStmt = $conn->prepare("SELECT evaluation_id FROM essay_evaluations WHERE answer_id = ?");
@@ -179,63 +176,93 @@ function saveEvaluationToDatabase($conn, $answer, $evaluationResult, $aiResult, 
             'plagiarism' => $plagiarismResult,
             'plagiarism_sources' => $plagiarismSources
         ]);
-        
+          // Check plagiarism using the alternative endpoint if no sources are found
+          if (empty($plagiarismSources)) {
+            $plagiarismApiUrl = 'http://127.0.0.1:5000/check_plagiarism';
+            $plagiarismPayload = json_encode(['text' => $essayText]);
+
+            $ch = curl_init($plagiarismApiUrl);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $plagiarismPayload);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, [
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen($plagiarismPayload)
+            ]);
+
+            $plagiarismResponse = curl_exec($ch);
+            if (!curl_errno($ch)) {
+                $plagiarismData = json_decode($plagiarismResponse, true);
+                if (isset($plagiarismData['plagiarism_score'])) {
+                $plagiarismScore = floatval($plagiarismData['plagiarism_score']);
+                $plagiarismSources = $plagiarismData['sources'] ?? [];
+                $sourcesJson = json_encode($plagiarismSources);
+                }
+            }
+            curl_close($ch);
+            }
+
+            
+        var_dump($plagiarismResult);
+        exit();
         // Prepare plagiarism sources as JSON
         $sourcesJson = json_encode($plagiarismSources);
-        
         if ($existingEval) {
             // Update existing evaluation
             $updateStmt = $conn->prepare("
-                UPDATE essay_evaluations 
-                SET overall_score = ?, ai_probability = ?, human_probability = ?, 
-                    plagiarism_score = ?, plagiarism_sources = ?, 
-                    evaluation_data = ?, evaluation_date = NOW(), quiz_id = ?
-                WHERE answer_id = ?
+            UPDATE essay_evaluations 
+            SET overall_score = ?, ai_probability = ?, human_probability = ?, 
+            plagiarism_score = ?, plagiarism_sources = ?, 
+            evaluation_data = ?, evaluation_date = NOW(), quiz_id = ?, ai_explain = ?
+            WHERE answer_id = ?
             ");
             
             $success = $updateStmt->execute([
-                $overallScore,
-                $aiProbability,
-                $humanProbability,
-                $plagiarismScore,
-                $sourcesJson,
-                $evaluationData,
-                $quiz_id,
-                $answer['answer_id']
+            $overallScore,
+            $aiProbability,
+            $humanProbability,
+            $plagiarismScore,
+            $sourcesJson,
+            $evaluationData,
+            $quiz_id,
+            $aiResult['explanation'],
+            $answer['answer_id']
             ]);
             
             return [
-                'success' => $success, 
-                'message' => 'Evaluation updated successfully', 
-                'id' => $existingEval['evaluation_id']
+            'success' => $success, 
+            'message' => 'Evaluation updated successfully', 
+            'id' => $existingEval['evaluation_id']
             ];
         } else {
+          
             // Insert new evaluation
             $insertStmt = $conn->prepare("
-                INSERT INTO essay_evaluations 
-                (answer_id, student_id, question_id, quiz_id, overall_score, ai_probability, 
-                human_probability, plagiarism_score, plagiarism_sources, 
-                evaluation_data, evaluation_date) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())
+            INSERT INTO essay_evaluations 
+            (answer_id, student_id, question_id, quiz_id, overall_score, ai_probability, 
+            human_probability, plagiarism_score, plagiarism_sources, 
+            evaluation_data, evaluation_date, ai_explain) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)
             ");
             
             $success = $insertStmt->execute([
-                $answer['answer_id'],
-                $answer['quiz_taker_id'],
-                $answer['question_id'],
-                $quiz_id,
-                $overallScore,
-                $aiProbability,
-                $humanProbability,
-                $plagiarismScore,
-                $sourcesJson,
-                $evaluationData
+            $answer['answer_id'],
+            $answer['quiz_taker_id'],
+            $answer['question_id'],
+            $quiz_id,
+            $overallScore,
+            $aiProbability,
+            $humanProbability,
+            $plagiarismScore,
+            $sourcesJson,
+            $evaluationData,
+            $aiResult['explanation']
             ]);
             
             return [
-                'success' => $success, 
-                'message' => 'Evaluation saved successfully', 
-                'id' => $conn->lastInsertId()
+            'success' => $success, 
+            'message' => 'Evaluation saved successfully', 
+            'id' => $conn->lastInsertId()
             ];
         }
     } catch (PDOException $e) {
@@ -378,13 +405,14 @@ foreach ($decodedData["rows"] as $index => $row) {
                 $googleCx
             );
             
-            // Get AI detection result
-            $aiResult = detectAIContent($essayText);
-            
-            // Format AI result
-            $aiDisplayResult = is_array($aiResult) && isset($aiResult['formatted']) ? 
-                $aiResult['formatted'] : 
-                (is_array($aiResult) ? json_encode($aiResult) : $aiResult);
+// Get AI detection result
+$aiResult = detectAIContent($essayText);
+
+// Format AI result
+$aiDisplayResult = is_array($aiResult) && isset($aiResult['formatted']) ? 
+    $aiResult['formatted'] : 
+    (is_array($aiResult) ? json_encode($aiResult) : $aiResult);
+
             
             // Format plagiarism info
             $plagiarismInfo = "";
@@ -411,7 +439,7 @@ foreach ($decodedData["rows"] as $index => $row) {
 
 //echo $criteriaFormatted;
 //echo $kiss;
-$url = 'https://batmanmiming686.pythonanywhere.com/evaluate';
+$url = 'http://batmanmiming686.pythonanywhere.com/evaluate';
 $data = array(
     'rubrics_criteria' => $criteriaFormatted,
     'essay' => "Description: " . $question['question'] . "\n" .
@@ -419,7 +447,7 @@ $data = array(
         '<add also reason,here is additional result' . 
         $plagiarismInfo . 
         '>(Note: if essay is too low and criterita is invalid, return json blank and score, and always strictly response as json format. The JSON structure should follow excatly:
-            Re -evaluate the ai score  ,use bert model,gptzero, etc determine the score of ai and human text probability, depends on deepest words patterns , add reason and do not label teacher or student because anyone can use as quiz participant,deduct points if necessary 
+            Re -evaluate the ai score  ,use bert model,gptzero, etc determine the score of ai and human text probability, depends on deepest words patterns , add reason and do not label creator or student because anyone can use as quiz participant,deduct points if necessary 
                             The formula for the total score is:
 Total Score = Sum(Criterion Performance Level % × Criterion Weight)
 Assign a Rating → Choose a rating for each criterion based on the rubric:
@@ -512,7 +540,7 @@ Convert to Percentage:
 }
 }"
 >(Note: The score for each criterion should be a percentage (0-100) OF the criterion\'s weight. For example, if a criterion has a weight of 20% and performance is excellent, the score should be 20 (100% of 20%). If performance is average, the score might be 10 (50% of 20%). 
-        make a reference base to the answer of each question essay that put by teacher Teacher benchmark: (Teacher benchmark:'. $kiss.')
+        make a reference base to the answer of each question essay that put by creator Creator benchmark: (Creator benchmark:'. $kiss.')
         The overall_weighted_score should be the sum of all criteria scores, with a maximum possible value of 100. 
       
 strictly follow the format of example output:
@@ -522,7 +550,7 @@ strictly follow the format of example output:
       "criteria_scores": {
         "Thesis & Focus (Weight: 20%)": {
           "score": 8, //the thesis and focus criteria has 20% weights but got only 8
-          "feedback": "✅ Why [current_level]: [2-3 sentences with specific evidence]** \\n\\n**❌ Why not [higher_level]: [specific missing elements].**\\n\\n**❌ Why not [lower_level]: [what the essay did well to avoid this].**\\n\\n**📚 Teacher\'s Benchmark: [specific exemplar or standard].",
+          "feedback": "✅ Why [current_level]: [2-3 sentences with specific evidence]** \\n\\n**❌ Why not [higher_level]: [specific missing elements].**\\n\\n**❌ Why not [lower_level]: [what the essay did well to avoid this].**\\n\\n**📚 Creator\'s Benchmark: [specific exemplar or standard].",
           "suggestions": [
             "Develop a clear thesis statement that directly addresses the relationship between love and greed.",
             "Ensure all paragraphs and points directly relate to and support your central thesis."
@@ -530,7 +558,7 @@ strictly follow the format of example output:
         },
         "Criteria 2 (Weight: 30%)": {
           "score": 10, //got only 10% of 30% weight of criteria 2
-          "feedback": "✅ Why [current_level]: [2-3 sentences with specific evidence]** \\n\\n**❌ Why not [higher_level]: [specific missing elements].**\\n\\n**❌ Why not [lower_level]: [what the essay did well to avoid this].**\\n\\n**📚 Teacher\'s Benchmark: [specific exemplar or standard].",
+          "feedback": "✅ Why [current_level]: [2-3 sentences with specific evidence]** \\n\\n**❌ Why not [higher_level]: [specific missing elements].**\\n\\n**❌ Why not [lower_level]: [what the essay did well to avoid this].**\\n\\n**📚 Creator\'s Benchmark: [specific exemplar or standard].",
           "suggestions": [
             "Create an outline before writing to ensure a logical flow of ideas.",
             "Use transition words and phrases to connect ideas between sentences and paragraphs."
@@ -538,7 +566,7 @@ strictly follow the format of example output:
         },
         "Criteria 3 (Weight: 10%)": {
           "score": 6, // got only 6% of 10% weights of criteria 3
-          "feedback": "✅ Why [current_level]: [2-3 sentences with specific evidence]** \\n\\n**❌ Why not [higher_level]: [specific missing elements].**\\n\\n**❌ Why not [lower_level]: [what the essay did well to avoid this].**\\n\\n**📚 Teacher\'s Benchmark: [specific exemplar or standard].",
+          "feedback": "✅ Why [current_level]: [2-3 sentences with specific evidence]** \\n\\n**❌ Why not [higher_level]: [specific missing elements].**\\n\\n**❌ Why not [lower_level]: [what the essay did well to avoid this].**\\n\\n**📚 Creator\'s Benchmark: [specific exemplar or standard].",
           "suggestions": [
             "Include relevant examples, stories, or research to support your points about love and greed.",
             "Analyze your evidence to show how it connects to your thesis statement."
@@ -546,7 +574,7 @@ strictly follow the format of example output:
         },
         "Grammar & Mechanics (Weight: 20%)": {
           "score": 20, // got perfect
-          "feedback": "✅ Why [current_level]: [2-3 sentences with specific evidence]** \\n\\n**❌ Why not [higher_level]: [specific missing elements].**\\n\\n**❌ Why not [lower_level]: [what the essay did well to avoid this].**\\n\\n**📚 Teacher\'s Benchmark: [specific exemplar or standard].",
+          "feedback": "✅ Why [current_level]: [2-3 sentences with specific evidence]** \\n\\n**❌ Why not [higher_level]: [specific missing elements].**\\n\\n**❌ Why not [lower_level]: [what the essay did well to avoid this].**\\n\\n**📚 Creator\'s Benchmark: [specific exemplar or standard].",
           "suggestions": [
             "Use a grammar and spell checker to identify and correct errors.",
             "Seek feedback from a peer or tutor to improve your writing clarity."
@@ -554,7 +582,7 @@ strictly follow the format of example output:
         },
         "Writing Style (Weight: 20%)": {
           "score": 5, //got 5 of 20% weights of criteria 5 Writing Style 
-          "feedback": "✅ Why [current_level]: [2-3 sentences with specific evidence]** \\n\\n**❌ Why not [higher_level]: [specific missing elements].**\\n\\n**❌ Why not [lower_level]: [what the essay did well to avoid this].**\\n\\n**📚 Teacher\'s Benchmark: [specific exemplar or standard].",
+          "feedback": "✅ Why [current_level]: [2-3 sentences with specific evidence]** \\n\\n**❌ Why not [higher_level]: [specific missing elements].**\\n\\n**❌ Why not [lower_level]: [what the essay did well to avoid this].**\\n\\n**📚 Creator\'s Benchmark: [specific exemplar or standard].",
           "suggestions": [
             "Practice using concise and clear language.",
             "Revise sentences to improve clarity and reduce ambiguity."
@@ -663,7 +691,7 @@ Needs Improvement (2): The students response shows an attempt at persuasion but 
 
 Warning (1): There are no persuasive elements, making the argument unclear.
 
-Teachers Answer Reference: The teachers answer is more persuasive, using both logical reasoning (discussing both positive and negative aspects of social media) and emotional appeal (addressing the impact on mental health). The teachers use of reasoning and emotional appeal strengthens the overall argument, making it more convincing and engaging, which is absent in the students response.
+Teachers Answer Reference: The creators answer is more persuasive, using both logical reasoning (discussing both positive and negative aspects of social media) and emotional appeal (addressing the impact on mental health). The creators use of reasoning and emotional appeal strengthens the overall argument, making it more convincing and engaging, which is absent in the students response.
 
 Clarity of Position (25%)
 
@@ -683,7 +711,7 @@ Needs Improvement (2): The position is weak or unclear, and the argument lacks s
 
 Warning (1): The student doesnt express a clear position on the issue.
 
-Teachers Answer Reference: In contrast, the teachers answer clearly presents a position, discussing both the benefits and drawbacks of social media, and concludes with a suggestion for responsible use. The teachers clear, balanced approach shows a well-developed stance that the students answer lacks. The student would benefit from presenting a more defined position, like the teacher.
+Teachers Answer Reference: In contrast, the creators answer clearly presents a position, discussing both the benefits and drawbacks of social media, and concludes with a suggestion for responsible use. The creators clear, balanced approach shows a well-developed stance that the students answer lacks. The student would benefit from presenting a more defined position, like the creator.
 
 Use of Rhetorical Devices (25%)
 
@@ -703,7 +731,7 @@ Needs Improvement (2): The student uses minimal rhetorical devices, making the a
 
 Warning (1): The students response lacks any rhetorical devices, leaving the argument flat and unconvincing.
 
-Teachers Answer Reference: The teachers response effectively uses logos (logical reasoning) to discuss the effects of social media and pathos (emotional appeal) to highlight the negative consequences on mental health. These rhetorical devices strengthen the argument and make it more engaging, something that is lacking in the students response.
+Teachers Answer Reference: The creators response effectively uses logos (logical reasoning) to discuss the effects of social media and pathos (emotional appeal) to highlight the negative consequences on mental health. These rhetorical devices strengthen the argument and make it more engaging, something that is lacking in the students response.
 
 Logical Organization (25%)
 
@@ -723,7 +751,7 @@ Needs Improvement (2): The response lacks clear organization, with ideas present
 
 Warning (1): The students response lacks any logical structure, and the ideas are presented randomly without progression.
 
-Teachers Answer Reference: The teachers answer is well-organized, with a clear introduction, followed by the discussion of both benefits and drawbacks of social media, and a conclusion with advice on responsible use. The teacher uses clear transitions between ideas, ensuring a logical flow. In contrast, the students response lacks this structure, making the argument difficult to follow and incomplete.
+Teachers Answer Reference: The creators answer is well-organized, with a clear introduction, followed by the discussion of both benefits and drawbacks of social media, and a conclusion with advice on responsible use. The creator uses clear transitions between ideas, ensuring a logical flow. In contrast, the students response lacks this structure, making the argument difficult to follow and incomplete.
 
 Overall Evaluation
 Final Score: 53.34%
@@ -754,7 +782,6 @@ if(curl_errno($ch)) {
     // Decode the JSON response
     $evaluationResult = json_decode($response, true);
     //var_dump($evaluationResult);
-    $aiResult = [];
 
 // Check if the evaluation exists in the expected structure
 if (isset($evaluationResult['evaluation'])) {
@@ -768,22 +795,22 @@ if (isset($evaluationResult['evaluation'])) {
         $decodedEvaluation = json_decode($jsonData, true);
         
         // Now extract the ai_detection data if it exists
-        if (isset($decodedEvaluation['ai_detection'])) {
-            $aiResult = $decodedEvaluation['ai_detection'];
-        }
+        // if (isset($decodedEvaluation['ai_detection'])) {
+        //     $aiResult = $decodedEvaluation['ai_detection'];
+        // }
     }
 } else if (isset($evaluationResult['results']) && is_array($evaluationResult['results'])) {
     // Alternative structure - direct access to results
-    foreach ($evaluationResult['results'] as $result) {
-        if (isset($result['ai_probability']) && isset($result['human_probability'])) {
-            $aiResult = [
-                'ai_probability' => $result['ai_probability'],
-                'human_probability' => $result['human_probability'],
-                'formatted' => "AI Generated: {$result['ai_probability']}% and Human: {$result['human_probability']}%"
-            ];
-            break; // Use the first result that has the data
-        }
-    }
+    // foreach ($evaluationResult['results'] as $result) {
+    //     if (isset($result['ai_probability']) && isset($result['human_probability'])) {
+    //         $aiResult = [
+    //             'ai_probability' => $result['ai_probability'],
+    //             'human_probability' => $result['human_probability'],
+    //             'formatted' => "AI Generated: {$result['ai_probability']}% and Human: {$result['human_probability']}%"
+    //         ];
+    //         break; // Use the first result that has the data
+    //     }
+    // }
 }
 
 
@@ -794,6 +821,7 @@ if (isset($evaluationResult['evaluation'])) {
         $evaluationResult, 
         $aiResult, 
         $plagiarismResult,
+        $essayText,
         $quiz_id
     );
     
@@ -831,7 +859,7 @@ $updateStatus = $conn->prepare("UPDATE quiz_participation SET status = 'complete
 $updateStatus->execute([$quiz_taker]);
 */
 //echo $plagiarismInfo;
-// header("Location:../user/AcademAI-user(learners)-view-quiz-answer-1.php?quiz_id=$quiz_id");
+header("Location:../user/AcademAI-user(learners)-view-quiz-answer-1.php?quiz_id=$quiz_id");
 } catch (PDOException $e) {
 echo json_encode(['success' => false, 'error' => 'Database error: ' . $e->getMessage()]);
 }

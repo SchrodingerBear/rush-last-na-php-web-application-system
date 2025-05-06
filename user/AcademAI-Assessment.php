@@ -437,8 +437,32 @@ $rubricData = $rubricStmt->fetch(PDO::FETCH_ASSOC);
                                 <span class="human-label">Human: <?php echo htmlspecialchars(number_format($data["ai_detection"]["human_probability"], 2)); ?>%</span>
                             </div>
                         </div>
-                    </div>
                     <p class="ai-summary"><?php echo htmlspecialchars($data["ai_detection"]["formatted"]); ?></p>
+                        <div class="ai-explanation">
+                            <br>
+                    <h4>Detailed Explanation:</h4>
+                    <?php if (isset($data["ai_detection"]["explanation"])): ?>
+                        <div class="ai-meter">
+<?php
+echo nl2br(htmlspecialchars(
+    preg_replace([
+        '/```json/',       // Remove opening code block
+        '/```/',           // Remove closing code block
+        '/,+/',            // Remove extra commas (1 or more)
+        '/\bJSON\b/',      // Remove the word JSON
+        '/\b[A-Z]{3,}\b/'  // Remove all-caps words (3 or more letters)
+    ], '', $data["ai_detection"]["explanation"])
+));
+?>
+</div>
+                    <?php else: ?>
+                        <div class="ai-summary">
+                            <p>No explanation found.</p>
+                        </div>
+                    <?php endif; ?>
+
+                    </div>
+                    </div>
                 </div>
                 
                 <div class="ai-explanation">
@@ -473,13 +497,12 @@ $rubricData = $rubricStmt->fetch(PDO::FETCH_ASSOC);
 <!-- Plagiarism Report Section -->
 <div id="plagiarism-report" class="content-section">
     <div class="assessment">
-        <?php if (isset($data["plagiarism"])): ?>
+        <?php if (isset($evaluation['plagiarism_sources'])): ?>
             <div class="assessment-details-plagiarize">
                 <p class="rubrics-plagiariaze">Plagiarism Analysis</p>
                 
-                <?php if (isset($data["plagiarism"]["success"]) && $data["plagiarism"]["success"]): ?>
                     <!-- Display successful plagiarism results -->
-                    <?php if (!empty($data["plagiarism_sources"])): ?>
+                        <div class="plagiarism-found">
                         <div class="plagiarism-found">
                             <p class="plagiarism-warning">Potential plagiarism detected. Parts of this submission match content from external sources.</p>
                             
@@ -490,29 +513,25 @@ $rubricData = $rubricStmt->fetch(PDO::FETCH_ASSOC);
                             <div class="plagiarism-other-sources">
                                 <p class="plagiarized-works-database">Sources found in online databases:</p>
                                 <ol class="source-list">
-                                    <?php foreach ($data["plagiarism_sources"] as $index => $source): ?>
-                                        <li class="plagiarized-works-1">
-                                            <?php echo htmlspecialchars($source["url"] ?? $source["source"] ?? "Unidentified Source " . ($index + 1)); ?>
-                                            <?php if (isset($source["similarity"])): ?>
-                                                <span class="similarity-percentage">(<?php echo htmlspecialchars($source["similarity"]); ?>% match)</span>
-                                            <?php endif; ?>
-                                        </li>
-                                    <?php endforeach; ?>
+                                    <?php 
+                                    $sources = json_decode($evaluation['plagiarism_sources'], true);
+                                    if (is_array($sources)) {
+                                        foreach ($sources as $source) {
+                                            echo '<li>';
+                                            echo '<p><strong>Matched Parts:</strong> ' . htmlspecialchars(implode(' ', $source['matched_parts'])) . '</p>';
+                                            echo '<p><strong>Similarity:</strong> ' . htmlspecialchars(number_format($source['similarity'], 2)) . '%</p>';
+                                            echo '<p><strong>Source URL:</strong> <a href="' . htmlspecialchars($source['url']) . '" target="_blank">' . htmlspecialchars($source['url']) . '</a></p>';
+                                            echo '</li>';
+                                        }
+                                    } else {
+                                        echo '<li>No valid sources found.</li>';
+                                    }
+                                    ?>
                                 </ol>
                             </div>
                         </div>
-                    <?php else: ?>
-                        <div class="no-plagiarism">
-                            <p class="no-plagiarism-notice">No plagiarism detected.</p>
-                        </div>
-                    <?php endif; ?>
-                <?php else: ?>
-                    <!-- Display error message -->
-                    <div class="plagiarism-error">
-                        <p class="error-message"><?php echo htmlspecialchars($data["plagiarism"]["error"] ?? "An error occurred during plagiarism detection."); ?></p>
-                        <p class="error-suggestion"></p>
-                    </div>
-                <?php endif; ?>
+                  
+         
             </div>
         <?php else: ?>
             <div class="assessment-details-plagiarize">

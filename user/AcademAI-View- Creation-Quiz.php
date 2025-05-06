@@ -728,7 +728,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 <div class="input-wrapper dropdownminute">
                     <div class="input-box">
-                        <textarea class="answer-essay" id="answer-${index}" placeholder="Type your answer here" name="answer-essay[${index}][]" ></textarea>
+                        <textarea class="answer-essay" id="answer-${index}" placeholder="Type your benchamark here" name="answer-essay[${index}][]" ></textarea>
                         <span class="delete-icon-essay-answer"><i class="fas fa-trash"></i></span>
                     </div>
                 </div>

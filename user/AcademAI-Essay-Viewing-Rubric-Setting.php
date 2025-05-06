@@ -33,7 +33,8 @@ error_reporting(E_ALL);
     <title>Rubrics Editor</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="../css/essay_rubric_setting-1.css">
-   
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
    
@@ -300,10 +301,11 @@ error_reporting(E_ALL);
         
         // Initial data setup
         const initialHeaders = [
-            "Advanced (5)",
-            "Proficient (4)",
-            "Needs Improvement (3)",
-            "Warning (2)",
+            "Very Satisfcatory (5)",
+            "Satisfcatory (4)",
+            "Excellent (3)",
+            "Good (3)",
+            "Needs Improvement (1)",
             "Weight %"
         ];
         
@@ -311,6 +313,7 @@ error_reporting(E_ALL);
             {
                 criteria: "Thesis Statement",
                 cells: [
+                    "",
                     "",
                     "",
                     "",
@@ -325,12 +328,14 @@ error_reporting(E_ALL);
                     "",
                     "",
                     "",
+                    "",
                     "25"
                 ]
             },
             {
                 criteria: "Organization & Structure",
                 cells: [
+                    "",
                     "",
                     "",
                     "",
@@ -342,6 +347,7 @@ error_reporting(E_ALL);
                 criteria: "Grammar, Mechanics & Style",
                 cells: [
                      "",
+                    "",
                     "",
                     "",
                     "",
@@ -382,7 +388,7 @@ error_reporting(E_ALL);
                     th.appendChild(input);
                     
                     // Add delete button for columns except Weight %
-                    if (initialHeaders.length > 3) { // Keep at least 1 grading column
+                    if (index >= 1 && initialHeaders.length > 3 && index === initialHeaders.length - 2) { // Show delete button only for the rightmost grading column if more than 1 grading column exists
                         const deleteBtn = document.createElement('span');
                         deleteBtn.className = 'delete-btn delete-col-btn';
                         deleteBtn.innerHTML = '✕';
@@ -466,24 +472,32 @@ error_reporting(E_ALL);
         
         // Add new row
         function addRow() {
+            if (initialRows.length >= 8) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Limit Reached',
+                text: 'You cannot add more than 8 rows.'
+            });
+            return;
+            }
+
             const newRow = {
-                criteria: "New Criteria",
-                cells: []
+            criteria: "New Criteria",
+            cells: []
             };
             
             // Create cells for each column
             for (let i = 0; i < initialHeaders.length; i++) {
-                if (i === initialHeaders.length - 1) {
-                    newRow.cells.push("0"); // Weight % value
-                } else {
-                    newRow.cells.push("");
-                }
+            if (i === initialHeaders.length - 1) {
+                newRow.cells.push("0"); // Weight % value
+            } else {
+                newRow.cells.push("");
+            }
             }
             
             initialRows.push(newRow);
             addTableRow(newRow, initialRows.length - 1);
         }
-        
         // Delete row
         function deleteRow(rowIndex) {
             initialRows.splice(rowIndex, 1);
@@ -493,22 +507,28 @@ error_reporting(E_ALL);
         // Add new column
         function addColumn() {
             // Check if the number of columns (including Weight %) is already 6
-        if (initialHeaders.length >= 6) {
-            alert("You cannot add more than 5 grading columns.");
+            if (initialHeaders.length >= 6) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Limit Reached',
+                text: 'You cannot add more than 5 grading columns.'
+            });
             return;
-        }
+            }
 
-            // Add new header before Weight %
-            initialHeaders.splice(initialHeaders.length - 1, 0, "New Level");
-            
+            const newLevelNumber = 6 - initialHeaders.length;
+
+            const newHeaderNames = ["Needs Improvement", "Good", "Excellent"];
+            const newHeaderName = newHeaderNames[newLevelNumber - 1] || `New Level (${newLevelNumber})`;
+            initialHeaders.splice(initialHeaders.length - 1, 0, newHeaderName);
+
             // Add new cell to each row
             initialRows.forEach(row => {
-                row.cells.splice(row.cells.length - 1, 0, "Click to edit");
+            row.cells.splice(row.cells.length - 1, 0, "");
             });
-            
+
             refreshTable();
         }
-        
         // Delete column
         function deleteColumn(columnIndex) {
             // Ensure we don't delete the Weight % column or the last grading column
@@ -600,7 +620,11 @@ error_reporting(E_ALL);
         
         // Show alert after modal is fully hidden
         setTimeout(() => {
-            alert('Rubric saved successfully!');
+            Swal.fire({
+            icon: 'success',
+            title: 'Rubric Saved',
+            text: 'Rubric saved successfully!'
+            });
         }, 200);
     } else {
         alert('Error saving rubric: ' + data.message);
@@ -646,7 +670,11 @@ error_reporting(E_ALL);
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    alert('Rubric updated successfully!');
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Rubric Updated',
+                        text: 'Rubric updated successfully!'
+                    });
                 } else {
                     alert('Error updating rubric: ' + data.message);
                 }
@@ -808,7 +836,11 @@ error_reporting(E_ALL);
                         document.getElementById('updateRubricBtn').disabled = true;
                     }
                     
-                    alert('Rubric deleted successfully!');
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Rubric Deleted',
+                        text: 'Rubric deleted successfully!'
+                    });
                 } else {
                     alert('Error deleting rubric: ' + data.message);
                 }
@@ -850,7 +882,11 @@ error_reporting(E_ALL);
     // Check total weight
     if (Math.abs(totalWeight - 100) > 0.01) {
         weightInputs.forEach(input => input.style.border = "1px solid red");
-        alert(`🚨 Total weight must be exactly 100% (Current: ${totalWeight.toFixed(2)}%)`);
+        Swal.fire({
+            icon: 'error',
+            title: 'Invalid Total Weight',
+            text: `Total weight must be exactly 100% (Current: ${totalWeight.toFixed(2)}%)`
+        });
         return false;
     }
     
@@ -1158,7 +1194,7 @@ function constructRubricPrompt(subject, level, additionalCriteria) {
     
 Format the response as a structured JSON object with this exact format:
 {
-  "headers": ["Advanced (5)", "Proficient (4)", "Needs Improvement (3)", "Warning (2)", "Weight %"],
+"headers": ["Very Satisfcatory (5)", "Satisfcatory (4)", "Excellent (3)", "Good (3)", "Needs Improvement (1)", "Weight %"],
   "rows": [
     {
       "criteria": "CRITERION NAME 1",
@@ -1192,41 +1228,77 @@ function processGeneratedRubrics(rubricData) {
         if (!rubricData.headers || !rubricData.rows || !Array.isArray(rubricData.rows)) {
             throw new Error('Invalid rubric data structure');
         }
-        
+
         // Clear existing arrays
         initialHeaders.length = 0;
         initialRows.length = 0;
-        
-        // Copy headers
-        rubricData.headers.forEach(header => initialHeaders.push(header));
-        
-        // Copy rows, ensuring they match our required format
+
+        // Determine the maximum number of columns dynamically
+        const MAX_COLUMNS = Math.min(rubricData.headers.length, 6); // Limit to 6 columns max: 5 levels + 1 weight column
+
+        // Copy and adjust headers dynamically
+        rubricData.headers.slice(0, MAX_COLUMNS).forEach((header, index) => {
+            if (MAX_COLUMNS === 6) {
+                // Rename levels if there are 5 grading levels
+                const renamedHeaders = [
+                    "Very Satisfactory (5)",
+                    "Satisfactory (4)",
+                    "Excellent (3)",
+                    "Good (3)",
+                    "Needs Improvement (1)",
+                    "Weight %"
+                ];
+                initialHeaders.push(renamedHeaders[index]);
+            } else if (MAX_COLUMNS === 5) {
+                // Remove the highest level for 4 grading levels
+                const renamedHeaders = [
+                    "Satisfactory (4)",
+                    "Excellent (3)",
+                    "Good (3)",
+                    "Needs Improvement (1)",
+                    "Weight %"
+                ];
+                initialHeaders.push(renamedHeaders[index]);
+            } else if (MAX_COLUMNS === 4) {
+                // Remove the two highest levels for 3 grading levels
+                const renamedHeaders = [
+                    "Excellent (3)",
+                    "Good (3)",
+                    "Needs Improvement (1)",
+                    "Weight %"
+                ];
+                initialHeaders.push(renamedHeaders[index]);
+            } else if (MAX_COLUMNS === 3) {
+                // Remove the three highest levels for 2 grading levels
+                const renamedHeaders = [
+                    "Good (3)",
+                    "Needs Improvement (1)",
+                    "Weight %"
+                ];
+                initialHeaders.push(renamedHeaders[index]);
+            } else {
+                initialHeaders.push(header);
+            }
+        });
+
+        // Copy and limit rows
         rubricData.rows.forEach(row => {
             if (row.criteria && row.cells && Array.isArray(row.cells)) {
+                const limitedCells = row.cells.slice(0, MAX_COLUMNS);
                 initialRows.push({
                     criteria: row.criteria,
-                    cells: [...row.cells]
+                    cells: limitedCells
                 });
             }
         });
-        
-        // Limit to 5 columns max (4 levels + weight column)
-        if (initialHeaders.length > 5) {
-            initialHeaders.splice(5, initialHeaders.length - 5);
-            initialRows.forEach(row => {
-                if (row.cells.length > 5) {
-                    row.cells.splice(5, row.cells.length - 5);
-                }
-            });
-        }
-        
+
         // Ensure weights sum to 100%
         let totalWeight = 0;
         initialRows.forEach(row => {
             const weight = parseFloat(row.cells[row.cells.length - 1]) || 0;
             totalWeight += weight;
         });
-        
+
         if (Math.abs(totalWeight - 100) > 0.01) {
             // Normalize weights
             initialRows.forEach(row => {
@@ -1235,20 +1307,20 @@ function processGeneratedRubrics(rubricData) {
                 row.cells[index] = (weight / totalWeight * 100).toFixed(0);
             });
         }
-        
+
         // Refresh the table
         refreshTable();
-        
+
         // Reset current rubric ID since this is a new unsaved rubric
         currentRubricId = null;
         document.getElementById('updateRubricBtn').disabled = true;
-        
-        // Hide the title and description if they were showing
+
+        // Hide title and description containers
         const titleContainer = document.getElementById('titleContainer');
         const descriptionContainer = document.getElementById('descriptionContainer');
         if (titleContainer) titleContainer.style.display = 'none';
         if (descriptionContainer) descriptionContainer.style.display = 'none';
-        
+
     } catch (error) {
         console.error('Error processing rubric data:', error);
         throw error;
@@ -1270,7 +1342,7 @@ function constructRubricPrompt(subject, level, additionalCriteria) {
     
 Format the response as a structured JSON object with this exact format:
 {
-  "headers": ["Advanced (5)", "Proficient (4)", "Needs Improvement (3)", "Warning (2)", "Weight %"],
+  "headers": ["Very Satisfcatory (5)", "Satisfcatory (4)", "Excellent (3)", "Good (3)", "Needs Improvement (1)", "Weight %"],
   "rows": [
     {
       "criteria": "CRITERION NAME 1",
@@ -1342,22 +1414,42 @@ function applyDimensions() {
     
     // Validate inputs
     if (isNaN(rowCount) || rowCount < 2 || rowCount > 8) {
-        alert('Row count must be between 2 and 8');
+        Swal.fire({
+            icon: 'error',
+            title: 'Invalid Row Count',
+            text: 'Row count must be between 2 and 8'
+        });
         return;
     }
     
     if (isNaN(colCount) || colCount < 2 || colCount > 5) {
-        alert('Column count must be between 2 and 5');
+        Swal.fire({
+            icon: 'error',
+            title: 'Invalid Column Count',
+            text: 'Column count must be between 2 and 5'
+        });
         return;
     }
     
     // Confirm with user
-    if (!confirm(`Are you sure you want to change the rubric to ${rowCount} rows and ${colCount} columns? This will reset your current rubric data.`)) {
-        return;
-    }
-    
-    // Reset the rubric with new dimensions
-    resetRubricWithDimensions(rowCount, colCount);
+    Swal.fire({
+        title: `Change dimensions to ${rowCount} rows and ${colCount} columns?`,
+        text: "This will reset your current rubric data.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, apply',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Reset the rubric with new dimensions
+            resetRubricWithDimensions(rowCount, colCount);
+            Swal.fire({
+                icon: 'success',
+                title: 'Dimensions Applied',
+                text: `Rubric has been reset to ${rowCount} rows and ${colCount} columns.`
+            });
+        }
+    });
 }
 
 // Function to reset rubric with custom dimensions
@@ -1426,10 +1518,17 @@ async function generateRubrics() {
     }
     
     // Confirm with user that this will replace current rubric data
-    const confirmGenerate = confirm('This will replace your current rubric data. Continue?');
-    if (!confirmGenerate) {
-        return;
-    }
+    Swal.fire({
+        title: 'This will replace your current rubric data. Continue?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, replace it',
+        cancelButtonText: 'Cancel'
+    }).then((result) => {
+        if (!result.isConfirmed) {
+            return;
+        }
+    });
     
     // Show status and disable button
     document.getElementById('generationStatus').style.display = 'block';
@@ -1441,7 +1540,6 @@ async function generateRubrics() {
     const prompt = constructRubricPrompt(subject, level, additionalCriteria);
     
     try {
-        // Call the PHP proxy
         const response = await fetch('api_proxy.php', {
             method: 'POST',
             headers: {
@@ -1450,8 +1548,8 @@ async function generateRubrics() {
             body: JSON.stringify({
                 essay: prompt,
                 rubrics_criteria: "auto-generate",
-                row_count: rowCount,
-                column_count: columnCount
+                row_count: initialRows.length,
+                column_count: initialHeaders.length - 1
             })
         });
         
@@ -1465,17 +1563,17 @@ async function generateRubrics() {
             // Process the response
             let rubricData;
             if (typeof data.evaluation === 'object') {
-                rubricData = data.evaluation;
+            rubricData = data.evaluation;
             } else {
-                // Try to parse the evaluation text as JSON
-                try {
-                    const jsonMatch = data.evaluation.match(/\{[\s\S]*"headers"[\s\S]*"rows"[\s\S]*\}/);
-                    const jsonStr = jsonMatch ? jsonMatch[0] : data.evaluation;
-                    rubricData = JSON.parse(jsonStr);
-                } catch (error) {
-                    console.error('Failed to parse JSON from API response:', error);
-                    throw new Error('Could not parse the rubric data from API response');
-                }
+            // Try to parse the evaluation text as JSON
+            try {
+                const jsonMatch = data.evaluation.match(/\{[\s\S]*"headers"[\s\S]*"rows"[\s\S]*\}/);
+                const jsonStr = jsonMatch ? jsonMatch[0] : data.evaluation;
+                rubricData = JSON.parse(jsonStr);
+            } catch (error) {
+                console.error('Failed to parse JSON from API response:', error);
+                throw new Error('Could not parse the rubric data from API response');
+            }
             }
             
             // Process the rubric data
@@ -1484,8 +1582,12 @@ async function generateRubrics() {
             // Close the modal
             closeAutoGenerateModal();
             
-            // Show success message
-            alert('Rubrics generated successfully!');
+            // Show success message using Swal
+            Swal.fire({
+            icon: 'success',
+            title: 'Rubrics Generated',
+            text: 'Rubrics have been generated successfully!'
+            });
         } else if (data.error) {
             throw new Error(data.error);
         } else {

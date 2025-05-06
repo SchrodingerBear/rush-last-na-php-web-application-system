@@ -22,7 +22,7 @@ body {
 .con{
     padding: 20px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);  
-      max-width: 1400px;
+      max-width: 100%;
       width:100%;
 
 }

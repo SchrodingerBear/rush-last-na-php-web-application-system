@@ -58,7 +58,7 @@ error_reporting(E_ALL);
         <label for="columnCount">Columns:</label>
         <div class="counter-controls">
             <button class="counter-btn" id="decreaseColBtn"><i class="fas fa-minus"></i></button>
-            <input type="number" id="columnCount" min="2" max="5" value="5" class="counter-input">
+            <input type="number" id="columnCount" min="2" max="5" value="2" class="counter-input">
             <button class="counter-btn" id="increaseColBtn"><i class="fas fa-plus"></i></button>
         </div>
     </div>
@@ -301,11 +301,8 @@ error_reporting(E_ALL);
         
         // Initial data setup
         const initialHeaders = [
-            "Needs Improvement (1)",
-            "Good (2)",
-            "Excellent (3)",
-            "Satisfactory (4)",
-            "Very Satisfactory (5)",
+            "Needs Improvement",
+            "Good",
             "Weight %"
         ];
         
@@ -313,9 +310,6 @@ error_reporting(E_ALL);
             {
                 criteria: "Thesis Statement",
                 cells: [
-                    "",
-                    "",
-                    "",
                     "",
                     "",
                     "25"
@@ -326,18 +320,12 @@ error_reporting(E_ALL);
                 cells: [
                     "",
                     "",
-                    "",
-                    "",
-                    "",
                     "25"
                 ]
             },
             {
                 criteria: "Organization & Structure",
                 cells: [
-                    "",
-                    "",
-                    "",
                     "",
                     "",
                     "25"
@@ -347,9 +335,6 @@ error_reporting(E_ALL);
                 criteria: "Grammar, Mechanics & Style",
                 cells: [
                      "",
-                    "",
-                    "",
-                    "",
                     "",
                     "25"
                 ]
@@ -363,51 +348,75 @@ error_reporting(E_ALL);
             
             // Clear existing content
             while (headerRow.children.length > 1) {
-                headerRow.removeChild(headerRow.lastChild);
+            headerRow.removeChild(headerRow.lastChild);
             }
             tableBody.innerHTML = '';
             
+            // Add Level Row header above the current header
+            const thead = headerRow.parentElement;
+            let levelRow = document.getElementById('levelRow');
+            if (!levelRow) {
+            levelRow = document.createElement('tr');
+            levelRow.id = 'levelRow';
+            thead.insertBefore(levelRow, headerRow);
+            }
+            levelRow.innerHTML = ''; // Clear existing content in Level Row
+
+            // Add "Levels" column at the start of the level row
+            const levelsTh = document.createElement('th');
+            levelsTh.textContent = 'Levels';
+            levelsTh.classList.add('fixed-header');
+            levelRow.appendChild(levelsTh);
+
+            initialHeaders.forEach((_, index) => {
+            const th = document.createElement('th');
+            if (index === initialHeaders.length - 1) {
+                th.textContent = ''; // Leave Weight % column empty in Level Row
+            } else {
+                th.textContent = `Level ${index + 1}`;
+            }
+            levelRow.appendChild(th);
+            });
+
             // Add headers
             initialHeaders.forEach((header, index) => {
-                const th = document.createElement('th');
-                if (index === initialHeaders.length - 1) {
-                    // Weight % header - fixed
-                    th.textContent = header;
-                    th.classList.add('fixed-header');
-                } else {
-                    // Editable headers
-                    const input = document.createElement('input');
-                    input.type = 'text';
-                    input.value = header;
-               
-            input.style.color = 'white'; 
-                    input.addEventListener('change', function() {
-                        // Store updated value
-                        initialHeaders[index] = this.value;
-                    });
-                    th.appendChild(input);
-                    
-                    // Add delete button for columns except Weight %
-                    if (index >= 1 && initialHeaders.length > 3 && index === initialHeaders.length - 2) { // Show delete button only for the rightmost grading column if more than 1 grading column exists
-                        const deleteBtn = document.createElement('span');
-                        deleteBtn.className = 'delete-btn delete-col-btn';
-                        deleteBtn.innerHTML = '✕';
-                        deleteBtn.title = 'Delete column';
-                        deleteBtn.onclick = function() {
-                            deleteColumn(index);
-                        };
-                        th.appendChild(deleteBtn);
-                    }
+            const th = document.createElement('th');
+            if (index === initialHeaders.length - 1) {
+                // Weight % header - fixed
+                th.textContent = header;
+                th.classList.add('fixed-header');
+            } else {
+                // Editable headers
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.value = header;
+                input.style.color = 'white'; 
+                input.addEventListener('change', function() {
+                // Store updated value
+                initialHeaders[index] = this.value;
+                });
+                th.appendChild(input);
+                
+                // Add delete button for columns except Weight %
+                if (index >= 1 && initialHeaders.length > 3 && index === initialHeaders.length - 2) { // Show delete button only for the rightmost grading column if more than 1 grading column exists
+                const deleteBtn = document.createElement('span');
+                deleteBtn.className = 'delete-btn delete-col-btn';
+                deleteBtn.innerHTML = '✕';
+                deleteBtn.title = 'Delete column';
+                deleteBtn.onclick = function() {
+                    deleteColumn(index);
+                };
+                th.appendChild(deleteBtn);
                 }
-                headerRow.appendChild(th);
+            }
+            headerRow.appendChild(th);
             });
             
             // Add rows
             initialRows.forEach((row, rowIndex) => {
-                addTableRow(row, rowIndex);
+            addTableRow(row, rowIndex);
             });
         }
-        
         // Add a table row
         function addTableRow(rowData, rowIndex) {
         
@@ -518,7 +527,7 @@ error_reporting(E_ALL);
 
             const newLevelNumber = 6 - initialHeaders.length;
 
-            const newHeaderNames = ["Very Satisfactory (5)", "Satisfactory (4)", "Excellent (3)"];
+            const newHeaderNames = ["Very Satisfactory", "Satisfactory", "Excellent"];
             const newHeaderName = newHeaderNames[newLevelNumber - 1] || `New Level (${newLevelNumber})`;
             initialHeaders.splice(initialHeaders.length - 1, 0, newHeaderName);
 
@@ -639,7 +648,11 @@ error_reporting(E_ALL);
     }
 
             if (!currentRubricId) {
-                alert('No rubric selected for update. Please save as new or load a rubric first.');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'No Rubric Selected',
+                    text: 'Please save as new or load a rubric first.'
+                });
                 return;
             }
 
@@ -647,7 +660,11 @@ error_reporting(E_ALL);
             const description = document.getElementById('currentRubricDescription').value.trim();
             
             if (!title) {
-                alert('Please enter a title for your rubric.');
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Missing Title',
+                    text: 'Please enter a title for your rubric.'
+                });
                 return;
             }
 
@@ -1194,7 +1211,7 @@ function constructRubricPrompt(subject, level, additionalCriteria) {
     
 Format the response as a structured JSON object with this exact format:
 {
-  "headers": ["Needs Improvement (1)", "Good (2)", "Excellent (3)", "Satisfactory (4)", "Very Satisfactory (5)","Weight %"],
+  "headers": ["Needs Improvement", "Good", "Excellent", "Satisfactory", "Very Satisfactory","Weight %"],
   "rows": [
     {
       "criteria": "CRITERION NAME 1",
@@ -1236,55 +1253,52 @@ function processGeneratedRubrics(rubricData) {
         // Determine the maximum number of columns dynamically
         const MAX_COLUMNS = Math.min(rubricData.headers.length, 6); // Limit to 6 columns max: 5 levels + 1 weight column
 
-        // Copy and adjust headers dynamically
+        // Copy headers without reversing
         rubricData.headers.slice(0, MAX_COLUMNS).forEach((header, index) => {
             if (MAX_COLUMNS === 6) {
-            // Rename levels if there are 5 grading levels
-            const renamedHeaders = [
-                "Needs Improvement (1)",
-                "Good (2)",
-                "Excellent (3)",
-                "Satisfactory (4)",
-                "Very Satisfactory (5)",
-                "Weight %"
-            ];
-            initialHeaders.push(renamedHeaders[index]);
+                const renamedHeaders = [
+                    "Needs Improvement",
+                    "Good",
+                    "Excellent",
+                    "Satisfactory",
+                    "Very Satisfactory",
+                    "Weight %"
+                ];
+                initialHeaders.push(renamedHeaders[index]);
             } else if (MAX_COLUMNS === 5) {
-            // Remove the highest level for 4 grading levels
-            const renamedHeaders = [
-                "Needs Improvement (1)",
-                "Good (2)",
-                "Excellent (3)",
-                "Satisfactory (4)",
-                "Weight %"
-            ];
-            initialHeaders.push(renamedHeaders[index]);
+                const renamedHeaders = [
+                    "Needs Improvement",
+                    "Good",
+                    "Excellent",
+                    "Satisfactory",
+                    "Weight %"
+                ];
+                initialHeaders.push(renamedHeaders[index]);
             } else if (MAX_COLUMNS === 4) {
-            // Remove the two highest levels for 3 grading levels
-            const renamedHeaders = [
-                "Needs Improvement (1)",
-                "Good (2)",
-                "Excellent (3)",
-                "Weight %"
-            ];
-            initialHeaders.push(renamedHeaders[index]);
+                const renamedHeaders = [
+                    "Needs Improvement",
+                    "Good",
+                    "Excellent",
+                    "Weight %"
+                ];
+                initialHeaders.push(renamedHeaders[index]);
             } else if (MAX_COLUMNS === 3) {
-            // Remove the three highest levels for 2 grading levels
-            const renamedHeaders = [
-                "Needs Improvement (1)",
-                "Good (2)",
-                "Weight %"
-            ];
-            initialHeaders.push(renamedHeaders[index]);
+                const renamedHeaders = [
+                    "Needs Improvement",
+                    "Good",
+                    "Weight %"
+                ];
+                initialHeaders.push(renamedHeaders[index]);
             } else {
-            initialHeaders.push(header);
+                initialHeaders.push(header);
             }
         });
 
-        // Copy and limit rows
+        // Reverse the row data cells except for the weight column
         rubricData.rows.forEach(row => {
             if (row.criteria && row.cells && Array.isArray(row.cells)) {
-                const limitedCells = row.cells.slice(0, MAX_COLUMNS);
+                const limitedCells = row.cells.slice(0, MAX_COLUMNS - 1).reverse(); // Reverse all cells except the weight column
+                limitedCells.push(row.cells[MAX_COLUMNS - 1]); // Add the weight column back
                 initialRows.push({
                     criteria: row.criteria,
                     cells: limitedCells
@@ -1342,7 +1356,7 @@ function constructRubricPrompt(subject, level, additionalCriteria) {
     
 Format the response as a structured JSON object with this exact format:
 {
-    "headers": ["Needs Improvement (1)", "Good (2)", "Excellent (3)", "Satisfactory (4)", "Very Satisfactory (5)","Weight %"],
+    "headers": ["Needs Improvement", "Good", "Excellent", "Satisfactory", "Very Satisfactory","Weight %"],
   "rows": [
     {
       "criteria": "CRITERION NAME 1",
@@ -1460,11 +1474,11 @@ function resetRubricWithDimensions(rowCount, colCount) {
     
     // Generate new headers based on column count
     const headerNames = [
-        "Needs Improvement (1)",
-        "Good (2)",
-        "Excellent (3)",
-        "Satisfactory (4)",
-        "Very Satisfactory (5)"
+        "Needs Improvement",
+        "Good",
+        "Excellent",
+        "Satisfactory",
+        "Very Satisfactory"
     ];
     
     for (let i = 0; i < colCount; i++) {

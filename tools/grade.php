@@ -831,7 +831,7 @@ $updateStatus = $conn->prepare("UPDATE quiz_participation SET status = 'complete
 $updateStatus->execute([$quiz_taker]);
 */
 //echo $plagiarismInfo;
-header("Location:../user/AcademAI-user(learners)-view-quiz-answer-1.php?quiz_id=$quiz_id");
+// header("Location:../user/AcademAI-user(learners)-view-quiz-answer-1.php?quiz_id=$quiz_id");
 } catch (PDOException $e) {
 echo json_encode(['success' => false, 'error' => 'Database error: ' . $e->getMessage()]);
 }

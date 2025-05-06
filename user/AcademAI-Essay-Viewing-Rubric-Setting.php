@@ -58,7 +58,7 @@ error_reporting(E_ALL);
         <label for="columnCount">Columns:</label>
         <div class="counter-controls">
             <button class="counter-btn" id="decreaseColBtn"><i class="fas fa-minus"></i></button>
-            <input type="number" id="columnCount" min="2" max="5" value="4" class="counter-input">
+            <input type="number" id="columnCount" min="2" max="5" value="5" class="counter-input">
             <button class="counter-btn" id="increaseColBtn"><i class="fas fa-plus"></i></button>
         </div>
     </div>
@@ -301,11 +301,11 @@ error_reporting(E_ALL);
         
         // Initial data setup
         const initialHeaders = [
-            "Very Satisfcatory (5)",
-            "Satisfcatory (4)",
-            "Excellent (3)",
-            "Good (3)",
             "Needs Improvement (1)",
+            "Good (2)",
+            "Excellent (3)",
+            "Satisfactory (4)",
+            "Very Satisfactory (5)",
             "Weight %"
         ];
         
@@ -518,7 +518,7 @@ error_reporting(E_ALL);
 
             const newLevelNumber = 6 - initialHeaders.length;
 
-            const newHeaderNames = ["Needs Improvement", "Good", "Excellent"];
+            const newHeaderNames = ["Very Satisfactory (5)", "Satisfactory (4)", "Excellent (3)"];
             const newHeaderName = newHeaderNames[newLevelNumber - 1] || `New Level (${newLevelNumber})`;
             initialHeaders.splice(initialHeaders.length - 1, 0, newHeaderName);
 
@@ -1194,7 +1194,7 @@ function constructRubricPrompt(subject, level, additionalCriteria) {
     
 Format the response as a structured JSON object with this exact format:
 {
-"headers": ["Very Satisfcatory (5)", "Satisfcatory (4)", "Excellent (3)", "Good (3)", "Needs Improvement (1)", "Weight %"],
+  "headers": ["Needs Improvement (1)", "Good (2)", "Excellent (3)", "Satisfactory (4)", "Very Satisfactory (5)","Weight %"],
   "rows": [
     {
       "criteria": "CRITERION NAME 1",
@@ -1239,45 +1239,45 @@ function processGeneratedRubrics(rubricData) {
         // Copy and adjust headers dynamically
         rubricData.headers.slice(0, MAX_COLUMNS).forEach((header, index) => {
             if (MAX_COLUMNS === 6) {
-                // Rename levels if there are 5 grading levels
-                const renamedHeaders = [
-                    "Very Satisfactory (5)",
-                    "Satisfactory (4)",
-                    "Excellent (3)",
-                    "Good (3)",
-                    "Needs Improvement (1)",
-                    "Weight %"
-                ];
-                initialHeaders.push(renamedHeaders[index]);
+            // Rename levels if there are 5 grading levels
+            const renamedHeaders = [
+                "Needs Improvement (1)",
+                "Good (2)",
+                "Excellent (3)",
+                "Satisfactory (4)",
+                "Very Satisfactory (5)",
+                "Weight %"
+            ];
+            initialHeaders.push(renamedHeaders[index]);
             } else if (MAX_COLUMNS === 5) {
-                // Remove the highest level for 4 grading levels
-                const renamedHeaders = [
-                    "Satisfactory (4)",
-                    "Excellent (3)",
-                    "Good (3)",
-                    "Needs Improvement (1)",
-                    "Weight %"
-                ];
-                initialHeaders.push(renamedHeaders[index]);
+            // Remove the highest level for 4 grading levels
+            const renamedHeaders = [
+                "Needs Improvement (1)",
+                "Good (2)",
+                "Excellent (3)",
+                "Satisfactory (4)",
+                "Weight %"
+            ];
+            initialHeaders.push(renamedHeaders[index]);
             } else if (MAX_COLUMNS === 4) {
-                // Remove the two highest levels for 3 grading levels
-                const renamedHeaders = [
-                    "Excellent (3)",
-                    "Good (3)",
-                    "Needs Improvement (1)",
-                    "Weight %"
-                ];
-                initialHeaders.push(renamedHeaders[index]);
+            // Remove the two highest levels for 3 grading levels
+            const renamedHeaders = [
+                "Needs Improvement (1)",
+                "Good (2)",
+                "Excellent (3)",
+                "Weight %"
+            ];
+            initialHeaders.push(renamedHeaders[index]);
             } else if (MAX_COLUMNS === 3) {
-                // Remove the three highest levels for 2 grading levels
-                const renamedHeaders = [
-                    "Good (3)",
-                    "Needs Improvement (1)",
-                    "Weight %"
-                ];
-                initialHeaders.push(renamedHeaders[index]);
+            // Remove the three highest levels for 2 grading levels
+            const renamedHeaders = [
+                "Needs Improvement (1)",
+                "Good (2)",
+                "Weight %"
+            ];
+            initialHeaders.push(renamedHeaders[index]);
             } else {
-                initialHeaders.push(header);
+            initialHeaders.push(header);
             }
         });
 
@@ -1342,7 +1342,7 @@ function constructRubricPrompt(subject, level, additionalCriteria) {
     
 Format the response as a structured JSON object with this exact format:
 {
-  "headers": ["Very Satisfcatory (5)", "Satisfcatory (4)", "Excellent (3)", "Good (3)", "Needs Improvement (1)", "Weight %"],
+    "headers": ["Needs Improvement (1)", "Good (2)", "Excellent (3)", "Satisfactory (4)", "Very Satisfactory (5)","Weight %"],
   "rows": [
     {
       "criteria": "CRITERION NAME 1",
@@ -1459,8 +1459,16 @@ function resetRubricWithDimensions(rowCount, colCount) {
     initialRows.length = 0;
     
     // Generate new headers based on column count
+    const headerNames = [
+        "Needs Improvement (1)",
+        "Good (2)",
+        "Excellent (3)",
+        "Satisfactory (4)",
+        "Very Satisfactory (5)"
+    ];
+    
     for (let i = 0; i < colCount; i++) {
-        initialHeaders.push(` (${colCount - i })`);
+        initialHeaders.push(headerNames[i] || `Level ${i + 1} (${i + 1})`);
     }
     initialHeaders.push("Weight %"); // Always add Weight % as the last column
     

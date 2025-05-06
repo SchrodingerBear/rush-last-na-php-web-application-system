@@ -97,7 +97,7 @@ if ($user) {
                         <li><hr class="dropdown-divider"></li>
                     <?php endif; ?>
                     <li>
-                        <a class="dropdown-item create-new" href="create-new-rubric-inside.php">
+                        <a class="dropdown-item create-new" href="AcademAI-Essay-Viewing-Rubric-Setting.php">
                             <i class="fas fa-plus-circle me-2"></i>Create New Rubric
                         </a>
                     </li>
@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function() {
     dropdownItems.forEach(item => {
         item.addEventListener('click', function(e) {
             // Skip handling if this is the "Create New Rubric" link
-            if (this.getAttribute('href') === 'create-new-rubric-inside.php') {
+            if (this.getAttribute('href') === 'AcademAI-Essay-Viewing-Rubric-Setting.php') {
                 return; // Let the default link behavior happen
             }
             

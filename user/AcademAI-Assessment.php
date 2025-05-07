@@ -354,9 +354,10 @@ $rubricData = $rubricStmt->fetch(PDO::FETCH_ASSOC);
                 <div class="assessment-details">
                     <div class="asset">
                         <div class="assess-title col-2"> 
+                            
                             <p class="rubrics">
                                 <?php 
-                                echo htmlspecialchars($criteriaName) . " - Score: " . htmlspecialchars($criteriaData["score"]) . "%"; 
+                                echo htmlspecialchars($criteriaName) . " -<br> Score: " . htmlspecialchars($criteriaData["score"]) . "%"; 
 
                                 // Initialize level
                                 $level = '';
@@ -366,11 +367,24 @@ $rubricData = $rubricStmt->fetch(PDO::FETCH_ASSOC);
                                     $level = trim($matches[1]);
                                 }
                                 
+// Compare header and level
+$levelNumber = null;
+if (isset($criteriaDatas['headers']) && is_array($criteriaDatas['headers'])) {
+    foreach ($criteriaDatas['headers'] as $index => $header) {
+        if (strcasecmp($header, $level) === 0) {
+            $levelNumber = $index + 1; // Add 1 to make it human-readable (1-based index)
+            break;
+        }
+    }
+}
 
-                                echo " - Level: " . htmlspecialchars($level);
-                                ?>
-                            </p>
-                        </div>
+echo "<br>Level: " . htmlspecialchars($level);
+if ($levelNumber !== null) {
+    echo " (" . htmlspecialchars($levelNumber) . ")";
+}
+?>
+</p>
+</div>
 
                         
 <div class="assess-feedback col-5"> 
@@ -448,14 +462,14 @@ $rubricData = $rubricStmt->fetch(PDO::FETCH_ASSOC);
                 <div class="ai-score-container">
                     <div class="ai-score-chart">
                         <div class="ai-meter">
-                            <div class="ai-portion" style="width: <?php echo htmlspecialchars($data["ai_detection"]["ai_probability"]); ?>%;">
-                                <span class="ai-label">AI: <?php echo htmlspecialchars(number_format($data["ai_detection"]["ai_probability"], 2)); ?>%</span>
+                            <div class="ai-portion" style="width: <?php echo htmlspecialchars($data["ai_detection"]["ai_probability"] * 100); ?>%;">
+                                <span class="ai-label">AI: <?php echo htmlspecialchars($data["ai_detection"]["ai_probability"] * 100); ?>%</span>
                             </div>
-                            <div class="human-portion" style="width: <?php echo htmlspecialchars($data["ai_detection"]["human_probability"]); ?>%;">
-                                <span class="human-label">Human: <?php echo htmlspecialchars(number_format($data["ai_detection"]["human_probability"], 2)); ?>%</span>
+                            <div class="human-portion" style="width: <?php echo htmlspecialchars($data["ai_detection"]["human_probability"] * 100); ?>%;">
+                                <span class="human-label">Human: <?php echo htmlspecialchars($data["ai_detection"]["human_probability"] * 100); ?>%</span>
                             </div>
                         </div>
-                    <p class="ai-summary"><?php echo htmlspecialchars($data["ai_detection"]["formatted"]); ?></p>
+                    
                         <div class="ai-explanation">
                             <br>
                     <h4>Detailed Explanation:</h4>

@@ -176,8 +176,9 @@ function saveEvaluationToDatabase($conn, $answer, $evaluationResult, $aiResult, 
             'plagiarism' => $plagiarismResult,
             'plagiarism_sources' => $plagiarismSources
         ]);
-          // Check plagiarism using the alternative endpoint if no sources are found
-          if (empty($plagiarismSources)) {
+        
+        // Check plagiarism using the alternative endpoint if no sources are found
+        if (empty($plagiarismSources)) {
             $plagiarismApiUrl = 'http://127.0.0.1:5000/check_plagiarism';
             $plagiarismPayload = json_encode(['text' => $essayText]);
 
@@ -186,24 +187,23 @@ function saveEvaluationToDatabase($conn, $answer, $evaluationResult, $aiResult, 
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $plagiarismPayload);
             curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                'Content-Type: application/json',
-                'Content-Length: ' . strlen($plagiarismPayload)
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($plagiarismPayload)
             ]);
 
             $plagiarismResponse = curl_exec($ch);
             if (!curl_errno($ch)) {
-                $plagiarismData = json_decode($plagiarismResponse, true);
-                if (isset($plagiarismData['plagiarism_score'])) {
+            $plagiarismData = json_decode($plagiarismResponse, true);
+            if (isset($plagiarismData['plagiarism_score'])) {
                 $plagiarismScore = floatval($plagiarismData['plagiarism_score']);
                 $plagiarismSources = $plagiarismData['sources'] ?? [];
                 $sourcesJson = json_encode($plagiarismSources);
-                }
             }
+            }
+            // var_dump($plagiarismResponse);  
             curl_close($ch);
-            }
+        }
 
-            
- 
         // Prepare plagiarism sources as JSON
         $sourcesJson = json_encode($plagiarismSources);
         if ($existingEval) {
@@ -771,8 +771,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 
 // Execute the cURL request
 $response = curl_exec($ch);
-var_dump($response);    
-exit();
+
 // Check for errors
 if(curl_errno($ch)) {
     $evaluationResults[] = [

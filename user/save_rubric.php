@@ -11,6 +11,20 @@ header('Content-Type: application/json');
 $json_data = file_get_contents('php://input');
 $data = json_decode($json_data, true);
 
+// Validate rubric data to ensure no cell is empty, null, or blank
+if (isset($data['data']['rows'])) {
+    foreach ($data['data']['rows'] as $row) {
+        if (isset($row['cells']) && is_array($row['cells'])) {
+            foreach ($row['cells'] as $cell) {
+                if (trim($cell) === '') {
+                    echo json_encode(['success' => false, 'message' => 'All rubric cells must be filled']);
+                    exit;
+                }
+            }
+        }
+    }
+}
+
 // Check if data is valid
 if ($data === null) {
     echo json_encode(['success' => false, 'message' => 'Invalid JSON data']);

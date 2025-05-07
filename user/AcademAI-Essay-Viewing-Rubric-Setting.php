@@ -636,7 +636,11 @@ error_reporting(E_ALL);
             });
         }, 200);
     } else {
-        alert('Error saving rubric: ' + data.message);
+        Swal.fire({
+            icon: 'error',
+            title: 'Error Saving Rubric',
+            text: data.message
+        });
     }
 });
         }
@@ -669,7 +673,7 @@ error_reporting(E_ALL);
             }
 
             const rubricData = getRubricData();
-            
+            console.log(rubricData);
             // Send data to server
             fetch('save_rubric.php', {
                 method: 'POST',
@@ -693,7 +697,11 @@ error_reporting(E_ALL);
                         text: 'Rubric updated successfully!'
                     });
                 } else {
-                    alert('Error updating rubric: ' + data.message);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error Updating Rubric',
+                        text: data.message
+                    });
                 }
             })
             .catch(error => {

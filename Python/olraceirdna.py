@@ -6,8 +6,8 @@ from google import genai
 
 app = Flask(__name__)
 
-@app.route('/evaluate', methods=['POST'])
-def evaluate_essay():
+@app.route('/autogenerate', methods=['POST'])
+def autogenerate_essay():
     # Get data from POST request
     data = request.json
     if not data or 'essay' not in data or 'rubrics_criteria' not in data:

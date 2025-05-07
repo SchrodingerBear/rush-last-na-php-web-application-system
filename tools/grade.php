@@ -203,8 +203,7 @@ function saveEvaluationToDatabase($conn, $answer, $evaluationResult, $aiResult, 
             }
 
             
-        var_dump($plagiarismResult);
-        exit();
+ 
         // Prepare plagiarism sources as JSON
         $sourcesJson = json_encode($plagiarismSources);
         if ($existingEval) {
@@ -439,9 +438,11 @@ $aiDisplayResult = is_array($aiResult) && isset($aiResult['formatted']) ?
 
 //echo $criteriaFormatted;
 //echo $kiss;
-$url = 'http://batmanmiming686.pythonanywhere.com/evaluate';
+$url = 'http://127.0.0.1:5000/evaluate';
+
 $data = array(
     'rubrics_criteria' => $criteriaFormatted,
+    'level'=> $decodedData["headers"],
     'essay' => "Description: " . $question['question'] . "\n" .
         $essayText . 
         '<add also reason,here is additional result' . 
@@ -770,7 +771,8 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 
 // Execute the cURL request
 $response = curl_exec($ch);
-
+var_dump($response);    
+exit();
 // Check for errors
 if(curl_errno($ch)) {
     $evaluationResults[] = [

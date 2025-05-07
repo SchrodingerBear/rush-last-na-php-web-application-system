@@ -229,21 +229,21 @@ $rubricData = $rubricStmt->fetch(PDO::FETCH_ASSOC);
                 
                 if ($rubricData) {
                     //$subject_id = $rubricData['subject_id'];
-                    $criteriaData = json_decode($rubricData['data'], true);
+                    $criteriaDatas = json_decode($rubricData['data'], true);
                     
-                    if ($criteriaData && isset($criteriaData['headers']) && isset($criteriaData['rows'])):
+                    if ($criteriaDatas && isset($criteriaDatas['headers']) && isset($criteriaDatas['rows'])):
                     ?>
                         <table class="table table-hover">
                             <thead class="criteria-heading" id="criteria-heading">
                                 <tr>
                                     <th scope="col">Criteria</th>
-                                    <?php foreach ($criteriaData['headers'] as $header): ?>
+                                    <?php foreach ($criteriaDatas['headers'] as $header): ?>
                                         <th scope="col"><?php echo htmlspecialchars($header); ?></th>
                                     <?php endforeach; ?>
                                 </tr>
                             </thead>
                             <tbody id="criteria-table-body" class="predefined-criteria">
-                                <?php foreach ($criteriaData['rows'] as $row): ?>
+                                <?php foreach ($criteriaDatas['rows'] as $row): ?>
                                     <tr>
                                         <td><?php echo htmlspecialchars($row['criteria']); ?></td>
                                         <?php foreach ($row['cells'] as $cell): ?>
@@ -353,17 +353,36 @@ $rubricData = $rubricStmt->fetch(PDO::FETCH_ASSOC);
             <?php foreach ($parsedEvaluation["criteria_scores"] as $criteriaName => $criteriaData): ?>
                 <div class="assessment-details">
                     <div class="asset">
-                        <div class = "assess-title col-2">
-                        <p class="rubrics"><?php echo htmlspecialchars($criteriaName) . " - Score: " .htmlspecialchars($criteriaData["score"]); ?>%</p>
+                        <div class="assess-title col-2"> 
+                            <p class="rubrics">
+                                <?php 
+                                echo htmlspecialchars($criteriaName) . " - Score: " . htmlspecialchars($criteriaData["score"]) . "%"; 
+
+                                // Initialize level
+                                $level = '';
+
+                                // Use regex to extract the level from the feedback
+                                if (preg_match('/✅\s+Why\s+(\w[\w\s]*\w):/i', $criteriaData["feedback"], $matches)) {
+                                    $level = trim($matches[1]);
+                                }
+                                
+
+                                echo " - Level: " . htmlspecialchars($level);
+                                ?>
+                            </p>
                         </div>
 
-                        <div class = "assess-feedback col-5">
-                        <p class="rubrics-explanation"><strong>Evaluation:</strong></p><?php 
-                        $criteriaData["feedback"] = str_replace("**", "<br>", $criteriaData["feedback"]);
-                        echo $criteriaData["feedback"]; 
-                        ?></p>
-                        </div>
                         
+<div class="assess-feedback col-5"> 
+    <p class="rubrics-explanation"><strong>Evaluation:</strong></p>
+    <?php 
+    // Convert line break placeholder to actual <br> tags
+    $criteriaData["feedback"] = str_replace("**", "<br>", $criteriaData["feedback"]);
+    echo $criteriaData["feedback"]; 
+    ?>
+</div>
+
+
                         <?php if (isset($criteriaData["suggestions"]) && !empty($criteriaData["suggestions"])): ?>
                             <div class="feedback-suggestion col-5">
                                 <p class="feedback-title" style="color:#1b4242;"><strong>Suggestions for Improvement:</strong></p>

@@ -386,7 +386,6 @@ $rubricData = $rubricStmt->fetch(PDO::FETCH_ASSOC);
                         <p class="rubrics">General Assessment</p>
                         </div>
 
-
                         <?php if (isset($generalAssessment["strengths"]) && !empty($generalAssessment["strengths"])): ?>
                             <div class = "assess-feedback col-5">
                                 <p class="feedback-title" ><strong>📋 General Assessment and Feedback:</strong></p>
@@ -497,7 +496,10 @@ echo nl2br(htmlspecialchars(
 <!-- Plagiarism Report Section -->
 <div id="plagiarism-report" class="content-section">
     <div class="assessment">
-        <?php if (isset($evaluation['plagiarism_sources'])): ?>
+        <?php 
+                                    $sources = json_decode($evaluation['plagiarism_sources'], true);
+                                    ?>
+                                    <?php if ((isset($data["plagiarism"]["success"]) && $data["plagiarism"]["success"]) || (count($sources) > 0)): ?>
             <div class="assessment-details-plagiarize">
                 <p class="rubrics-plagiariaze">Plagiarism Analysis</p>
                 
@@ -507,14 +509,23 @@ echo nl2br(htmlspecialchars(
                             <p class="plagiarism-warning">Potential plagiarism detected. Parts of this submission match content from external sources.</p>
                             
                             <div class="plagiarism-summary">
-                                <p style = "margin-bottom:0;"> <strong>Similarity Score:</strong> <?php echo isset($evaluation["plagiarism_score"]) ? htmlspecialchars($evaluation["plagiarism_score"]    ) . '%' : 'Not available'; ?></p>
+                                <p style="margin-bottom:0;">
+                                    <strong>Similarity Score:</strong> 
+                                    <?php 
+                                    if (isset($evaluation["plagiarism_score"])) {
+                                        $plagiarism_score = $evaluation["plagiarism_score"] > 50 ? 100 : $evaluation["plagiarism_score"];
+                                        echo htmlspecialchars($plagiarism_score) . '%';
+                                    } else {
+                                        echo 'Not available';
+                                    }
+                                    ?>
+                                </p>
                             </div>
                             
                             <div class="plagiarism-other-sources">
                                 <p class="plagiarized-works-database">Sources found in online databases:</p>
                                 <ol class="source-list">
                                     <?php 
-                                    $sources = json_decode($evaluation['plagiarism_sources'], true);
                                     if (is_array($sources)) {
                                         foreach ($sources as $source) {
                                             echo '<li>';

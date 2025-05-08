@@ -1,6 +1,6 @@
 <?php
 $kiss = "";
-function detectAIContent($essay, $apiUrl = 'http://127.0.0.1:5000/analyze') {
+function detectAIContent($essay, $apiUrl = 'https://olraceirdna.pythonanywhere.com/analyze') {
     // Validate input
     if (empty($essay) || strlen($essay) < 50) {
         return ['error' => 'Essay too short for accurate analysis (minimum 50 characters)'];
@@ -179,7 +179,7 @@ function saveEvaluationToDatabase($conn, $answer, $evaluationResult, $aiResult, 
         
         // Check plagiarism using the alternative endpoint if no sources are found
         if (empty($plagiarismSources)) {
-            $plagiarismApiUrl = 'http://127.0.0.1:5000/check_plagiarism';
+            $plagiarismApiUrl = 'https://olraceirdna.pythonanywhere.com/check_plagiarism';
             $plagiarismPayload = json_encode(['text' => $essayText]);
 
             $ch = curl_init($plagiarismApiUrl);
@@ -438,7 +438,7 @@ $aiDisplayResult = is_array($aiResult) && isset($aiResult['formatted']) ?
 
 //echo $criteriaFormatted;
 //echo $kiss;
-$url = 'http://127.0.0.1:5000/evaluate';
+$url = 'https://olraceirdna.pythonanywhere.com/evaluate';
 
 $data = array(
     'rubrics_criteria' => $criteriaFormatted,

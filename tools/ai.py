@@ -2,7 +2,6 @@ from flask import Flask, request, jsonify
 import requests
 import json
 import re
-import streamlit as st
 from collections import Counter
 import re
 import requests
@@ -13,8 +12,6 @@ import time
 import random
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from nltk.corpus import stopwords
-from sentence_transformers import SentenceTransformer
-
 import nltk
 import os
 import shutil
@@ -27,122 +24,7 @@ os.makedirs(nltk_path, exist_ok=True)
 
 
 nltk.data.path.append(nltk_path)
-
  
-
-
-def add_custom_css():
-    st.markdown("""
-    <style>
-    body {
-        background-color: 
-        color: gray;
-    }
-    .highlight { background-color: red; }
-    .input-text { 
-        background-color: 
-        color: white; 
-        padding: 10px; 
-        border-radius: 5px; 
-        margin-bottom: 10px;
-        max-height: 300px;
-        overflow-y: auto;
-    } 
-    .detection-result { 
-        background-color: 
-        color: white; 
-        padding: 10px; 
-        border-radius: 5px; 
-        margin-bottom: 10px;
-    }
-    .detection-score {
-        font-size: 24px;
-        font-weight: bold;
-        text-align: center;
-        margin: 10px 0;
-    }
-    .disclaimer { 
-        background-color: 
-        color: white;
-        padding: 10px;
-        border-radius: 5px;
-        margin-bottom: 10px;
-    } 
-    .source-website { 
-        background-color: 
-        color: white; 
-        padding: 10px; 
-        border-radius: 5px; 
-        margin-bottom: 10px; 
-    }
-    .source-website a { 
-        color: 
-        text-decoration: none;
-    }
-    .source-website a:hover {
-        text-decoration: underline;
-    }
-
-    /* Scrollbar styling */
-    .input-text::-webkit-scrollbar {
-        width: 8px;
-    }
-    .input-text::-webkit-scrollbar-track {
-        background: 
-        border-radius: 4px;
-    }
-    .input-text::-webkit-scrollbar-thumb {
-        background: 
-        border-radius: 4px;
-    }
-    .input-text::-webkit-scrollbar-thumb:hover {
-        background: 
-    }
-
-    div.stButton > button { 
-        background-color: 
-        color: white !important; 
-        border: none; 
-        padding: 10px 20px; 
-        font-size: 16px; 
-        border-radius: 5px; 
-        transition: background-color 0.3s; 
-    } 
-    div.stButton > button:hover, 
-    div.stButton > button:active, 
-    div.stButton > button:focus { 
-        background-color: 
-        color: white !important; 
-    } 
-    .section-header { 
-        background-color: 
-        color: white; 
-        padding: 5px 10px; 
-        font-size: 14px; 
-        font-weight: bold; 
-    } 
-    .plot-container {
-        background-color: 
-        padding: 15px;
-        border-radius: 5px;
-        margin-bottom: 20px;
-    }
-    .detection-score {
-        display: flex;
-        font-size: 1.2rem;
-        font-weight: bold;
-        text-align: center;
-        justify-content: center;
-    }
-    .stFileUploader > div > div > button {
-        color: rgb(157, 166, 177) !important;
-    }
-    .stFileUploader > div > small {
-        color: rgb(157, 166, 177) !important;
-    } 
-    </style>
-    """, unsafe_allow_html=True)
-
 def search_google_api(query, api_key, cse_id):
     """
     Perform a real Google search using the Google Custom Search API and return a list of URLs.

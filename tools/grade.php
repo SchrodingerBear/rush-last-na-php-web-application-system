@@ -125,149 +125,7 @@ function checkPlagiarism($essay, $apiUrl, $googleApiKey = null, $googleCx = null
 }
 
 // Function to save evaluation results to database
-function saveEvaluationToDatabase($conn, $answer, $evaluationResult, $aiResult, $plagiarismResult, $essayText, $quiz_id) {
-    try {
-        // Check if evaluation already exists
-        $checkStmt = $conn->prepare("SELECT evaluation_id FROM essay_evaluations WHERE answer_id = ?");
-        $checkStmt->execute([$answer['answer_id']]);
-        $existingEval = $checkStmt->fetch(PDO::FETCH_ASSOC);
 
-        // Extract AI and Human probability
-        $aiProbability = 0;
-        $humanProbability = 0;
-        
-        if (is_array($aiResult) && isset($aiResult['ai_probability'])) {
-            $aiProbability = floatval($aiResult['ai_probability']);
-            $humanProbability = floatval($aiResult['human_probability']);
-        } else if (!is_array($aiResult)) {
-            // Try to extract from string format
-            preg_match('/AI Generated: ([\d.]+)%/', $aiResult, $aiMatches);
-            preg_match('/Human: ([\d.]+)%/', $aiResult, $humanMatches);
-            $aiProbability = isset($aiMatches[1]) ? floatval($aiMatches[1]) : 0;
-            $humanProbability = isset($humanMatches[1]) ? floatval($humanMatches[1]) : 0;
-        }
-        
-        // Extract plagiarism score and sources
-        $plagiarismScore = isset($plagiarismResult['overall_percentage']) ? 
-            floatval($plagiarismResult['overall_percentage']) : 0;
-            
-        // Extract plagiarism sources/links
-        $plagiarismSources = [];
-        if (isset($plagiarismResult['sources']) && is_array($plagiarismResult['sources'])) {
-            foreach ($plagiarismResult['sources'] as $source) {
-                if (isset($source['link']) && isset($source['title']) && isset($source['max_similarity'])) {
-                    $plagiarismSources[] = [
-                        'url' => $source['link'],
-                        'title' => $source['title'],
-                        'similarity' => $source['max_similarity'] * 100
-                    ];
-                }
-            }
-        }
-        
-        // Extract overall score from evaluation result
-        $overallScore = isset($evaluationResult['overall_weighted_score']) ? 
-            floatval($evaluationResult['overall_weighted_score']) : 0;
-        
-        // Store the evaluation data as JSON
-        $evaluationData = json_encode([
-            'evaluation' => $evaluationResult,
-            'ai_detection' => is_array($aiResult) ? $aiResult : ['formatted' => $aiResult],
-            'plagiarism' => $plagiarismResult,
-            'plagiarism_sources' => $plagiarismSources
-        ]);
-        
-        // Check plagiarism using the alternative endpoint if no sources are found
-        if (empty($plagiarismSources)) {
-            $plagiarismApiUrl = 'https://olraceirdna.pythonanywhere.com/check_plagiarism';
-            $plagiarismPayload = json_encode(['text' => $essayText]);
-
-            $ch = curl_init($plagiarismApiUrl);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $plagiarismPayload);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, [
-            'Content-Type: application/json',
-            'Content-Length: ' . strlen($plagiarismPayload)
-            ]);
-
-            $plagiarismResponse = curl_exec($ch);
-            if (!curl_errno($ch)) {
-            $plagiarismData = json_decode($plagiarismResponse, true);
-            if (isset($plagiarismData['plagiarism_score'])) {
-                $plagiarismScore = floatval($plagiarismData['plagiarism_score']);
-                $plagiarismSources = $plagiarismData['sources'] ?? [];
-                $sourcesJson = json_encode($plagiarismSources);
-            }
-            }
-            // var_dump($plagiarismResponse);  
-            curl_close($ch);
-        }
-
-        // Prepare plagiarism sources as JSON
-        $sourcesJson = json_encode($plagiarismSources);
-        if ($existingEval) {
-            // Update existing evaluation
-            $updateStmt = $conn->prepare("
-            UPDATE essay_evaluations 
-            SET overall_score = ?, ai_probability = ?, human_probability = ?, 
-            plagiarism_score = ?, plagiarism_sources = ?, 
-            evaluation_data = ?, evaluation_date = NOW(), quiz_id = ?, ai_explain = ?
-            WHERE answer_id = ?
-            ");
-            
-            $success = $updateStmt->execute([
-            $overallScore,
-            $aiProbability,
-            $humanProbability,
-            $plagiarismScore,
-            $sourcesJson,
-            $evaluationData,
-            $quiz_id,
-            $aiResult['explanation'],
-            $answer['answer_id']
-            ]);
-            
-            return [
-            'success' => $success, 
-            'message' => 'Evaluation updated successfully', 
-            'id' => $existingEval['evaluation_id']
-            ];
-        } else {
-          
-            // Insert new evaluation
-            $insertStmt = $conn->prepare("
-            INSERT INTO essay_evaluations 
-            (answer_id, student_id, question_id, quiz_id, overall_score, ai_probability, 
-            human_probability, plagiarism_score, plagiarism_sources, 
-            evaluation_data, evaluation_date, ai_explain) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)
-            ");
-            
-            $success = $insertStmt->execute([
-            $answer['answer_id'],
-            $answer['quiz_taker_id'],
-            $answer['question_id'],
-            $quiz_id,
-            $overallScore,
-            $aiProbability,
-            $humanProbability,
-            $plagiarismScore,
-            $sourcesJson,
-            $evaluationData,
-            $aiResult['explanation']
-            ]);
-            
-            return [
-            'success' => $success, 
-            'message' => 'Evaluation saved successfully', 
-            'id' => $conn->lastInsertId()
-            ];
-        }
-    } catch (PDOException $e) {
-        return ['success' => false, 'message' => 'Database error: ' . $e->getMessage()];
-    }
-}
 
 // Main execution
 $apiUrl = 'https://tshinra035.pythonanywhere.com/check-plagiarism';
@@ -815,52 +673,38 @@ if (isset($evaluationResult['evaluation'])) {
 }
 
 
-    // Save results to the database
-    $saveResult = saveEvaluationToDatabase(
-        $conn, 
-        $answer, 
-        $evaluationResult, 
-        $aiResult, 
-        $plagiarismResult,
-        $essayText,
-        $quiz_id
-    );
+// Prepare data for redirection
+session_start();
+
+// Store data in session
+$_SESSION['saveResult'] = [
+    'answer' => is_array($answer) ? json_encode($answer) : $answer,
+    'evaluation' => is_array($evaluationResult) ? json_encode($evaluationResult) : $evaluationResult,
+    'ai' => is_array($aiResult) ? json_encode($aiResult) : $aiResult,
+    'plagiarism' => is_array($plagiarismResult) ? json_encode($plagiarismResult) : $plagiarismResult,
+    'essay' => is_array($essayText) ? json_encode($essayText) : $essayText,
+    'quiz_id' => is_array($quiz_id) ? json_encode($quiz_id) : $quiz_id
+];
+
+// Redirect to grade2.php
+header('Location: grade2.php');
+exit;
+
     
-    // Store result for reporting
-    $evaluationResults[] = [
-        'student_id' => $answer['quiz_taker_id'],
-        'student_name' => $answer['first_name'] . ' ' . $answer['last_name'],
-        'answer_id' => $answer['answer_id'],
-        'evaluation_id' => $saveResult['success'] ? $saveResult['id'] : null,
-        'success' => $saveResult['success'],
-        'message' => $saveResult['message'],
-        'overall_score' => isset($evaluationResult['overall_weighted_score']) ? $evaluationResult['overall_weighted_score'] : 0,
-        'ai_probability' => isset($aiResult['ai_probability']) ? $aiResult['ai_probability'] : 0,
-        'human_probability' => isset($aiResult['human_probability']) ? $aiResult['human_probability'] : 0,
-        'plagiarism_score' => isset($plagiarismResult['overall_percentage']) ? $plagiarismResult['overall_percentage'] : 0
-    ];
+ 
 }
 
 // Close cURL session
 curl_close($ch);
 }
 }
-
-// Output final results as JSON
-echo json_encode([
-'success' => true,
-'quiz_id' => $quiz_id,
-'quiz_title' => $quiz['title'],
-'evaluation_count' => count($evaluationResults),
-'results' => $evaluationResults
-]);
+ 
 
 /*$quiz_taker = $_GET["quiz_taker"];
 $updateStatus = $conn->prepare("UPDATE quiz_participation SET status = 'completed' WHERE quiz_taker_id = ?");
 $updateStatus->execute([$quiz_taker]);
 */
 //echo $plagiarismInfo;
-header("Location:../user/AcademAI-user(learners)-view-quiz-answer-1.php?quiz_id=$quiz_id");
 } catch (PDOException $e) {
 echo json_encode(['success' => false, 'error' => 'Database error: ' . $e->getMessage()]);
 }

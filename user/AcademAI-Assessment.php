@@ -111,6 +111,8 @@ if (!empty($evaluations)) {
         break;
     }
 }
+
+var_dump($generalAssessment);
 // Get question number from URL
 $question_number = $_GET['question_number'] ?? 'Unknown';
 ?>

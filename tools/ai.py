@@ -19,9 +19,16 @@ import shutil
 
 nltk_path = os.path.join(os.getcwd(), "nltk_data")
 if os.path.exists(nltk_path):
-    shutil.rmtree(nltk_path)  
+    shutil.rmtree(nltk_path)  # Remove old data to avoid corruption
 os.makedirs(nltk_path, exist_ok=True)
 
+# Set NLTK data path
+nltk.data.path.append(nltk_path)
+
+# Download only necessary NLTK resources
+nltk.download('punkt', download_dir=nltk_path)
+nltk.download('punkt_tab', download_dir=nltk_path)
+nltk.download('stopwords', download_dir=nltk_path)
 
 nltk.data.path.append(nltk_path)
  

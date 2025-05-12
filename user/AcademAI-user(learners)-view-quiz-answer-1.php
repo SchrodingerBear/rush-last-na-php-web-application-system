@@ -82,7 +82,6 @@ foreach ($questions as $index => $question) {
     $stmt = $pdo->prepare("SELECT * FROM quiz_answers WHERE question_id = ? AND quiz_taker_id = ?");
     $stmt->execute([$question_id, $quiz_taker_id]);
     $answer = $stmt->fetch(PDO::FETCH_ASSOC);
-    
     $questionData[$index] = [
         'question' => $question,
         'answer' => $answer,
